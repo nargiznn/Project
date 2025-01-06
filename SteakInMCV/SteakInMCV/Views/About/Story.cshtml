@@ -1,0 +1,308 @@
+﻿@model AboutVM
+<!-- Page Title #1
+============================================= -->
+<section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
+    <div class="bg-section">
+        <img src="~/assets/images/page-title/2.jpg" alt="Background" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="title title-1 text-center">
+                    <div class="title--content">
+                        <div class="title--subtitle">@Model.Settings["StoryPageTitle"]</div>
+                        <div class="title--heading">
+                            <h1>@Model.Settings["WelcomeStoryInfo"]</h1>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">about</a></li>
+                        <li class="active">Our Story</li>
+                    </ol>
+                    <div class="divider--shape-1down"></div>
+                </div>
+                <!-- .title end -->
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #page-title end -->
+
+<section id="banner7" class="banner banner-1 text-center pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                <div class="heading heading-1 text--center mb-50">
+                    <p class="heading--subtitle">@Model.Settings["WelcomeTitle"]</p>
+                    <h2 class="heading--title">@Model.Settings["WelcomeStoryInfo"]</h2>
+                    <div class="divider--shape-4"></div>
+                    <p class="heading--desc">@Model.Settings["WelcomeDesc"]</p>
+                </div>
+                <!-- .heading end -->
+            </div>
+            <!-- .col-md-6 end -->
+        </div>
+        <div class="row">
+            @foreach (var item in Model.Banners.TakeLast(2))
+            {
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="banner-panel">
+                        <div class="banner--img">
+                            @*<img src="~/assets/images/banners/@item.Image" alt="@item.AltText" class="img-responsive">*@
+
+                            <img src="@Url.Content("~/assets/images/banners/" + item.Image)"
+                                 alt="@item.AltText"
+                                 class="img-responsive"
+                                 style="width: 100%; height: auto; object-fit: cover; border: 1px solid #ccc; border-radius: 5px;">
+                        </div>
+                    </div>
+                    <!-- .banner-panel end -->
+                </div>
+            }
+            <!-- .col-md-4 end -->
+
+
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+
+
+<!-- Testimonial #5
+============================================= -->
+<section id="testimonial5" class="testimonial testimonial-5 bg-overlay bg-parallax bg-overlay-dark text-center">
+    <div class="bg-section">
+        <img src="~/assets/images/background/@Model.Settings["TestimonialStoryPageBg"]" alt="Background" />
+    </div>
+    <div class="container">
+        <div class="divider--shape-1up"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+                <div id="testimonial-wide" class="carousel carousel-white" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="false" data-space="0" data-loop="true" data-speed="800">
+                    <!-- Testimonial #1 -->
+                    @foreach (var item in Model.Customers.Where(c => c.ReviewType.HasValue && c.ReviewType.Value == Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
+                    {
+                        <div class="testimonial-panel">
+                            <div class="testimonial--quote">
+                                <img src="~/assets/images/testimonial/chef-hat.png" alt="hat">
+                            </div>
+                            <div class="testimonial--body">
+                                <p class="color-white"> @item.Text</p>
+                            </div>
+                            <!-- .testimonial-body end -->
+                            <div class="testimonial--meta">
+                                <div class="testimonial--author">
+                                    <h4>@item.Name @item.SurName</h4>
+                                </div>
+                            </div>
+                            <!-- .testimonial-meta end -->
+                        </div>
+                        <!-- .testimonial-panel end -->
+                    }
+
+                </div>
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+        <div class="divider--shape-1down"></div>
+    </div>
+    <!-- .container end -->
+</section>
+<!-- .testimonial5 end -->
+<!-- Banner#6
+============================================= -->
+<section id="banner6" class="banner banner-6 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+                <h3 class="panel--heading">@Model.Settings["LogosText"]</h3>
+                <ul class="panel--logos list-unstyled list-inline mb-50">
+                    @foreach (var item in Model.AwardLogos)
+                    {
+                        <li><img src="~/assets/images/tabs/@item.Image" alt="logo"></li>
+                    }
+                </ul>
+            </div>
+            <!-- .col-md-10 end -->
+        </div>
+        <!-- .row end -->
+        <div class="row">
+            <!-- Sol tərəf (ilk yarısı) -->
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="panel--details text-right">
+                    @for (int i = 0; i < (Model.Awards.Count() + 1) / 2; i++)
+                    {
+                        <li>@Model.Awards[i].Name (@Model.Awards[i].Year.ToString("yyyy"))</li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Sağ tərəf (qalanı) -->
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="panel--details text-left">
+                    @for (int i = (Model.Awards.Count() + 1) / 2; i < Model.Awards.Count(); i++)
+                    {
+                        <li>@Model.Awards[i].Name (@Model.Awards[i].Year.ToString("yyyy"))</li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #banner6 end -->
+<!-- Testimonial #1
+============================================= -->
+<section id="testimonial1" class="testimonial testimonial-1 bg-overlay bg-parallax bg-overlay-dark">
+    <div class="bg-section">
+        <img src="~/assets/images/background/1.jpg" alt="Background" />
+    </div>
+
+    <div class="container">
+        <div class="divider--shape-1up"></div>
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                <div class="heading heading-1 mb-50 text--center">
+                    <p class="heading--subtitle">@Model.Settings["Testimonials"]</p>
+                    <h2 class="heading--title color-white">@Model.Settings["Customer"]</h2>
+                    <div class="divider--shape-13"></div>
+                </div>
+            </div>
+            <!-- .col-md-8 end -->
+        </div>
+        <!-- .row end -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div id="testimonial-carousel" class="carousel carousel-dots carousel-white" data-slide="3" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="true" data-space="30" data-loop="true" data-speed="800">
+                    @foreach (var item in Model.Customers.Where(c => c.ReviewType.HasValue && c.ReviewType.Value != Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
+                    {
+                        <!-- Testimonial #1 -->
+                        <div class="testimonial-container">
+
+                            <div class="testimonial-panel">
+                                <div class="testimonial-bordered">
+                                    <div class="testimonial--rating">
+                                        @for (int i = 1; i <= item.Raiting; i++)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                        @for (int i = item.Raiting + 1; i <= 5; i++)
+                                        {
+                                            <i class="fa fa-star-o"></i>
+                                        }
+                                    </div>
+                                    <!-- .testimonial-rating end -->
+                                    <div class="testimonial--body">
+                                        <p>“  @item.Text ”</p>
+                                    </div>
+                                    <!-- .testimonial-body end -->
+                                    <div class="testimonial--meta">
+                                        <div class="testimonial--img">
+                                            <img src="~/assets/images/testimonial/@item.Image" alt="Testimonial Author">
+                                        </div>
+                                        <div class="testimonial--author">
+                                            <h4> @item.SurName @item.Name </h4>
+                                        </div>
+                                    </div>
+                                    <!-- .testimonial-meta end -->
+                                </div>
+                            </div>
+                            <!-- .testimonial-panel end -->
+                            <div class="divider--shape-1up"></div>
+                        </div>
+                        <!-- Testimonial #2 -->
+                    }
+
+                </div>
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+        <div class="divider--shape-1down"></div>
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #testimonial1 end -->
+<!-- Blog Carousel
+============================================= -->
+<section id="blog2" class="blog blog-carousel pb-80">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                <div class="heading heading-1 mb-50 text--center">
+                    <p class="heading--subtitle">@Model.Settings["EventTitle"]</p>
+                    <h2 class="heading--title mb-0">@Model.Settings["EventMain"]</h2>
+                    <div class="divider--shape-4"></div>
+                </div>
+            </div>
+            <!-- .col-md-8 end -->
+        </div>
+        <!-- .row end -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="carousel" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="false" data-dots="false" data-space="0" data-loop="true" data-speed="800">
+
+                    @foreach (var blog in Model.EventVMs)
+                    {
+                        <!-- Blog Entry #1 -->
+                        <div class="blog-entry">
+
+                            <div class="entry--content">
+                                <div class="entry--meta">
+                                    <span class="entry--date">@blog.CreatedDate.ToString("MMM dd, yyyy")</span>
+                                    /@if (blog.TagsName != null && blog.TagsName.Any())
+                                    {
+                                        <span>
+                                            @foreach (var tag in blog.TagsName)
+                                            {
+                                                <span> <a href="#">@tag</a></span>
+                                                @if (tag != blog.TagsName.Last())
+                                                {
+                                                    <span>,</span>
+                                                }
+                                            }
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span></span>
+                                    }
+                                </div>
+                                <div class="entry--title">
+                                    <h4><a href="#">@blog.Title</a></h4>
+                                </div>
+                                <div class="entry--img">
+                                    <a href="#">
+                                        <img src="~/assets/images/blog/grid/@blog.ImgUrl" alt="entry image" />
+                                    </a>
+                                </div>
+                                <div class="entry--bio">
+                                    @blog.Desc
+                                </div>
+                            </div>
+                            <!-- .entry-content end -->
+                        </div>
+                        <!-- .blog-entry end -->
+                    }
+
+
+                </div>
+                <!-- .carousel end -->
+            </div>
+            <!-- .col-md-6 end -->
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #blog end -->

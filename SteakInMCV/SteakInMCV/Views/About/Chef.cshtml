@@ -1,0 +1,195 @@
+﻿@model AboutVM
+<!-- Page Title #1
+============================================= -->
+<section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
+    <div class="bg-section">
+        <img src="~/assets/images/page-title/@Model.Settings["ChefPageBcImg"]" alt="Background" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="title title-1 text-center">
+                    <div class="title--content">
+                        <div class="title--subtitle">@Model.Settings["ChefPageTitle"]</div>
+                        <div class="title--heading">
+                            <h1>@Model.Settings["ChefPageDesc"]</h1>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home </a></li>
+                        <li><a href="index.html">about</a></li>
+                        <li class="active">Chefs</li>
+                    </ol>
+                    <div class="divider--shape-1down"></div>
+                </div>
+                <!-- .title end -->
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #page-title end -->
+<!-- Team #1
+============================================= -->
+<section id="team1" class="team team-1">
+    <div class="container">
+        @if (Model != null && Model.Chefs.Any())
+        {
+            var lastEightChefs = Model.Chefs.Reverse().Take(8).ToList();
+
+            for (int i = 0; i < lastEightChefs.Count; i += 4)
+            {
+                <div class="row @((i == 0) ? "mb-50" : "")">
+                    @foreach (var chef in lastEightChefs.Skip(i).Take(4))
+                    {
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="member">
+                                <div class="member-img">
+                                    <img src="~/assets/images/team/@chef.Images.LastOrDefault()" alt="member">
+                                    <div class="member-overlay">
+                                        <div class="member-hover">
+                                            <div class="pos-vertical-center">
+                                                <div class="member-social">
+                                                    @if (chef.SocialMedia != null)
+                                                    {
+                                                        @if (!string.IsNullOrEmpty(chef.SocialMedia.FacebookUrl))
+                                                        {
+                                                            <a href="@chef.SocialMedia.FacebookUrl" target="_blank" title="Facebook">
+                                                                <i class="fa fa-facebook"></i>
+                                                            </a>
+                                                        }
+                                                        @if (!string.IsNullOrEmpty(chef.SocialMedia.TwitterUrl))
+                                                        {
+                                                            <a href="@chef.SocialMedia.TwitterUrl" target="_blank" title="Twitter">
+                                                                <i class="fa fa-twitter"></i>
+                                                            </a>
+                                                        }
+                                                        @if (!string.IsNullOrEmpty(chef.SocialMedia.InstagramUrl))
+                                                        {
+                                                            <a href="@chef.SocialMedia.InstagramUrl" target="_blank" title="Instagram">
+                                                                <i class="fa fa-instagram"></i>
+                                                            </a>
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="member-info">
+                                    <h5>@chef.Name @chef.Surname</h5>
+                                    <h6>@string.Join(" & ", chef.Positions)</h6>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</section>
+
+
+<!-- #team1 end  -->
+<!-- Testimonial #5
+============================================= -->
+<section id="testimonial5" class="testimonial testimonial-5 bg-overlay bg-parallax bg-overlay-dark text-center">
+    <div class="bg-section">
+        <img src="~/assets/images/background/@Model.Settings["TestimonialChefPageBg"]" alt="Background" />
+    </div>
+    <div class="container">
+        <div class="divider--shape-1up"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+                <div id="testimonial-wide" class="carousel carousel-white" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="false" data-space="0" data-loop="true" data-speed="800">
+                    @foreach (var customer in Model.Customers.Where(c => c.ReviewType.HasValue && c.ReviewType.Value == Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
+                    {
+                        <!-- Testimonial #1 -->
+                        <div class="testimonial-panel">
+                            <div class="testimonial--quote">
+                                <img src="~/assets/images/testimonial/chef-hat.png" alt="hat">
+                            </div>
+                            <div class="testimonial--body">
+                                <p class="color-white">@customer.Text</p>
+                            </div>
+                            <!-- .testimonial-body end -->
+                            <div class="testimonial--meta">
+                                <div class="testimonial--author">
+                                    <h4>@customer.Name @customer.SurName</h4>
+                                </div>
+                            </div>
+                            <!-- .testimonial-meta end -->
+                        </div>
+                        <!-- .testimonial-panel end -->
+                    }
+
+
+                </div>
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+        <div class="divider--shape-1down"></div>
+    </div>
+    <!-- .container end -->
+</section>
+<!-- .testimonial5 end -->
+<!-- Skills #2
+============================================= -->
+<section id="skills1" class="skills skills-2 bg-white">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                <div class="heading heading-1 mb-50 text--center">
+                    <p class="heading--subtitle">@Model.Settings["ChefsPageDownTitle"]</p>
+                    <h2 class="heading--title">@Model.Settings["ChefsPageDownText"]</h2>
+                    <div class="divider--shape-4"></div>
+                    <p class="heading--desc">@Model.Settings["ChefsPageDownDesc"]</p>
+                </div>
+            </div>
+            <!-- .col-md-8 end -->
+        </div>
+        <!-- .row end -->
+
+        <div class="row">
+            @foreach (var (cuisine, index) in Model.Cuisines.Select((c, i) => (c, i)))
+            {
+                if (index < 2) 
+                {
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="progressbar">
+                            <div class="progress-title">
+                                <span class="title">@cuisine.Name</span>
+                                <span class="value">@cuisine.ProgressPercentage%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="@cuisine.ProgressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @cuisine.ProgressPercentage%"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else 
+                {
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="progressbar">
+                            <div class="progress-title">
+                                <span class="title">@cuisine.Name</span>
+                                <span class="value">@cuisine.ProgressPercentage%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="@cuisine.ProgressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @cuisine.ProgressPercentage%"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #skills2 end -->

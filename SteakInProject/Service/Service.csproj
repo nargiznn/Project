@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Repository\Repository.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.36">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.36" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.36" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.36">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="MailKit" Version="4.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Helpers\DTOs\" />
+    <None Remove="Helpers\DTOs\Chef\" />
+    <None Remove="Helpers\DTOs\Slider\" />
+    <None Remove="Helpers\DTOs\WelcomeInfo\" />
+    <None Remove="Helpers\DTOs\WelcomeImage\" />
+    <None Remove="Helpers\DTOs\Event\" />
+    <None Remove="Helpers\DTOs\FoodCategory\" />
+    <None Remove="Helpers\DTOs\MenuCategory\" />
+    <None Remove="Helpers\DTOs\SpecialCategory\" />
+    <None Remove="Helpers\DTOs\Tag\" />
+    <None Remove="Helpers\DTOs\Customer\" />
+    <None Remove="Helpers\DTOs\Award\" />
+    <None Remove="Helpers\DTOs\Logo\" />
+    <None Remove="Helpers\DTOs\Setting\" />
+    <None Remove="Helpers\DTOs\SocialMediaLink\" />
+    <None Remove="Helpers\DTOs\Cuisine\" />
+    <None Remove="Helpers\DTOs\Product\" />
+    <None Remove="Helpers\DTOs\Banner\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\DTOs\" />
+    <Folder Include="Helpers\DTOs\Chef\" />
+    <Folder Include="Helpers\DTOs\Slider\" />
+    <Folder Include="Helpers\DTOs\WelcomeInfo\" />
+    <Folder Include="Helpers\DTOs\WelcomeImage\" />
+    <Folder Include="Helpers\DTOs\Event\" />
+    <Folder Include="Helpers\DTOs\FoodCategory\" />
+    <Folder Include="Helpers\DTOs\MenuCategory\" />
+    <Folder Include="Helpers\DTOs\SpecialCategory\" />
+    <Folder Include="Helpers\DTOs\Tag\" />
+    <Folder Include="Helpers\DTOs\Customer\" />
+    <Folder Include="Helpers\DTOs\Award\" />
+    <Folder Include="Helpers\DTOs\Logo\" />
+    <Folder Include="Helpers\DTOs\Setting\" />
+    <Folder Include="Helpers\DTOs\SocialMediaLink\" />
+    <Folder Include="Helpers\DTOs\Cuisine\" />
+    <Folder Include="Helpers\DTOs\Product\" />
+    <Folder Include="Helpers\DTOs\Banner\" />
+  </ItemGroup>
+</Project>

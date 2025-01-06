@@ -1,0 +1,15 @@
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/bin/Debug/net6.0/Domain.deps.json
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/bin/Debug/net6.0/Domain.runtimeconfig.json
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/bin/Debug/net6.0/Domain.dll
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/bin/Debug/net6.0/Domain.pdb
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.AssemblyInfoInputs.cache
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.dll
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/refint/Domain.dll
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.pdb
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.genruntimeconfig.cache
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/ref/Domain.dll
+/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/Debug/net6.0/Domain.sourcelink.json
