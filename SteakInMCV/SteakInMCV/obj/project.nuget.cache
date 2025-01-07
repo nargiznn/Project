@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "imMV/WeWyYxZe12JqN5g77YwV0YIF5WFrRaD8lwJYnLOhJA6IRa/3skaT00sHBEpmdnunWJ/iAkmxPlONQelFw==",
+  "dgSpecHash": "3bJWQFo49/lJbL7BNFtjNbpAlB8Zsw6/5eJXltVlh4KzD5EdFprzGCw4bzYcS/jcJn7FVjNeHqza4Awru+LRFw==",
   "success": true,
-  "projectFilePath": "/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/SteakInMCV.csproj",
+  "projectFilePath": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/SteakInMCV.csproj",
   "expectedPackageFiles": [
     "/Users/nergiznadirli/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.31/microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",

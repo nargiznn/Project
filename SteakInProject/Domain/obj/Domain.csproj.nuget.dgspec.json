@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/nergiznadirli/Desktop/SteakInProject/Domain/Domain.csproj": {}
+    "/Users/nergiznadirli/Desktop/Project/SteakInProject/Domain/Domain.csproj": {}
   },
   "projects": {
-    "/Users/nergiznadirli/Desktop/SteakInProject/Domain/Domain.csproj": {
+    "/Users/nergiznadirli/Desktop/Project/SteakInProject/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nergiznadirli/Desktop/SteakInProject/Domain/Domain.csproj",
+        "projectUniqueName": "/Users/nergiznadirli/Desktop/Project/SteakInProject/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/Users/nergiznadirli/Desktop/SteakInProject/Domain/Domain.csproj",
+        "projectPath": "/Users/nergiznadirli/Desktop/Project/SteakInProject/Domain/Domain.csproj",
         "packagesPath": "/Users/nergiznadirli/.nuget/packages/",
-        "outputPath": "/Users/nergiznadirli/Desktop/SteakInProject/Domain/obj/",
+        "outputPath": "/Users/nergiznadirli/Desktop/Project/SteakInProject/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/nergiznadirli/.nuget/NuGet/NuGet.Config"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -91,12 +86,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.317/RuntimeIdentifierGraph.json"
         }
       }
     }

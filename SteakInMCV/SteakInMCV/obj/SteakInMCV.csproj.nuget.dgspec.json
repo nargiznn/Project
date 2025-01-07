@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/SteakInMCV.csproj": {}
+    "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/SteakInMCV.csproj": {}
   },
   "projects": {
-    "/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/SteakInMCV.csproj": {
+    "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/SteakInMCV.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/SteakInMCV.csproj",
+        "projectUniqueName": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/SteakInMCV.csproj",
         "projectName": "SteakInMCV",
-        "projectPath": "/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/SteakInMCV.csproj",
+        "projectPath": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/SteakInMCV.csproj",
         "packagesPath": "/Users/nergiznadirli/.nuget/packages/",
-        "outputPath": "/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/obj/",
+        "outputPath": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/nergiznadirli/.nuget/NuGet/NuGet.Config"

@@ -9,57 +9,57 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SteakInMCV
 build_property.RootNamespace = SteakInMCV
-build_property.ProjectDir = /Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/
+build_property.ProjectDir = /Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV
+build_property.MSBuildProjectDirectory = /Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Areas/Admin/Views/Dashboard/Index.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Areas/Admin/Views/Slider/Index.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Slider/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2xpZGVyL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Areas/Admin/Views/_ViewImports.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Areas/Admin/Views/_ViewStart.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Views/About/Chef.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/About/Chef.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvQ2hlZi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Views/About/Contact.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/About/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvQ29udGFjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Views/About/Story.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/About/Story.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvU3RvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Views/Home/Index.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Views/_ViewImports.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Views/_ViewStart.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Areas/Admin/Views/Shared/_Layout.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-gytjavmcom
 
-[/Users/nergiznadirli/Desktop/SteakInMCV/SteakInMCV/Views/Shared/_Layout.cshtml]
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-y4cxvfgtv8
