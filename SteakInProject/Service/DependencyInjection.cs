@@ -19,6 +19,7 @@ namespace Service
             services.AddScoped<IEventService, EventService>();
 
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IFaqService, FaqService>();
 
 
 

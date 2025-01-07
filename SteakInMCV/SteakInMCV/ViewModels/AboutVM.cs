@@ -14,6 +14,7 @@ namespace SteakInMCV.ViewModels
         public List<Award> Awards { get; set; } = new List<Award>();
         public IEnumerable<AwardLogo> AwardLogos { get; set; } = new List<AwardLogo>();
         public IEnumerable<Banner> Banners { get; set; } = new List<Banner>();
+        public IEnumerable<Faq> Faqs { get; set; } = new List<Faq>();
     }
 }
 

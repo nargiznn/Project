@@ -226,6 +226,51 @@ namespace SteakInMCV.Controllers
             return View("Contact", aboutVM);
         }
 
+
+
+        public async Task<IActionResult> Faqs()
+        {
+            AboutVM aboutVM = new AboutVM();
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
+                    if (settingResponse.IsSuccessStatusCode)
+                    {
+                        string settingApiResponse = await settingResponse.Content.ReadAsStringAsync();
+                        var settings = JsonConvert.DeserializeObject<IEnumerable<Setting>>(settingApiResponse);
+                        aboutVM.Settings = settings.ToDictionary(s => s.Key, s => s.Value);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + settingResponse.StatusCode;
+                        aboutVM.Settings = new Dictionary<string, string>();
+                    }
+
+                    var faqResponse = await client.GetAsync($"{BaseURl}/api/faq/GetAll");
+                    if (faqResponse.IsSuccessStatusCode)
+                    {
+                        string faqApiResponse = await faqResponse.Content.ReadAsStringAsync();
+                        var faqs = JsonConvert.DeserializeObject<IEnumerable<Faq>>(faqApiResponse);
+                        aboutVM.Faqs = faqs.Where(f => f.IsActive).ToList(); 
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + faqResponse.StatusCode;
+                        aboutVM.Faqs = new List<Faq>();
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    ViewData["Error"] = $"API request failed: {ex.Message}";
+                }
+
+            }
+
+            return View("Faqs", aboutVM);
+        }
+
     }
 }
 

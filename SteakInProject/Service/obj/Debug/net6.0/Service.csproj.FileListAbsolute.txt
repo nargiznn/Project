@@ -30,9 +30,9 @@
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.AssemblyInfoInputs.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.AssemblyInfo.cs
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.csproj.CoreCompileInputs.cache
-/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.csproj.CopyComplete
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.dll
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/refint/Service.dll
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.pdb
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.genruntimeconfig.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/ref/Service.dll
+/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/obj/Debug/net6.0/Service.csproj.CopyComplete

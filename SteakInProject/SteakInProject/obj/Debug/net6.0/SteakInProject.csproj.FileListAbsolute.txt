@@ -188,9 +188,9 @@
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/staticwebassets.build.json
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/staticwebassets.development.json
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/scopedcss/bundle/SteakInProject.styles.css
-/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.csproj.CopyComplete
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.dll
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/refint/SteakInProject.dll
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.pdb
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.genruntimeconfig.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/ref/SteakInProject.dll
+/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.csproj.CopyComplete

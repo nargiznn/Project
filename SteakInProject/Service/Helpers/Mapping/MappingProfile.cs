@@ -1,10 +1,5 @@
-﻿using System;
-using System.Diagnostics.Metrics;
-using AutoMapper;
-using Domain.Common;
-using Microsoft.AspNetCore.Http; 
+﻿using AutoMapper;
 using Domain.Entities;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Identity;
 using Service.Helpers.DTOs.Account;
 using Service.Helpers.DTOs.Award;
@@ -24,10 +19,11 @@ using Service.Helpers.DTOs.Tag;
 using Service.Helpers.DTOs.WelcomeImage;
 using Service.Helpers.DTOs.WelcomeInfo;
 using Service.Helpers.DTOs.Banner;
+using Service.Helpers.Faqs;
 
 namespace Service.Helpers.Mapping
 {
-	public class MappingProfile:Profile
+    public class MappingProfile:Profile
 	{
 		public MappingProfile()
 		{
@@ -224,7 +220,7 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
-
+        
             CreateMap<Event, EventDto>().ForMember(dest => dest.Tags, opt =>
 opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
 
@@ -235,6 +231,9 @@ opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
                 opts.AllowNull();
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
+
+
+            CreateMap<Faq, FaqDto>();
         }
 
 

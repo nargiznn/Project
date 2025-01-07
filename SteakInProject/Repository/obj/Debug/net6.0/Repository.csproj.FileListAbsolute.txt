@@ -26,9 +26,9 @@
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.AssemblyInfoInputs.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.AssemblyInfo.cs
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.csproj.CoreCompileInputs.cache
-/Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.csproj.CopyComplete
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.dll
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/refint/Repository.dll
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.pdb
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.genruntimeconfig.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/ref/Repository.dll
+/Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.csproj.CopyComplete

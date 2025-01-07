@@ -17,6 +17,8 @@ namespace Repository.Data
 
         public DbSet<Cuisine> Cuisines { get; set; }
 
+        public DbSet<Faq> Faqs { get; set; }
+
 
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<WelcomeInfo> WelcomeInfos { get; set; }
