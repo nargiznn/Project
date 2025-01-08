@@ -21,10 +21,11 @@ namespace Service
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFaqService, FaqService>();
 
-
-
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<ICuisineService, CuisineService>();
+
+            services.AddScoped<IGalleryCategoryService, GalleryCategoryService>();
+            services.AddScoped<IGalleryImageService, GalleryImageService>();
 
             services.AddScoped<IMenuCategoryService, MenuCategoryService>();
             services.AddScoped<IFoodCategoryService, FoodCategoryService>();

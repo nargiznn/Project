@@ -18,6 +18,8 @@ namespace Repository.Data
         public DbSet<Cuisine> Cuisines { get; set; }
 
         public DbSet<Faq> Faqs { get; set; }
+        public DbSet<GalleryCategory> GalleryCategories { get; set; }
+        public DbSet<GalleryImage> GalleryImages { get; set; }
 
 
         public DbSet<Slider> Sliders { get; set; }

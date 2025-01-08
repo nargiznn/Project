@@ -1,6 +1,7 @@
 ﻿using System;
 using SteakInMCV.Models;
 using SteakInMCV.ViewModels.Events;
+using SteakInMCV.ViewModels.GalleryImage;
 
 namespace SteakInMCV.ViewModels
 {
@@ -15,6 +16,9 @@ namespace SteakInMCV.ViewModels
         public IEnumerable<AwardLogo> AwardLogos { get; set; } = new List<AwardLogo>();
         public IEnumerable<Banner> Banners { get; set; } = new List<Banner>();
         public IEnumerable<Faq> Faqs { get; set; } = new List<Faq>();
+
+        public IEnumerable<GalleryCategory> GalleryCategories { get; set; } = new List<GalleryCategory>();
+        public IEnumerable<GalleryImageVM> GalleryImagesVM { get; set; } = new List<GalleryImageVM>();
     }
 }
 

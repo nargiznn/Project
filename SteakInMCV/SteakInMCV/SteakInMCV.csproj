@@ -20,6 +20,7 @@
     <None Remove="Areas\Admin\Views\Slider\" />
     <None Remove="Views\About\" />
     <None Remove="ViewModels\Events\" />
+    <None Remove="ViewModels\GalleryImage\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -36,6 +37,7 @@
     <Folder Include="Areas\Admin\Views\Slider\" />
     <Folder Include="Views\About\" />
     <Folder Include="ViewModels\Events\" />
+    <Folder Include="ViewModels\GalleryImage\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

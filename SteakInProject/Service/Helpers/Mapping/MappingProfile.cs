@@ -20,13 +20,15 @@ using Service.Helpers.DTOs.WelcomeImage;
 using Service.Helpers.DTOs.WelcomeInfo;
 using Service.Helpers.DTOs.Banner;
 using Service.Helpers.Faqs;
+using Service.Helpers.DTOs.GalleryCategory;
+using Service.Helpers.DTOs.GalleryImage;
 
 namespace Service.Helpers.Mapping
 {
     public class MappingProfile:Profile
 	{
-		public MappingProfile()
-		{
+        public MappingProfile()
+        {
             CreateMap<ChefCreateDto, Chef>()
                        .ForMember(dest => dest.SocialMedia, opt => opt.MapFrom(src => new SocialMediaLink
                        {
@@ -35,9 +37,9 @@ namespace Service.Helpers.Mapping
                            InstagramUrl = src.SocialMedia.InstagramUrl
                        }))
                        .ForMember(dest => dest.ChefPosition, opt => opt.MapFrom(src => src.PositionIds.Select(positionId => new ChefPosition
-                        {
-                            PositionId = positionId
-                        }).ToList()));
+                       {
+                           PositionId = positionId
+                       }).ToList()));
 
             CreateMap<Chef, ChefDto>()
                 .ForMember(dest => dest.Positions,
@@ -69,7 +71,7 @@ namespace Service.Helpers.Mapping
             CreateMap<CuisineEditDto, Cuisine>()
              .ForAllMembers(opts =>
              {
-                 opts.Condition((src, dest, srcMember) => srcMember != null); 
+                 opts.Condition((src, dest, srcMember) => srcMember != null);
              });
 
 
@@ -112,7 +114,7 @@ namespace Service.Helpers.Mapping
             });
 
 
-            CreateMap<Event, EventDto>().ForMember(dest => dest.Tags, opt => 
+            CreateMap<Event, EventDto>().ForMember(dest => dest.Tags, opt =>
         opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
 
             CreateMap<EventCreateDto, Event>().ForMember(dest => dest.Tags, opt => opt.Ignore());
@@ -220,7 +222,7 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
-        
+
             CreateMap<Event, EventDto>().ForMember(dest => dest.Tags, opt =>
 opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
 
@@ -234,9 +236,12 @@ opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
 
 
             CreateMap<Faq, FaqDto>();
+            CreateMap<GalleryCategory, GalleryCategoryDto>();
+            CreateMap<GalleryImage, GalleryImageDto>()
+                       .ForMember(dest => dest.GalleryCategoryName, opt => opt.MapFrom(src => src.GalleryCategory.Name));
+
+
         }
-
-
+        }
     }
-}
 

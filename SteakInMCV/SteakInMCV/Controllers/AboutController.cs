@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SteakInMCV.Models;
 using SteakInMCV.ViewModels;
 using SteakInMCV.ViewModels.Events;
+using SteakInMCV.ViewModels.GalleryImage;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -260,6 +262,7 @@ namespace SteakInMCV.Controllers
                         ViewData["Error"] = "API request failed with status code: " + faqResponse.StatusCode;
                         aboutVM.Faqs = new List<Faq>();
                     }
+
                 }
                 catch (HttpRequestException ex)
                 {
@@ -269,6 +272,65 @@ namespace SteakInMCV.Controllers
             }
 
             return View("Faqs", aboutVM);
+        }
+
+
+        public async Task<IActionResult> Gallery()
+        {
+            AboutVM aboutVM = new AboutVM();
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
+                    if (settingResponse.IsSuccessStatusCode)
+                    {
+                        string settingApiResponse = await settingResponse.Content.ReadAsStringAsync();
+                        var settings = JsonConvert.DeserializeObject<IEnumerable<Setting>>(settingApiResponse);
+                        aboutVM.Settings = settings.ToDictionary(s => s.Key, s => s.Value);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + settingResponse.StatusCode;
+                        aboutVM.Settings = new Dictionary<string, string>();
+                    }
+
+                    var gallerycategoryResponse = await client.GetAsync($"{BaseURl}/api/gallerycategory/GetAll");
+                    if (gallerycategoryResponse.IsSuccessStatusCode)
+                    {
+                        string galleryCategoryApiResponse = await gallerycategoryResponse.Content.ReadAsStringAsync();
+                        aboutVM.GalleryCategories = JsonConvert.DeserializeObject<IEnumerable<GalleryCategory>>(galleryCategoryApiResponse);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + gallerycategoryResponse.StatusCode;
+                        aboutVM.GalleryCategories = new List<GalleryCategory>();
+                    }
+
+                    var galleryImageResponse = await client.GetAsync($"{BaseURl}/api/galleryimage/GetAll");
+                    if (galleryImageResponse.IsSuccessStatusCode)
+                    {
+                        string galleryImageApiResponse = await galleryImageResponse.Content.ReadAsStringAsync();
+                        aboutVM.GalleryImagesVM = JsonConvert.DeserializeObject<IEnumerable<GalleryImageVM>>(galleryImageApiResponse);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + galleryImageResponse.StatusCode;
+                        aboutVM.GalleryImagesVM = new List<GalleryImageVM>();
+                    }
+
+
+
+
+                }
+                catch (HttpRequestException ex)
+                {
+                    ViewData["Error"] = $"API request failed: {ex.Message}";
+                }
+
+            }
+
+            return View("Gallery", aboutVM);
         }
 
     }

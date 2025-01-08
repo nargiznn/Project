@@ -397,6 +397,55 @@ namespace Repository.Migrations
                     b.ToTable("FoodCategories");
                 });
 
+            modelBuilder.Entity("Domain.Entities.GalleryCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GalleryCategories");
+                });
+
+            modelBuilder.Entity("Domain.Entities.GalleryImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GalleryCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GalleryCategoryId");
+
+                    b.ToTable("GalleryImages");
+                });
+
             modelBuilder.Entity("Domain.Entities.MenuCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -890,6 +939,17 @@ namespace Repository.Migrations
                     b.Navigation("Position");
                 });
 
+            modelBuilder.Entity("Domain.Entities.GalleryImage", b =>
+                {
+                    b.HasOne("Domain.Entities.GalleryCategory", "GalleryCategory")
+                        .WithMany("GalleryImages")
+                        .HasForeignKey("GalleryCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GalleryCategory");
+                });
+
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
                     b.HasOne("Domain.Entities.Cuisine", "Cuisine")
@@ -1015,6 +1075,11 @@ namespace Repository.Migrations
             modelBuilder.Entity("Domain.Entities.FoodCategory", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Domain.Entities.GalleryCategory", b =>
+                {
+                    b.Navigation("GalleryImages");
                 });
 
             modelBuilder.Entity("Domain.Entities.MenuCategory", b =>
