@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Exceptions;
 using Service.Helpers.DTOs.MenuCategory;
+using Service.Helpers.DTOs.Product;
 using Service.Services.Interfaces;
 
 namespace Service.Services
@@ -47,8 +48,26 @@ namespace Service.Services
 
         public async Task<IEnumerable<MenuCategoryDto>> GetAllAsync()
         {
-            return _mapper.Map<List<MenuCategoryDto>>(await _context.MenuCategories.AsNoTracking().ToListAsync());
+            var categories = await _context.MenuCategories
+                                            .Include(mc => mc.Products)
+                                            .AsNoTracking()
+                                            .ToListAsync();
+
+            var result = categories.Select(mc => new MenuCategoryDto
+            {
+                Id = mc.Id,
+                Name = mc.Name,
+                Products = mc.Products.Select(p => new ProductDto
+                {
+                    Name = p.Name,
+                    Ingredient = p.Ingredient,
+                    Price = p.Price,
+                }).ToList()
+            });
+
+            return result;
         }
+
 
         public async Task<MenuCategoryDto> GetByIdAsync(int id)
         {

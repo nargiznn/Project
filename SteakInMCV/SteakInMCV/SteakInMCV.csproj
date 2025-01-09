@@ -21,6 +21,8 @@
     <None Remove="Views\About\" />
     <None Remove="ViewModels\Events\" />
     <None Remove="ViewModels\GalleryImage\" />
+    <None Remove="Views\Menu\" />
+    <None Remove="Views\BookATable\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -38,6 +40,8 @@
     <Folder Include="Views\About\" />
     <Folder Include="ViewModels\Events\" />
     <Folder Include="ViewModels\GalleryImage\" />
+    <Folder Include="Views\Menu\" />
+    <Folder Include="Views\BookATable\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

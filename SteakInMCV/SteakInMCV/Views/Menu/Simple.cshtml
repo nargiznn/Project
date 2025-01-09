@@ -1,0 +1,114 @@
+﻿@model MenuVM
+<!-- Page Title #1
+      ============================================= -->
+<section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
+    <div class="bg-section">
+        <img src="~/assets/images/page-title/@Model.Settings["SimplePageBg"]" alt="Background" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="title title-1 text-center">
+                    <div class="title--content">
+                        <div class="title--subtitle">@Model.Settings["SimplePageTitle"]</div>
+                        <div class="title--heading">
+                            <h1>@Model.Settings["SimplePageMain"]</h1>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="index.html">menu</a>
+                        </li>
+                        <li class="active">simple</li>
+                    </ol>
+                    <div class="divider--shape-1down"></div>
+                </div>
+                <!-- .title end -->
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #page-title end -->
+<!-- Menu Simple
+============================================= -->
+<section id="menuSimple">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                <div class="heading heading-1 mb-50 text--center">
+                    <p class="heading--subtitle">@Model.Settings["MenuSectionSubtitle"]</p>
+                    <h2 class="heading--title mb-0">@Model.Settings["MenuSectionTitle"]</h2>
+                    <div class="divider--shape-4"></div>
+                    <p class="heading--desc">@Model.Settings["MenuSectionDescription"]</p>
+                </div>
+            </div>
+            <!-- .col-md-8 end -->
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+    <div class="container-fluid pr-0 pl-0 tabs">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    @foreach (var category in Model.MenuCategories)
+                    {
+                        <li class="@(category.IsActive ? "active" : "")">
+                            <a href="#@category.Name.ToLower()" data-toggle="tab">@category.Name</a>
+                        </li>
+                    }
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    @foreach (var item in Model.MenuCategories)
+                    {
+                        <div class="tab-pane fade" id="@item.Name.ToLower()">
+                            <!-- Menu
+            ============================================= -->
+                            <div class="menu-simple">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Dish #1 -->
+                                        @foreach (var product in item.Products)
+                                        {
+                                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                                <div class="dish-panel">
+                                                    <div class="dish--img">
+                                                        <img src="~/assets/images/menu/dish/@product.ImageUrls" alt="dish">
+                                                    </div>
+                                                    <div class="dish--content">
+                                                        <div class="dish--content-bio">
+                                                            <h3 class="dish--title">Grilled Fillet</h3>
+                                                            <div class="dish--price">$@product.Price</div>
+                                                        </div>
+                                                        <p class="dish--desc">@product.Ingredient</p>
+                                                    </div>
+                                                </div><!-- .dish end -->
+                                            </div><!-- .dish-panel end -->
+                                        }
+
+                                    </div> <!-- .row end -->
+                                </div><!-- .container end -->
+                            </div><!-- #menuSimple1 end -->
+                        </div>
+                    }
+                    <!-- .tab-pane end -->
+
+                </div>
+                <!-- .tabs-content end -->
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #menuSimple end -->

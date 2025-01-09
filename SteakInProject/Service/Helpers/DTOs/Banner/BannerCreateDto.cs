@@ -8,6 +8,8 @@ namespace Service.Helpers.DTOs.Banner
         public IFormFile File { get; set; }
         public string ImgUrl { get; set; }
         public string AltText { get; set; }
+        public string Title { get; set; }
+        public string Desc { get; set; }
     }
 }
 

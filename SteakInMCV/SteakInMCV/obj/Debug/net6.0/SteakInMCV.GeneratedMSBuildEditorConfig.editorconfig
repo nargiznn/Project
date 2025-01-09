@@ -52,8 +52,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvU3RvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/BookATable/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va0FUYWJsZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Menu/Classic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9DbGFzc2ljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Menu/Simple.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9TaW1wbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/_ViewImports.cshtml]
