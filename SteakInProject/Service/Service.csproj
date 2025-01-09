@@ -47,6 +47,7 @@
     <None Remove="Helpers\DTOs\Faq\" />
     <None Remove="Helpers\DTOs\GalleryCategory\" />
     <None Remove="Helpers\DTOs\GalleryImage\" />
+    <None Remove="Helpers\DTOs\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\DTOs\" />
@@ -70,5 +71,6 @@
     <Folder Include="Helpers\DTOs\Faq\" />
     <Folder Include="Helpers\DTOs\GalleryCategory\" />
     <Folder Include="Helpers\DTOs\GalleryImage\" />
+    <Folder Include="Helpers\DTOs\Client\" />
   </ItemGroup>
 </Project>

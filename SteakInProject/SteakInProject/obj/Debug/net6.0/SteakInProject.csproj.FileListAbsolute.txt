@@ -193,5 +193,4 @@
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.pdb
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.genruntimeconfig.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/ref/SteakInProject.dll
-/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.sourcelink.json
-/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInP.2D11139E.Up2Date
+/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.csproj.CopyComplete

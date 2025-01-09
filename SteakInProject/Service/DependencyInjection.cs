@@ -39,6 +39,8 @@ namespace Service
             services.AddScoped<ISettingService, SettingService>();
             services.AddScoped<IEmailService, EmailService>();
 
+            services.AddScoped<IClientService, ClientService>();
+
             services.AddScoped<IBannerService, BannerService>();
             services.AddScoped<IProductService, ProductService>();
             return services;

@@ -1,0 +1,79 @@
+﻿@model ElementVM
+@{
+    var clientCount = Model.Clients.Count();
+    var rowCount = (int)Math.Ceiling((double)clientCount / 4); 
+}
+
+<!-- Page Title #1 ============================================= -->
+<section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
+    <div class="bg-section">
+        <img src="assets/images/page-title/@Model.Settings["ElementClientBg"]" alt="Background" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="title title-1 text-center">
+                    <div class="title--content">
+                        <div class="title--subtitle">@Model.Settings["ElementSubtitle"]</div>
+                        <div class="title--heading">
+                            <h1>@Model.Settings["ElementClientHeading"]</h1>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Elements</a></li>
+                        <li class="active">Clients</li>
+                    </ol>
+                    <div class="divider--shape-1down"></div>
+                </div>
+                <!-- .title end -->
+            </div>
+            <!-- .col-md-12 end -->
+        </div>
+        <!-- .row end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #page-title end -->
+
+<div class="clearfix pt-150 bg-gray"></div>
+
+<!-- Clients #1 ============================================= -->
+<section id="clients1" class="clients clients-1 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                <div class="heading heading-1 mb-50 text--center">
+                    <p class="heading--subtitle">@Model.Settings["ClientTitle"]</p>
+                    <h2 class="heading--title">@Model.Settings["ClientHeading"]</h2>
+                    <div class="divider--shape-4"></div>
+                    <p class="heading--desc">@Model.Settings["ClientDescription"]</p>
+                </div>
+            </div>
+            <!-- .col-md-8 end -->
+        </div>
+        <!-- .row end -->
+        <!-- Clients List -->
+        @for (int i = 0; i < rowCount; i++)
+        {
+            <div class="row row-clients">
+                @for (int j = 0; j < 4; j++)
+                {
+                    var client = Model.Clients.ElementAtOrDefault(i * 4 + j);
+                    if (client != null)
+                    {
+                        <div class="col-xs-12 col-sm-6 col-md-3 client">
+                            <img class="center-block" src="~/assets/images/clients/@client.ImageUrl" alt="@client.Name">
+                        </div>
+                    }
+                }
+            </div>
+        }
+        <!-- .row-clients end -->
+    </div>
+    <!-- .container end -->
+</section>
+<!-- #clients1 end -->
+
+<div class="clearfix pt-150 bg-gray"></div>

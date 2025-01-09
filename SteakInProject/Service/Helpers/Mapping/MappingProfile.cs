@@ -22,6 +22,7 @@ using Service.Helpers.DTOs.Banner;
 using Service.Helpers.Faqs;
 using Service.Helpers.DTOs.GalleryCategory;
 using Service.Helpers.DTOs.GalleryImage;
+using Service.Helpers.DTOs.Client;
 
 namespace Service.Helpers.Mapping
 {
@@ -236,6 +237,7 @@ opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
 
 
             CreateMap<Faq, FaqDto>();
+            CreateMap<Client, ClientDto>();
             CreateMap<GalleryCategory, GalleryCategoryDto>();
             CreateMap<GalleryImage, GalleryImageDto>()
                        .ForMember(dest => dest.GalleryCategoryName, opt => opt.MapFrom(src => src.GalleryCategory.Name));

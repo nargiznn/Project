@@ -16,6 +16,7 @@ namespace Repository.Data
         public DbSet<SocialMediaLink> SocialMediaLinks { get; set; }
 
         public DbSet<Cuisine> Cuisines { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<GalleryCategory> GalleryCategories { get; set; }

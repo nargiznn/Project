@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "e0maJP+HLTwWxRIuFDwhLtm41fy+XwkH2kRlClE6bzo=",
+  "Hash": "NAzKSarF9JTrOoVRHxO/Azn1WgvmdiaHSI8PRwKrW8U=",
   "Source": "SteakInMCV",
   "BasePath": "_content/SteakInMCV",
   "Mode": "Default",
@@ -33947,6 +33947,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/images/clients/4.png"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/5.jpg",
+      "SourceId": "SteakInMCV",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
+      "BasePath": "_content/SteakInMCV",
+      "RelativePath": "assets/images/clients/5.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/images/clients/5.jpg"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/5.png",
