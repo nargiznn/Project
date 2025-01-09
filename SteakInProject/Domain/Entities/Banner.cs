@@ -11,6 +11,7 @@ namespace Domain.Entities
         public string Title { get; set; }
         public string Desc { get; set; }
 
+
     }
 }
 

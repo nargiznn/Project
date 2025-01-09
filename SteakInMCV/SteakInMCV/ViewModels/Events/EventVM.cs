@@ -8,6 +8,7 @@ namespace SteakInMCV.ViewModels.Events
         public string Title { get; set; }
         public string Desc { get; set; }
         public string ImgUrl { get; set; }
+        public string Info { get; set; }
         public List<string> TagsName { get; set; }
     }
 }

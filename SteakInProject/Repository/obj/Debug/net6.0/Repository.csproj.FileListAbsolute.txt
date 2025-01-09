@@ -31,4 +31,5 @@
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.pdb
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.genruntimeconfig.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/ref/Repository.dll
-/Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.csproj.CopyComplete
+/Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.sourcelink.json
+/Users/nergiznadirli/Desktop/Project/SteakInProject/Repository/obj/Debug/net6.0/Repository.csproj.Up2Date
