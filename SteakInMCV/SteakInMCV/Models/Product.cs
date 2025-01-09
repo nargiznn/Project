@@ -6,6 +6,7 @@ namespace SteakInMCV.Models
         public string Name { get; set; }
         public string Ingredient { get; set; }
         public double Price { get; set; }
+        public int SalesCount { get; set; }
         public string MenuCategoryId { get; set; }
         public MenuCategory MenuCategory { get; set; }
         public string SpecialCategoryName { get; set; }

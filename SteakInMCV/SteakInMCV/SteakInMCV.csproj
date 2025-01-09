@@ -24,6 +24,7 @@
     <None Remove="Views\Menu\" />
     <None Remove="Views\BookATable\" />
     <None Remove="Views\Blog\" />
+    <None Remove="Views\Shop\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -44,6 +45,7 @@
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\BookATable\" />
     <Folder Include="Views\Blog\" />
+    <Folder Include="Views\Shop\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

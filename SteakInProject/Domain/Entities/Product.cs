@@ -8,6 +8,7 @@ namespace Domain.Entities
 		public string Name { get; set; }
 		public string Ingredient { get; set; }
 		public double Price { get; set; }
+        public int SalesCount { get; set; }
         public int MenuCategoryId { get; set; }
         public MenuCategory MenuCategory { get; set; }
         public int? SpecialCategoryId { get; set; }

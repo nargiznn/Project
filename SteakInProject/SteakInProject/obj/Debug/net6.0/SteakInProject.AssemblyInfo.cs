@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SteakInProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+398920d5ee6c6d7815868dac05d09b7411716ed7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0613a6d9a0151c8522ecd09daab067a19d729f5")]
 [assembly: System.Reflection.AssemblyProductAttribute("SteakInProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SteakInProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
