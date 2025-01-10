@@ -8,6 +8,7 @@ namespace SteakInMCV.Models
         public string Desc { get; set; }
         public string BtnText { get; set; }
         public string Image { get; set; }
+
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NAzKSarF9JTrOoVRHxO/Azn1WgvmdiaHSI8PRwKrW8U=",
+  "Hash": "nBknnNhIjiQ+TRbgp9dLn7f0iQVJimjpvPNUl8ZBEb8=",
   "Source": "SteakInMCV",
   "BasePath": "_content/SteakInMCV",
   "Mode": "Default",
@@ -39183,6 +39183,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/images/sliders/slide-bg/right-arrow.png"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/sliders/slide-bg/slider.jpg",
+      "SourceId": "SteakInMCV",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
+      "BasePath": "_content/SteakInMCV",
+      "RelativePath": "assets/images/sliders/slide-bg/slider.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/images/sliders/slide-bg/slider.jpg"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/sliders/thumb/1.jpg",

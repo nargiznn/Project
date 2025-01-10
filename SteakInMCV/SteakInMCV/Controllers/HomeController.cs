@@ -95,18 +95,18 @@ namespace SteakInMCV.Controllers
                         homeVM.Settings = new Dictionary<string, string>();
                     }
 
-                    //var sliderResponse = await client.GetAsync($"{BaseURl}/api/Slider/GetAll");
-                    //if (sliderResponse.IsSuccessStatusCode)
-                    //{
-                    //    string sliderApiResponse = await sliderResponse.Content.ReadAsStringAsync();
-                    //    homeVM.Sliders = (IEnumerable<Slider>)JsonConvert.DeserializeObject<IEnumerable<Slider>>(sliderApiResponse);
+                    var sliderResponse = await client.GetAsync($"{BaseURl}/api/Slider/GetAll");
+                    if (sliderResponse.IsSuccessStatusCode)
+                    {
+                        string sliderApiResponse = await sliderResponse.Content.ReadAsStringAsync();
+                        homeVM.Sliders = (IEnumerable<Slider>)JsonConvert.DeserializeObject<IEnumerable<Slider>>(sliderApiResponse);
 
-                    //}
-                    //else
-                    //{
-                    //    ViewData["Error"] = "API request failed with status code: " + sliderResponse.StatusCode;
-                    //    homeVM.Sliders = new List<Slider>();
-                    //}
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + sliderResponse.StatusCode;
+                        homeVM.Sliders = new List<Slider>();
+                    }
 
                 }
                 catch (HttpRequestException ex)

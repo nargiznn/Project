@@ -6,7 +6,7 @@ namespace SteakInMCV.ViewModels
 {
 	public class HomeVM
 	{
-        public IEnumerable<Slider> Sliders { get; set; }
+        public IEnumerable<Slider> Sliders { get; set; } = new List<Slider>();
         public IEnumerable<EventVM> EventVMs { get; set; } = new List<EventVM>();
         public IEnumerable<Customer> Customers { get; set; } = new List<Customer>();
         public IEnumerable<MenuCategory> MenuCategories { get; set; } = new List<MenuCategory>();
