@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jv9AXCnh1GCo+mGUD/ue2fdHkHEUwoivVFwSux32ZOeTzz4VrIFmW5b8ao/D2b7XGUod6v1dFb+OtQgcvYEB6A==",
+  "dgSpecHash": "iYm4qnjl2n/jhFzt4dbfLR0yiP0cuJa7domfRc2NL5gH3hSEgSI5oUk4CAk3+eETYoz1KT8DQJMu/KUpTuOxqg==",
   "success": true,
   "projectFilePath": "/Users/nergiznadirli/Desktop/Project/SteakInProject/Domain/Domain.csproj",
   "expectedPackageFiles": [
@@ -66,7 +66,9 @@
     "/Users/nergiznadirli/.nuget/packages/system.security.principal.windows/4.7.0/system.security.principal.windows.4.7.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/system.text.encoding.codepages/8.0.0/system.text.encoding.codepages.8.0.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
-    "/Users/nergiznadirli/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512"
+    "/Users/nergiznadirli/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512",
+    "/Users/nergiznadirli/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.31/microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",
+    "/Users/nergiznadirli/.nuget/packages/microsoft.netcore.app.ref/6.0.31/microsoft.netcore.app.ref.6.0.31.nupkg.sha512"
   ],
   "logs": []
 }

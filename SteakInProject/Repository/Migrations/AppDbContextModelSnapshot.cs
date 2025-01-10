@@ -482,6 +482,93 @@ namespace Repository.Migrations
                     b.ToTable("GalleryImages");
                 });
 
+            modelBuilder.Entity("Domain.Entities.LunchSet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Desc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LunchSets");
+                });
+
+            modelBuilder.Entity("Domain.Entities.LunchSetProduct", b =>
+                {
+                    b.Property<int>("LunchSetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LunchSetId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("LunchSetProducts");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MealPackage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Desc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfPeople")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MealPackages");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MealPackageProduct", b =>
+                {
+                    b.Property<int>("MealPackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MealPackageId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("MealPackageProducts");
+                });
+
             modelBuilder.Entity("Domain.Entities.MenuCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -708,6 +795,26 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SpecialCategories");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Statistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statistics");
                 });
 
             modelBuilder.Entity("Domain.Entities.Tag", b =>
@@ -989,6 +1096,44 @@ namespace Repository.Migrations
                     b.Navigation("GalleryCategory");
                 });
 
+            modelBuilder.Entity("Domain.Entities.LunchSetProduct", b =>
+                {
+                    b.HasOne("Domain.Entities.LunchSet", "LunchSet")
+                        .WithMany("LunchSetProducts")
+                        .HasForeignKey("LunchSetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("LunchSetProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LunchSet");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MealPackageProduct", b =>
+                {
+                    b.HasOne("Domain.Entities.MealPackage", "MealPackage")
+                        .WithMany("MealPackageProducts")
+                        .HasForeignKey("MealPackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("MenuPackageProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MealPackage");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
                     b.HasOne("Domain.Entities.Cuisine", "Cuisine")
@@ -1121,6 +1266,16 @@ namespace Repository.Migrations
                     b.Navigation("GalleryImages");
                 });
 
+            modelBuilder.Entity("Domain.Entities.LunchSet", b =>
+                {
+                    b.Navigation("LunchSetProducts");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MealPackage", b =>
+                {
+                    b.Navigation("MealPackageProducts");
+                });
+
             modelBuilder.Entity("Domain.Entities.MenuCategory", b =>
                 {
                     b.Navigation("Products");
@@ -1133,6 +1288,10 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
+                    b.Navigation("LunchSetProducts");
+
+                    b.Navigation("MenuPackageProducts");
+
                     b.Navigation("ProductImages");
                 });
 

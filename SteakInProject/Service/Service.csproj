@@ -48,6 +48,10 @@
     <None Remove="Helpers\DTOs\GalleryCategory\" />
     <None Remove="Helpers\DTOs\GalleryImage\" />
     <None Remove="Helpers\DTOs\Client\" />
+    <None Remove="Helpers\DTOs\Statistic\" />
+    <None Remove="Helpers\DTOs\MealPackage\" />
+    <None Remove="Helpers\DTOs\LunchSet\" />
+    <None Remove="Helpers\DTOs\LunchSetProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\DTOs\" />
@@ -72,5 +76,9 @@
     <Folder Include="Helpers\DTOs\GalleryCategory\" />
     <Folder Include="Helpers\DTOs\GalleryImage\" />
     <Folder Include="Helpers\DTOs\Client\" />
+    <Folder Include="Helpers\DTOs\Statistic\" />
+    <Folder Include="Helpers\DTOs\MealPackage\" />
+    <Folder Include="Helpers\DTOs\LunchSet\" />
+    <Folder Include="Helpers\DTOs\LunchSetProduct\" />
   </ItemGroup>
 </Project>

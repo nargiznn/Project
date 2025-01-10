@@ -1,34 +1,32 @@
 ﻿<Properties StartupConfiguration="{C4568561-B540-4A0A-A85B-88312252C892}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInMCV/Views/Menu/Classic.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInMCV/Controllers/ElementController.cs">
     <Files>
-      <File FileName="SteakInMCV/Views/Menu/Classic.cshtml" Line="599" Column="36" />
-      <File FileName="SteakInMCV/Views/Menu/Simple.cshtml" Line="49" Column="85" />
-      <File FileName="SteakInMCV/ViewModels/MenuVM.cs" Line="13" Column="1" />
-      <File FileName="SteakInMCV/Models/Product.cs" Line="19" Column="1" />
-      <File FileName="SteakInMCV/ViewModels/HomeVM.cs" Line="12" Column="1" />
-      <File FileName="SteakInMCV/Models/MenuCategory.cs" Line="8" Column="71" />
-      <File FileName="SteakInMCV/Controllers/AboutController.cs" Line="1" Column="1" />
+      <File FileName="SteakInMCV/Views/Element/Pricing.cshtml" />
+      <File FileName="SteakInMCV/Models/MealPackage.cs" />
+      <File FileName="SteakInMCV/Controllers/ElementController.cs" Line="151" Column="18" />
+      <File FileName="SteakInMCV/Models/LunchSet.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SteakInMCV">
-            <Node name="SteakInMCV">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="ViewModels" expanded="True">
-                <Node name="GalleryImage" expanded="True" />
+          <Node name="SteakInMCV" expanded="True">
+            <Node name="SteakInMCV" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="ElementController.cs" selected="True" />
               </Node>
-              <Node name="Views">
+              <Node name="Models" expanded="True" />
+              <Node name="ViewModels" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Element" expanded="True" />
                 <Node name="Home" expanded="True" />
-                <Node name="Menu" expanded="True">
-                  <Node name="Classic.cshtml" selected="True" />
-                </Node>
+                <Node name="Shared" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -36,6 +34,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

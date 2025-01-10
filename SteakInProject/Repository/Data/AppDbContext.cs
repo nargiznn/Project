@@ -21,9 +21,15 @@ namespace Repository.Data
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<GalleryCategory> GalleryCategories { get; set; }
         public DbSet<GalleryImage> GalleryImages { get; set; }
+        public DbSet<MealPackage> MealPackages { get; set; }
+        public DbSet<LunchSet> LunchSets { get; set; }
 
+
+        public DbSet<MealPackageProduct> MealPackageProducts { get; set; }
+        public DbSet<LunchSetProduct> LunchSetProducts { get; set; }
 
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Statistic> Statistics { get; set; }
         public DbSet<WelcomeInfo> WelcomeInfos { get; set; }
         public DbSet<WelcomeImage> WelcomeImages { get; set; }
         public DbSet<Event> Events { get; set; }
@@ -63,6 +69,27 @@ namespace Repository.Data
                 .WithOne(ci => ci.Chef)
                 .HasForeignKey(ci => ci.ChefId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<MealPackageProduct>()
+       .HasKey(mpp => new { mpp.MealPackageId, mpp.ProductId });
+
+            //modelBuilder.Entity<MealPackageProduct>()
+            //    .HasOne(mpp => mpp.MealPackage)
+            //    .WithMany(mp => mp.Products)
+            //    .HasForeignKey(mpp => mpp.MealPackageId);
+
+            modelBuilder.Entity<LunchSetProduct>()
+                .HasKey(lsp => new { lsp.LunchSetId, lsp.ProductId });
+
+            modelBuilder.Entity<LunchSetProduct>()
+                .HasOne(lsp => lsp.LunchSet)
+                .WithMany(ls => ls.LunchSetProducts)
+                .HasForeignKey(lsp => lsp.LunchSetId);
+
+            modelBuilder.Entity<LunchSetProduct>()
+                .HasOne(lsp => lsp.Product)
+                .WithMany(p => p.LunchSetProducts)
+                .HasForeignKey(lsp => lsp.ProductId);
 
             base.OnModelCreating(modelBuilder);
 

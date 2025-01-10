@@ -19,6 +19,9 @@ namespace Domain.Entities
         public Cuisine Cuisine { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
 
+        public ICollection<MealPackageProduct> MenuPackageProducts { get; set; }
+        public ICollection<LunchSetProduct> LunchSetProducts { get; set; }
+
     }
 }
 

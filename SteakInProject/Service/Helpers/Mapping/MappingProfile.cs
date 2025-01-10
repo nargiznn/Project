@@ -23,6 +23,10 @@ using Service.Helpers.Faqs;
 using Service.Helpers.DTOs.GalleryCategory;
 using Service.Helpers.DTOs.GalleryImage;
 using Service.Helpers.DTOs.Client;
+using Service.Helpers.DTOs.Statistic;
+using Service.Helpers.DTOs.MealPackage;
+using Service.Helpers.DTOs.LunchSet;
+using Service.Helpers.LunchSetProduct;
 
 namespace Service.Helpers.Mapping
 {
@@ -200,8 +204,14 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
+            CreateMap<Statistic, StatisticDto>();
 
-
+            CreateMap<LunchSet, LunchSetDto>().ForMember(dest => dest.ProductNames, opt =>
+opt.MapFrom(src => src.LunchSetProducts.Select(t => t.ProductId).ToList()));
+            CreateMap<MealPackage, MealPackageDto>()
+            .ForMember(dest => dest.ProductNames, opt =>
+opt.MapFrom(src => src.MealPackageProducts.Select(t => t.ProductId).ToList()));
+            CreateMap<Domain.Entities.LunchSetProduct, LunchSetProductDto>();
             #region Account
             CreateMap<SignUpDto, AppUser>();
             CreateMap<AppUser, UserDto>();

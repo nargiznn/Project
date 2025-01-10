@@ -21,6 +21,9 @@ namespace Service
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFaqService, FaqService>();
 
+            services.AddScoped<IMealPackageService, MealPackageService>();
+            services.AddScoped<ILunchSetService, LunchSetService>();
+
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<ICuisineService, CuisineService>();
 
@@ -37,6 +40,8 @@ namespace Service
             services.AddScoped<IAwardLogoService, AwardLogoService>();
 
             services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped<IStatisticService, StatisticService>();
+
             services.AddScoped<IEmailService, EmailService>();
 
             services.AddScoped<IClientService, ClientService>();
