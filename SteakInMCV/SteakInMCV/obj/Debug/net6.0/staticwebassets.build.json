@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nBknnNhIjiQ+TRbgp9dLn7f0iQVJimjpvPNUl8ZBEb8=",
+  "Hash": "h/X0vXuLpBKBMn5eH7jpaY/0HcHePfzqupypkj7L63g=",
   "Source": "SteakInMCV",
   "BasePath": "_content/SteakInMCV",
   "Mode": "Default",
@@ -38792,6 +38792,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/images/shop/thumb/7.jpg"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/sliders/.DS_Store",
+      "SourceId": "SteakInMCV",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
+      "BasePath": "_content/SteakInMCV",
+      "RelativePath": "assets/images/sliders/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/images/sliders/.DS_Store"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/sliders/arrows/left-arrow-bg-dark.png",
