@@ -17,8 +17,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html">about</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="About" asp-action="Story">about</a></li>
                         <li class="active">Our Story</li>
                     </ol>
                     <div class="divider--shape-1down"></div>
@@ -86,8 +86,8 @@
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
                 <div id="testimonial-wide" class="carousel carousel-white" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="false" data-space="0" data-loop="true" data-speed="800">
                     <!-- Testimonial #1 -->
-                    @foreach (var item in Model.Customers.Where(c => c.ReviewType.HasValue && c.ReviewType.Value == Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
-                    {
+                    @foreach (var item in Model.Customers.Where(c => c.ReviewType.HasValue && (c.ReviewType.Value == Models.ReviewType.Restaurant || c.ReviewType.Value == Models.ReviewType.Ambiance) && c.IsPermit).TakeLast(4))
+                        {
                         <div class="testimonial-panel">
                             <div class="testimonial--quote">
                                 <img src="~/assets/images/testimonial/chef-hat.png" alt="hat">

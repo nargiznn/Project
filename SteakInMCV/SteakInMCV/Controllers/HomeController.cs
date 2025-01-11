@@ -81,6 +81,18 @@ namespace SteakInMCV.Controllers
                         ViewData["Error"] = "API request failed with status code: " + productResponse.StatusCode;
                         homeVM.Products = new List<Product>();
                     }
+
+                    var specialCategoryNameResponse = await client.GetAsync($"{BaseURl}/api/specialCategory/GetAll");
+                    if (specialCategoryNameResponse.IsSuccessStatusCode)
+                    {
+                        string specialCategoryNameApiResponse = await specialCategoryNameResponse.Content.ReadAsStringAsync();
+                        homeVM.SpecialCategories = JsonConvert.DeserializeObject<IEnumerable<SpecialCategory>>(specialCategoryNameApiResponse);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + specialCategoryNameResponse.StatusCode;
+                        homeVM.SpecialCategories = new List<SpecialCategory>();
+                    }
                     var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
                     if (settingResponse.IsSuccessStatusCode)
                     {

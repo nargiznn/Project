@@ -58,6 +58,7 @@ namespace Service.Services
             {
                 Id = mc.Id,
                 Name = mc.Name,
+                IsActive=mc.IsActive,
                 Products = mc.Products.Select(p => new ProductDto
                 {
                     Name = p.Name,

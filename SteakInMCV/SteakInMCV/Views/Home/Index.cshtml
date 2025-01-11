@@ -67,7 +67,7 @@
                              data-responsive_offset="on"
                              data-responsive="off">
                             <div class="slide-action">
-                                <a class="btn btn--white btn--bordered btn--rounded btn--lg" href="#">@item.BtnText</a>
+                                <a class="btn btn--white btn--bordered btn--rounded btn--lg" asp-controller="@item.BtnText" asp-action="Index">@item.BtnText</a>
                             </div>
                         </div>
                     </li>
@@ -90,7 +90,7 @@
                     <p class="heading--desc">@Model.Settings["WelcomeDesc"]</p>
                 </div>
                 <!-- .heading end -->
-                <a class="btn btn--secondary btn--bordered btn--rounded mt-30" href="#">@Model.Settings["WelcomeBtnText"]</a>
+                <a class="btn btn--secondary btn--bordered btn--rounded mt-30" asp-controller="BookATable" asp-action="Index">@Model.Settings["WelcomeBtnText"]</a>
             </div>
             <!-- .col-md-6 end -->
             <div class="col-xs-12 col-sm-6 col-md-3">
@@ -116,7 +116,7 @@
 ============================================= -->
 <section id="specials1" class="specials specials-1 menu-simple bg-overlay bg-parallax bg-overlay-dark">
     <div class="bg-section">
-        <img src="~/assets/images/background/21.jpg" alt="Background" />
+        <img src="~/assets/images/background/@Model.Settings["HomePageProductBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="divider--shape-1up"></div>
@@ -144,12 +144,12 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="dish-panel">
                                             <div class="dish--img">
-                                                <img src="~/assets/images/menu/dish/1.jpg" alt="dish">
+                                                <img src="~/assets/images/menu/dish/@item.ImageUrls.FirstOrDefault()" alt="dish">
                                             </div>
                                             <div class="dish--content">
                                                 <div class="dish--content-bio">
                                                     <h3 class="dish--title">@item.Name</h3>
-                                                    <div class="dish--price">$@item.Price.ToString("C2")</div>
+                                                    <div class="dish--price">$@item.Price.ToString("F2")</div>
                                                 </div>
                                                 <p class="dish--desc">@item.Ingredient</p>
                                             </div>
@@ -207,16 +207,13 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-
                     @foreach (var item in Model.MenuCategories)
                     {
-                        <div class="tab-pane fade" id="@item.Name.ToLower()">
-                            <!-- Menu #7
-                            ============================================= -->
+                        <div class="tab-pane fade @(item.IsActive ? "active in" : "")" id="@item.Name.ToLower()">
+                            <!-- Menu -->
                             <div class="menu menu-board text-center">
                                 <div class="row">
                                     <div class="dishes-wrapper">
-                                        <!-- Dish #1 -->
                                         @if (item.Products.Any())
                                         {
                                             @foreach (var product in item.Products)
@@ -224,15 +221,26 @@
                                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                                     <div class="row dish-panel">
                                                         <div class="col-xs-12 col-sm-6 col-md-6">
-                                                            <div class=" dish--content">
-                                                                <div class="dish--tag">Chef Selection</div>
-                                                                <span class="dish--price">$24.95</span>
-                                                                <h3 class="dish--title">Grilled American Fillet</h3>
-                                                                <div class="divider--shape-4"></div>
-                                                                <p class="dish--desc">Pork fillet, ginger, garlic, honey, pepper & canola oil.creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese, with crusty bread for dipping. creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese.</p>
+                                                            <div class="dish--content">
+                                                                <div class="dish--content-bio">
+                                                                    <!-- SpecialCategoryName yoxlanılır -->
+                                                                    @if (!string.IsNullOrEmpty(product.SpecialCategoryName))
+                                                                    {
+                                                                        <div class="dish--tag">@product.SpecialCategoryName</div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="dish--tag">Xüsusi kateqoriya yoxdur</div>
+                                                                    }
+
+                                                                    <span class="dish--price">$@product.Price.ToString("F2")</span>
+                                                                    <h3 class="dish--title">@product.Name</h3>
+                                                                    <div class="divider--shape-4"></div>
+                                                                    <p class="dish--desc">@product.Ingredient</p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                                        <div class="col-xs-12 col-sm-6 col-md-6">
                                                             <div class="dish--img">
                                                                 <div class="divider--shape-left"></div>
                                                                 <img src="~/assets/images/menu/menu-board/1.jpg" alt="dish img">
@@ -253,56 +261,44 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <!-- .col-md-12 end -->
                                                                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                             <div class="content-popup">
-                                                                                                <p>Pork fillet, ginger, garlic, honey, pepper & canola oil.creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese, with crusty bread for dipping. creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese.</p>
+                                                                                                <p>Pork fillet, ginger, garlic, honey, pepper & canola oil.creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese, with crusty bread for dipping.</p>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <!-- .row end -->
-
                                                                                 </div>
                                                                             </div>
-                                                                            <!-- /.modal-content -->
                                                                         </div>
-                                                                        <!-- /.modal-dialog -->
                                                                     </div>
-                                                                    <!-- /.modal -->
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             }
-                                            <!-- .col-md-6 end -->
-                                            <!-- Dish #2 -->
                                         }
                                         else
                                         {
                                             <p>No products found in this category.</p>
                                         }
                                     </div>
-                                    <!-- .row end -->
                                 </div>
-                                <!-- .row end -->
                             </div>
                         </div>
                     }
-                    <!-- .tab-pane end -->
-                    <!-- .tab-pane end -->
                 </div>
-                <!-- .tabs-content end -->
+
             </div>
-            <!-- .col-md-12 end -->
         </div>
-        <!-- .row end -->
     </div>
+
+
     <!-- .container end -->
     <div class="container">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text--center">
-                <a class="btn btn--primary btn--bordered btn--rounded btn--lg mt-50" href="#">@Model.Settings["MealsBtnText"]</a>
+                <a class="btn btn--primary btn--bordered btn--rounded btn--lg mt-50" asp-controller="Menu" asp-action="Classic">@Model.Settings["MealsBtnText"]</a>
             </div>
             <!-- .col-md-8 end -->
         </div>

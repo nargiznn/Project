@@ -7,7 +7,7 @@
 <!-- Page Title #1 ============================================= -->
 <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
     <div class="bg-section">
-        <img src="assets/images/page-title/@Model.Settings["ElementClientBg"]" alt="Background" />
+        <img src="~/assets/images/page-title/@Model.Settings["ElementClientBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="row">
@@ -21,8 +21,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html">Elements</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Element" asp-action="Client">Elements</a></li>
                         <li class="active">Clients</li>
                     </ol>
                     <div class="divider--shape-1down"></div>

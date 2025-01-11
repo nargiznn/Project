@@ -1,32 +1,20 @@
 ﻿<Properties StartupConfiguration="{C4568561-B540-4A0A-A85B-88312252C892}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInMCV/Controllers/ElementController.cs">
-    <Files>
-      <File FileName="SteakInMCV/Views/Element/Pricing.cshtml" />
-      <File FileName="SteakInMCV/Models/MealPackage.cs" />
-      <File FileName="SteakInMCV/Controllers/ElementController.cs" Line="151" Column="18" />
-      <File FileName="SteakInMCV/Models/LunchSet.cs" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SteakInMCV" expanded="True">
             <Node name="SteakInMCV" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="ElementController.cs" selected="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
-              <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Element" expanded="True" />
-                <Node name="Home" expanded="True" />
                 <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="assets" expanded="True">
+                  <Node name="images" expanded="True">
+                    <Node name="counter" expanded="True" />
+                  </Node>
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -34,4 +22,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
 </Properties>

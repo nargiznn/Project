@@ -1,40 +1,24 @@
 ﻿<Properties StartupConfiguration="{690D8679-1FED-4B3F-A28D-1C06751E4BC5}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Helpers/DTOs/MealPackage/MealPackageDto.cs">
-    <Files>
-      <File FileName="Service/Helpers/Mapping/MappingProfile.cs" Line="214" Column="43" />
-      <File FileName="Domain/Entities/MealPackage.cs" Line="13" Column="1" />
-      <File FileName="Domain/Entities/LunchSetProduct.cs" Line="7" Column="3" />
-      <File FileName="Domain/Entities/LunchSet.cs" Line="13" Column="2" />
-      <File FileName="Domain/Entities/Product.cs" Line="7" Column="3" />
-      <File FileName="Domain/Entities/MealPackageProduct.cs" Line="6" Column="47" />
-      <File FileName="SteakInProject/Controllers/MealPackageController.cs" Line="25" Column="10" />
-      <File FileName="Service/Helpers/DTOs/MealPackage/MealPackageDto.cs" Line="15" Column="1" />
-      <File FileName="Service/Services/Interfaces/IMealPackageService.cs" Line="13" Column="1" />
-      <File FileName="Service/Services/MealPackageService.cs" Line="14" Column="1" />
-      <File FileName="Repository/Data/AppDbContext.cs" Line="78" Column="56" />
-    </Files>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SteakInProject" expanded="True">
-            <Node name="Domain">
+          <Node name="SteakInProject">
+            <Node name="Domain" expanded="True">
               <Node name="Entities" expanded="True" />
             </Node>
-            <Node name="Repository">
+            <Node name="Repository" expanded="True">
               <Node name="Data" expanded="True" />
             </Node>
-            <Node name="Service">
+            <Node name="Service" expanded="True">
               <Node name="Helpers" expanded="True">
                 <Node name="DTOs" expanded="True">
-                  <Node name="MealPackage" expanded="True">
-                    <Node name="MealPackageDto.cs" selected="True" />
-                  </Node>
+                  <Node name="MealPackage" expanded="True" />
+                  <Node name="MenuCategory" expanded="True" />
                 </Node>
                 <Node name="Mapping" expanded="True" />
               </Node>
@@ -50,5 +34,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
