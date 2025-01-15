@@ -12,7 +12,8 @@ namespace Domain.Entities
         ServiceSpeed,
         PriceQuality,
         DeliveryService,
-        ReservationService
+        ReservationService,
+        Other
     }
 }
 

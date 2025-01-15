@@ -9,6 +9,7 @@ namespace Domain.Entities
         public string FullImageUrl { get; set; }
         public int GalleryCategoryId { get; set; }
         public GalleryCategory GalleryCategory { get; set; }
+
     }
 }
 

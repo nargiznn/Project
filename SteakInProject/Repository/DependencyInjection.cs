@@ -21,6 +21,9 @@ namespace Repository
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
 
+
+            services.AddScoped<IFaqRepository, FaqRepository>();
+
             services.AddScoped<IAwardRepository, AwardRepository>();
             services.AddScoped<IAwardLogoRepository, AwardLogoRepository>();
 

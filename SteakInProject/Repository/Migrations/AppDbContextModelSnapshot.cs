@@ -633,6 +633,10 @@ namespace Repository.Migrations
                     b.Property<int>("FoodCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("GalleryCategoryId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<string>("Ingredient")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -658,6 +662,8 @@ namespace Repository.Migrations
                     b.HasIndex("CuisineId");
 
                     b.HasIndex("FoodCategoryId");
+
+                    b.HasIndex("GalleryCategoryId");
 
                     b.HasIndex("MenuCategoryId");
 
@@ -1088,7 +1094,7 @@ namespace Repository.Migrations
             modelBuilder.Entity("Domain.Entities.GalleryImage", b =>
                 {
                     b.HasOne("Domain.Entities.GalleryCategory", "GalleryCategory")
-                        .WithMany("GalleryImages")
+                        .WithMany()
                         .HasForeignKey("GalleryCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1148,6 +1154,12 @@ namespace Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.GalleryCategory", "GalleryCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("GalleryCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.MenuCategory", "MenuCategory")
                         .WithMany("Products")
                         .HasForeignKey("MenuCategoryId")
@@ -1161,6 +1173,8 @@ namespace Repository.Migrations
                     b.Navigation("Cuisine");
 
                     b.Navigation("FoodCategory");
+
+                    b.Navigation("GalleryCategory");
 
                     b.Navigation("MenuCategory");
 
@@ -1263,7 +1277,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.Entities.GalleryCategory", b =>
                 {
-                    b.Navigation("GalleryImages");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Domain.Entities.LunchSet", b =>

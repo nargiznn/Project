@@ -2,7 +2,7 @@
 ============================================= -->
 <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
     <div class="bg-section">
-        <img src="~/assets/images/page-title/@Model.Settings["SimplePageBg"]" alt="Background" />
+        <img src="~/assets/images/page-title/@Model.Settings["MenuPageBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="row">
@@ -17,10 +17,10 @@
                     <div class="clearfix"></div>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li>
-                            <a href="index.html">menu</a>
+                            <a asp-controller="Menu" asp-action="Classic">menu</a>
                         </li>
                         <li class="active">classic</li>
                     </ol>
@@ -59,7 +59,7 @@
 ============================================= -->
 <section id="divider1" class="section-divider3 bg-overlay bg-parallax bg-overlay-dark4">
     <div class="bg-section">
-        <img src="~/assets/images/background/@Model.Settings["BreakfastStartMenuBg"]" alt="Background" />
+        <img src="~/assets/images/background/@Model.Settings["BreakfastMenuBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="divider--shape-1up"></div>
@@ -92,7 +92,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="dish-panel">
                             <h3 class="dish--title">@product.Name</h3>
-                            <div class="dish--price">@product.Price.ToString("C")</div>
+                            <div class="dish--price">$@product.Price.ToString("F2")</div>
                             <p class="dish--desc">@product.Ingredient</p>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="dish-panel">
                             <h3 class="dish--title">@product.Name</h3>
-                            <div class="dish--price">@product.Price.ToString("C")</div>
+                            <div class="dish--price">$@product.Price.ToString("F2")</div>
                             <p class="dish--desc">@product.Ingredient</p>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="dish-panel">
                             <h3 class="dish--title">@product.Name</h3>
-                            <div class="dish--price">@product.Price.ToString("C")</div>
+                            <div class="dish--price">$@product.Price.ToString("F2")</div>
                             <p class="dish--desc">@product.Ingredient</p>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="dish-panel">
                             <h3 class="dish--title">@product.Name</h3>
-                            <div class="dish--price">@product.Price.ToString("C")</div>
+                            <div class="dish--price">$@product.Price.ToString("F2")</div>
                             <p class="dish--desc">@product.Ingredient</p>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="dish-panel">
                             <h3 class="dish--title">@product.Name</h3>
-                            <div class="dish--price">@product.Price.ToString("C")</div>
+                            <div class="dish--price">@product.Price.ToString("F2")</div>
                             <p class="dish--desc">@product.Ingredient</p>
                         </div>
                     </div>
@@ -286,4 +286,5 @@
     </div>
     <!-- .container end -->
 </section>
+
 <!-- #menu1 end -->

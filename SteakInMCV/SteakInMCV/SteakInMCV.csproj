@@ -54,10 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\admin\" />
-    <Content Remove="wwwroot\assets\images\blog\grid\4.jpg" />
-    <Content Remove="wwwroot\assets\images\blog\grid\5.jpg" />
-    <Content Remove="wwwroot\assets\images\blog\grid\2.jpg" />
-    <Content Remove="wwwroot\assets\images\blog\grid\3.jpg" />
     <Content Remove="wwwroot\assets\images\page-title\1.jpg" />
     <Content Remove="wwwroot\assets\images\sliders\slide-bg\12.jpg" />
     <Content Remove="wwwroot\assets\images\sliders\slide-bg\3.jpg" />
@@ -65,5 +61,6 @@
     <Content Remove="wwwroot\assets\images\banners\4.jpg" />
     <Content Remove="wwwroot\assets\images\banners\5.jpg" />
     <Content Remove="wwwroot\assets\images\page-title\2.jpg" />
+    <Content Remove="wwwroot\assets\images\team\team1.jpg" />
   </ItemGroup>
 </Project>

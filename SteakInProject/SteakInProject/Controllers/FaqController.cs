@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Repository.Data;
 using Repository.Exceptions;
+using Service.Services;
 using Service.Services.Interfaces;
 
 namespace SteakInProject.Controllers
@@ -20,6 +21,16 @@ namespace SteakInProject.Controllers
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _faqService.GetAllAsync());
+        }
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string searchString)
+        {
+            if (searchString is null)
+            {
+                return Ok(await _faqService.GetAllAsync());
+            }
+            var faqs = await _faqService.SearchAsync(searchString);
+            return Ok(faqs);
         }
     }
 }

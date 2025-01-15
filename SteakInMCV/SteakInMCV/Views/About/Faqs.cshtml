@@ -17,8 +17,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html">about</a></li>
+                        <li><a  asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a  asp-controller="About" asp-action="Faqs">about</a></li>
                         <li class="active">FAQs</li>
                     </ol>
                     <div class="divider--shape-1down"></div>
@@ -90,7 +90,7 @@
                         <div class="info--content">
                             @Model.Settings["NeedDesc"]
                         </div>
-                        <a class="btn btn--primary btn--inverse btn--rounded" href="#">Contact US</a>
+                        <a class="btn btn--primary btn--inverse btn--rounded" asp-controller="About" asp-action="Faqs">Contact US</a>
                     </div>
                     <div class="divider--shape-10down"></div>
                 </div>

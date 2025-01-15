@@ -134,7 +134,6 @@
         </div>
         <!-- .row end -->
         <div class="row">
-            <!-- Sol tərəf (ilk yarısı) -->
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <ul class="panel--details text-right">
                     @for (int i = 0; i < (Model.Awards.Count() + 1) / 2; i++)
@@ -143,8 +142,6 @@
                     }
                 </ul>
             </div>
-
-            <!-- Sağ tərəf (qalanı) -->
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <ul class="panel--details text-left">
                     @for (int i = (Model.Awards.Count() + 1) / 2; i < Model.Awards.Count(); i++)
@@ -184,7 +181,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div id="testimonial-carousel" class="carousel carousel-dots carousel-white" data-slide="3" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="true" data-space="30" data-loop="true" data-speed="800">
-                    @foreach (var item in Model.Customers.Where(c => c.ReviewType.HasValue && c.ReviewType.Value != Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
+                    @foreach (var item in Model.Customers.Where(c => c.ReviewType.HasValue && (c.ReviewType.Value != Models.ReviewType.Restaurant || c.ReviewType.Value != Models.ReviewType.Ambiance) && c.IsPermit).TakeLast(4))
                     {
                         <!-- Testimonial #1 -->
                         <div class="testimonial-container">

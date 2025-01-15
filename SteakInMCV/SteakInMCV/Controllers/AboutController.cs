@@ -230,7 +230,7 @@ namespace SteakInMCV.Controllers
 
 
 
-        public async Task<IActionResult> Faqs()
+        public async Task<IActionResult> Faqs(string searchString = null)
         {
             AboutVM aboutVM = new AboutVM();
             using (var client = new HttpClient())
@@ -255,13 +255,25 @@ namespace SteakInMCV.Controllers
                     {
                         string faqApiResponse = await faqResponse.Content.ReadAsStringAsync();
                         var faqs = JsonConvert.DeserializeObject<IEnumerable<Faq>>(faqApiResponse);
-                        aboutVM.Faqs = faqs.Where(f => f.IsActive).ToList(); 
+                        aboutVM.Faqs = faqs.Where(f => f.IsActive).ToList();
                     }
                     else
                     {
                         ViewData["Error"] = "API request failed with status code: " + faqResponse.StatusCode;
                         aboutVM.Faqs = new List<Faq>();
                     }
+                    //var faqResponse = await client.GetAsync($"{BaseURl}/api/faq/search?searchString={searchString}");
+                    //if (faqResponse.IsSuccessStatusCode)
+                    //{
+                    //    string faqApiResponse = await faqResponse.Content.ReadAsStringAsync();
+                    //    var faqs = JsonConvert.DeserializeObject<IEnumerable<Faq>>(faqApiResponse);
+                    //    aboutVM.Faqs = faqs.Where(f => f.IsActive).ToList();
+                    //}
+                    //else
+                    //{
+                    //    ViewData["Error"] = "API request failed with status code: " + faqResponse.StatusCode;
+                    //    aboutVM.Faqs = new List<Faq>();
+                    //}
 
                 }
                 catch (HttpRequestException ex)

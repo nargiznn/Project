@@ -17,8 +17,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <ol class="breadcrumb">
-                        <li><a href="index.html">Home </a></li>
-                        <li><a href="index.html">about</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Home </a></li>
+                        <li><a asp-controller="About" asp-action="Chef">about</a></li>
                         <li class="active">Chefs</li>
                     </ol>
                     <div class="divider--shape-1down"></div>
@@ -105,7 +105,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
                 <div id="testimonial-wide" class="carousel carousel-white" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="false" data-space="0" data-loop="true" data-speed="800">
-                    @foreach (var customer in Model.Customers.Where(c => c.ReviewType.HasValue && c.ReviewType.Value == Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
+                    @foreach (var customer in Model.Customers.Where(c => c.ReviewType.HasValue && (c.ReviewType.Value == Models.ReviewType.Chef || c.ReviewType.Value == Models.ReviewType.FoodQuality) && c.IsPermit).TakeLast(4))
                     {
                         <!-- Testimonial #1 -->
                         <div class="testimonial-panel">
@@ -155,38 +155,37 @@
         <!-- .row end -->
 
         <div class="row">
-            @foreach (var (cuisine, index) in Model.Cuisines.Select((c, i) => (c, i)))
-            {
-                if (index < 2) 
+            <div class="col-xs-12 col-sm-6">
+                @foreach (var cuisine in Model.Cuisines.Where(c => c.ProgressPercentage > 0).Take(Model.Cuisines.Count(c => c.ProgressPercentage > 0) / 2))
                 {
-                    <div class="col-xs-12 col-sm-12 col-md-6">
-                        <div class="progressbar">
-                            <div class="progress-title">
-                                <span class="title">@cuisine.Name</span>
-                                <span class="value">@cuisine.ProgressPercentage%</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="@cuisine.ProgressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @cuisine.ProgressPercentage%"></div>
-                            </div>
+                    <div class="progressbar">
+                        <div class="progress-title">
+                            <span class="title">@cuisine.Name</span>
+                            <span class="value">@cuisine.ProgressPercentage%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@cuisine.ProgressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @cuisine.ProgressPercentage%"></div>
                         </div>
                     </div>
                 }
-                else 
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @foreach (var cuisine in Model.Cuisines.Where(c => c.ProgressPercentage > 0).Skip(Model.Cuisines.Count(c => c.ProgressPercentage > 0) / 2))
                 {
-                    <div class="col-xs-12 col-sm-12 col-md-6">
-                        <div class="progressbar">
-                            <div class="progress-title">
-                                <span class="title">@cuisine.Name</span>
-                                <span class="value">@cuisine.ProgressPercentage%</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="@cuisine.ProgressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @cuisine.ProgressPercentage%"></div>
-                            </div>
+                    <div class="progressbar">
+                        <div class="progress-title">
+                            <span class="title">@cuisine.Name</span>
+                            <span class="value">@cuisine.ProgressPercentage%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@cuisine.ProgressPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @cuisine.ProgressPercentage%"></div>
                         </div>
                     </div>
                 }
-            }
+            </div>
         </div>
+
+
 
         <!-- .row end -->
     </div>
