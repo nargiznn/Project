@@ -12,6 +12,7 @@ namespace SteakInMCV.ViewModels
         public IEnumerable<MenuCategory> MenuCategories { get; set; } = new List<MenuCategory>();
         public IEnumerable<SpecialCategory> SpecialCategories { get; set; } = new List<SpecialCategory>();
         public IEnumerable<Product> Products { get; set; } = new List<Product>();
+        public IEnumerable<Tag> Tags { get; set; } = new List<Tag>();
         public Dictionary<string, string> Settings { get; set; } = new Dictionary<string, string>();
     }
 }

@@ -56,6 +56,20 @@ namespace SteakInMCV.Controllers
                     }
 
 
+                    var tagResponse = await client.GetAsync($"{BaseURl}/api/tag/GetAll");
+                    if (tagResponse.IsSuccessStatusCode)
+                    {
+                        string tagApiResponse = await tagResponse.Content.ReadAsStringAsync();
+                        homeVM.Tags = (IEnumerable<Tag>)JsonConvert.DeserializeObject<IEnumerable<Tag>>(tagApiResponse);
+
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + tagResponse.StatusCode;
+                        homeVM.Tags = new List<Tag>();
+                    }
+
+
                     var menuCategoryResponse = await client.GetAsync($"{BaseURl}/api/menuCategory/GetAll");
                     if (menuCategoryResponse.IsSuccessStatusCode)
                     {

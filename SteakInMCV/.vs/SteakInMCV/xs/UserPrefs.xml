@@ -1,49 +1,46 @@
 ﻿<Properties StartupConfiguration="{C4568561-B540-4A0A-A85B-88312252C892}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInMCV/Views/About/Story.cshtml">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInMCV/Program.cs">
     <Files>
-      <File FileName="SteakInMCV/Views/About/Story.cshtml" Line="93" Column="95" />
-      <File FileName="SteakInMCV/Views/Element/Client.cshtml" />
-      <File FileName="SteakInMCV/ViewModels/AboutVM.cs" />
-      <File FileName="SteakInMCV/ViewModels/BlogVM.cs" />
-      <File FileName="SteakInMCV/ViewModels/BookATableVM.cs" />
-      <File FileName="SteakInMCV/ViewModels/ElementVM.cs" />
+      <File FileName="SteakInMCV/Views/Menu/Simple.cshtml" />
+      <File FileName="SteakInMCV/Views/Shared/_Layout.cshtml" />
+      <File FileName="SteakInMCV/Views/Blog/Standart.cshtml" Line="1" Column="1" />
+      <File FileName="SteakInMCV/Controllers/HomeController.cs" />
       <File FileName="SteakInMCV/ViewModels/HomeVM.cs" />
-      <File FileName="SteakInMCV/ViewModels/MenuVM.cs" />
-      <File FileName="SteakInMCV/ViewModels/ShopVM.cs" />
+      <File FileName="SteakInMCV/Models/Tag.cs" />
+      <File FileName="SteakInMCV/ViewModels/Events/EventVM.cs" />
+      <File FileName="SteakInMCV/ViewModels/BlogVM.cs" />
+      <File FileName="SteakInMCV/Views/Home/Index.cshtml" Line="266" Column="61" />
+      <File FileName="SteakInMCV/Program.cs" Line="31" Column="1" />
+      <File FileName="SteakInMCV/Controllers/AboutController.cs" Line="6" Column="32" />
+      <File FileName="SteakInMCV/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="SteakInMCV/appsettings.json" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SteakInMCV" expanded="True">
             <Node name="SteakInMCV" expanded="True">
-              <Node name="ViewModels" expanded="True">
-                <Node name="Events" expanded="True" />
-              </Node>
+              <Node name="Areas" expanded="True" />
+              <Node name="Controllers" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="About" expanded="True">
-                  <Node name="Story.cshtml" selected="True" />
-                </Node>
-                <Node name="Element" expanded="True" />
+                <Node name="Blog" expanded="True" />
                 <Node name="Home" expanded="True" />
                 <Node name="Menu" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="assets" expanded="True">
-                  <Node name="images" expanded="True" />
-                </Node>
-              </Node>
+              <Node name="appsettings.json" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

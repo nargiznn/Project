@@ -188,11 +188,8 @@
                     <p class="heading--desc">@Model.Settings["MealsDesc"]</p>
                 </div>
             </div>
-            <!-- .col-md-8 end -->
         </div>
-        <!-- .row end -->
     </div>
-    <!-- .container end -->
     <div class="container-fluid tabs">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -210,69 +207,63 @@
                     @foreach (var item in Model.MenuCategories)
                     {
                         <div class="tab-pane fade @(item.IsActive ? "active in" : "")" id="@item.Name.ToLower()">
-                            <!-- Menu -->
                             <div class="menu menu-board text-center">
                                 <div class="row">
                                     <div class="dishes-wrapper">
                                         @if (item.Products.Any())
                                         {
-                                            @foreach (var product in item.Products)
+                                            @foreach (var (product, index) in item.Products.Take(4).Select((value, idx) => (value, idx)))
                                             {
                                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                                     <div class="row dish-panel">
-                                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                                            <div class="dish--content">
-                                                                <div class="dish--content-bio">
-                                                                    @if (!string.IsNullOrEmpty(product.SpecialCategoryName))
-                                                                    {
-                                                                        <div class="dish--tag">@product.SpecialCategoryName</div>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <div class="dish--tag">Xüsusi kateqoriya yoxdur</div>
-                                                                    }
-
+                                                        @if (index % 2 == 0)
+                                                        {
+                                                            <!-- Şəkil Solda, Məlumat Sağda -->
+                                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div class="dish--img">
+                                                                    <div class="divider--shape-left"></div>
+                                                                    <img src="~/assets/images/menu/menu-board/1.jpg" alt="dish img">
+                                                                    <div class="dish--overlay">
+                                                                        <a class="dish-popup" data-toggle="modal" data-target="#dishPopup@product.Id">
+                                                                            <i class="fa fa-search-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div class="dish--content">
+                                                                    <div class="dish--tag">@product.SpecialCategoryName ?? "Xüsusi kateqoriya yoxdur"</div>
                                                                     <span class="dish--price">$@product.Price.ToString("F2")</span>
                                                                     <h3 class="dish--title">@product.Name</h3>
                                                                     <div class="divider--shape-4"></div>
                                                                     <p class="dish--desc">@product.Ingredient</p>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                                            <div class="dish--img">
-                                                                <div class="divider--shape-left"></div>
-                                                                <img src="~/assets/images/menu/menu-board/1.jpg" alt="dish img">
-                                                                <div class="dish--overlay">
-                                                                    <a class="dish-popup" data-toggle="modal" data-target="#dishPopup"><i class="fa fa-search-plus"></i></a>
-                                                                    <div class="modal fade" tabindex="-1" role="dialog" id="dishPopup">
-                                                                        <div class="modal-dialog" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-body">
-                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-                                                                                    <div class="row reservation">
-                                                                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                                            <div class="popup--img">
-                                                                                                <img src="~/assets/images/specials/popup/1.jpg" alt="dish popup">
-                                                                                                <div class="img-popup-overlay">
-                                                                                                    <div class="popup--price">$12.95</div>
-                                                                                                    <h3 class="popup--title">Grilled American Fillet</h3>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                                            <div class="content-popup">
-                                                                                                <p>Pork fillet, ginger, garlic, honey, pepper & canola oil.creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese, with crusty bread for dipping.</p>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                        }
+                                                        <!--else
+                                                        {-->
+                                                            <!-- Məlumat Solda, Şəkil Sağda -->
+                                                            <!--<div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div class="dish--img">
+                                                                    <div class="divider--shape-left"></div>
+                                                                    <img src="~/assets/images/menu/menu-board/1.jpg" alt="dish img">
+                                                                    <div class="dish--overlay">
+                                                                        <a class="dish-popup" data-toggle="modal" data-target="#dishPopup@product.Id">
+                                                                            <i class="fa fa-search-plus"></i>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div class="dish--content">
+                                                                    <div class="dish--tag">@product.SpecialCategoryName ?? "Xüsusi kateqoriya yoxdur"</div>
+                                                                    <span class="dish--price">$@product.Price.ToString("F2")</span>
+                                                                    <h3 class="dish--title">@product.Name</h3>
+                                                                    <div class="divider--shape-4"></div>
+                                                                    <p class="dish--desc">@product.Ingredient</p>
+                                                                </div>
+                                                            </div>
+                                                        }-->
                                                     </div>
                                                 </div>
                                             }
@@ -287,24 +278,21 @@
                         </div>
                     }
                 </div>
-
             </div>
         </div>
     </div>
-
-
-    <!-- .container end -->
     <div class="container">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text--center">
                 <a class="btn btn--primary btn--bordered btn--rounded btn--lg mt-50" asp-controller="Menu" asp-action="Classic">@Model.Settings["MealsBtnText"]</a>
             </div>
-            <!-- .col-md-8 end -->
         </div>
-        <!-- .row end -->
     </div>
-    <!-- .container end -->
 </section>
+
+
+
+
 <!-- #menuBoard end -->
 <!-- Testimonial #1
 ============================================= -->

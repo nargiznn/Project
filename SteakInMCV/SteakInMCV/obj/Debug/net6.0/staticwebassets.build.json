@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "d4cGibG9HPI+PnG4YkIxIqoh+ghu0OPBgNEOqwb3RNk=",
+  "Hash": "vbymnTOWGR/W0Splc8Ucj8zxeq7qzNav3nkrmDR7t5I=",
   "Source": "SteakInMCV",
   "BasePath": "_content/SteakInMCV",
   "Mode": "Default",
@@ -33524,6 +33524,23 @@
       "OriginalItemSpec": "wwwroot/assets/images/blog/standard/4.jpg"
     },
     {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/blog/thumb/.DS_Store",
+      "SourceId": "SteakInMCV",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
+      "BasePath": "_content/SteakInMCV",
+      "RelativePath": "assets/images/blog/thumb/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/images/blog/thumb/.DS_Store"
+    },
+    {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/blog/thumb/1.jpg",
       "SourceId": "SteakInMCV",
       "SourceType": "Discovered",
@@ -33556,23 +33573,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/images/blog/thumb/2.jpg"
-    },
-    {
-      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/blog/thumb/3.jpg",
-      "SourceId": "SteakInMCV",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
-      "BasePath": "_content/SteakInMCV",
-      "RelativePath": "assets/images/blog/thumb/3.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/images/blog/thumb/3.jpg"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/.DS_Store",
@@ -38945,6 +38945,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/images/testimonial/icon4.png"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/js/.DS_Store",
+      "SourceId": "SteakInMCV",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
+      "BasePath": "_content/SteakInMCV",
+      "RelativePath": "assets/js/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/js/.DS_Store"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/js/functions.js",
