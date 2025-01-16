@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using SteakInMCV.Models;
 using SteakInMCV.ViewModels.Events;
 using SteakInMCV.ViewModels.GalleryImage;
@@ -19,6 +20,8 @@ namespace SteakInMCV.ViewModels
 
         public IEnumerable<GalleryCategory> GalleryCategories { get; set; } = new List<GalleryCategory>();
         public IEnumerable<GalleryImageVM> GalleryImagesVM { get; set; } = new List<GalleryImageVM>();
+
+        public ContactFormModel ContactFormModel { get; set; } = new ContactFormModel();
     }
 }
 

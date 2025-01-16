@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -198,6 +200,7 @@ namespace SteakInMCV.Controllers
         }
 
 
+
         public async Task<IActionResult> Contact()
         {
             AboutVM aboutVM = new AboutVM();
@@ -222,11 +225,42 @@ namespace SteakInMCV.Controllers
                 {
                     ViewData["Error"] = $"API request failed: {ex.Message}";
                 }
-
             }
+
+                try
+                {
+                    var smtpClient = new SmtpClient("smtp.gmail.com") 
+                    {
+                        Port = 587, 
+                        Credentials = new NetworkCredential("nargizzn@code.edu.az", "yswa bxqt nfqf iifz"), 
+                        EnableSsl = true
+                    };
+
+                    var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress("your-email@example.com"),
+                        Subject = "New Contact Form Submission",
+                        Body = $@"
+                    Name: {aboutVM.ContactFormModel.FirstName} {aboutVM.ContactFormModel.LastName}
+                    Email: {aboutVM.ContactFormModel.Email}
+                    Phone: {aboutVM.ContactFormModel.Phone}
+                    Message: {aboutVM.ContactFormModel.Message}
+                ",
+                        IsBodyHtml = false
+                    };
+                    mailMessage.To.Add("nargizzn@code.edu.az"); 
+
+                    await smtpClient.SendMailAsync(mailMessage);
+                    ViewData["Success"] = "Your message has been sent successfully!";
+                }
+                catch (Exception ex)
+                {
+                    ViewData["Error"] = $"Failed to send email: {ex.Message}";
+                }
 
             return View("Contact", aboutVM);
         }
+
 
 
 

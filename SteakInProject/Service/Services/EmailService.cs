@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 using Service.Services.Interfaces;
-using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
@@ -12,8 +11,8 @@ using System.Net.Mail;
 
 namespace Service.Services
 {
-	public class EmailService:IEmailService
-	{
+    public class EmailService : IEmailService
+    {
         private readonly IConfiguration _configuration;
 
         public EmailService(IConfiguration configuration)
@@ -23,33 +22,38 @@ namespace Service.Services
 
         public async Task SendEmailAsync(string toEmail, string subject, string body)
         {
-            var smtpSettings = _configuration.GetSection("Smtp");
-            if (smtpSettings == null ||
-                string.IsNullOrEmpty(smtpSettings["Host"]) ||
-                string.IsNullOrEmpty(smtpSettings["Port"]) ||
-                string.IsNullOrEmpty(smtpSettings["From"]) ||
-                string.IsNullOrEmpty(smtpSettings["UserName"]) ||
-                string.IsNullOrEmpty(smtpSettings["Password"]))
+            var smtpSettings = _configuration.GetSection("SmtpSettings");
+
+            if (smtpSettings == null)
             {
-                throw new ArgumentNullException("Smtp settings are not configured properly.");
+                throw new ArgumentNullException("SmtpSettings configuration is missing.");
             }
 
-            var smtpClient = new System.Net.Mail.SmtpClient
+            string server = smtpSettings["Server"];
+            string senderEmail = smtpSettings["SenderEmail"];
+            string senderPassword = smtpSettings["SenderPassword"];
+            string port = smtpSettings["Port"];
+
+            if (string.IsNullOrWhiteSpace(server) || string.IsNullOrWhiteSpace(senderEmail) ||
+                string.IsNullOrWhiteSpace(senderPassword) || string.IsNullOrWhiteSpace(port))
             {
-                Host = smtpSettings["Host"],
-                Port = int.Parse(smtpSettings["Port"]),
-                EnableSsl = bool.Parse(smtpSettings["EnableSSL"]),
-                Credentials = new NetworkCredential(smtpSettings["UserName"], smtpSettings["Password"])
+                throw new ArgumentNullException("SMTP configuration values cannot be null or empty.");
+            }
+
+            using var smtpClient = new SmtpClient(server)
+            {
+                Port = int.Parse(port),
+                Credentials = new NetworkCredential(senderEmail, senderPassword),
+                EnableSsl = true
             };
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress(smtpSettings["From"]),
+                From = new MailAddress(senderEmail),
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = true
             };
-
             mailMessage.To.Add(toEmail);
 
             await smtpClient.SendMailAsync(mailMessage);
@@ -57,4 +61,3 @@ namespace Service.Services
 
     }
 }
-
