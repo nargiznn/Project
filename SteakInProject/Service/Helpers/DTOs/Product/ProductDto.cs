@@ -15,7 +15,7 @@ namespace Service.Helpers.DTOs.Product
         public string? SpecialCategoryName { get; set; }
         public string FoodCategoryName { get; set; }
         public string ProductCuisineName { get; set; }
-        public List<string> ImageUrls { get; set; }
+        public List<string> ImageUrls { get; set; } = new List<string>();
 
     }
 }

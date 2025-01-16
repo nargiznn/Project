@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vbymnTOWGR/W0Splc8Ucj8zxeq7qzNav3nkrmDR7t5I=",
+  "Hash": "HZXgEzjFAj3yLIb93Ik7KMUk9mZ4FeFlt1qsxYqAtyU=",
   "Source": "SteakInMCV",
   "BasePath": "_content/SteakInMCV",
   "Mode": "Default",
@@ -32181,23 +32181,6 @@
       "OriginalItemSpec": "wwwroot/assets/images/background/20.jpg"
     },
     {
-      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/21.jpg",
-      "SourceId": "SteakInMCV",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
-      "BasePath": "_content/SteakInMCV",
-      "RelativePath": "assets/images/background/21.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/images/background/21.jpg"
-    },
-    {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/22.jpg",
       "SourceId": "SteakInMCV",
       "SourceType": "Discovered",
@@ -33216,6 +33199,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/images/background/shapes/shape-topbar.png"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/special.jpg",
+      "SourceId": "SteakInMCV",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
+      "BasePath": "_content/SteakInMCV",
+      "RelativePath": "assets/images/background/special.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/images/background/special.jpg"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/test1.jpg",
+      "SourceId": "SteakInMCV",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/",
+      "BasePath": "_content/SteakInMCV",
+      "RelativePath": "assets/images/background/test1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/images/background/test1.jpg"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/banners/.DS_Store",

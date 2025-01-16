@@ -1,6 +1,5 @@
 ﻿<Properties StartupConfiguration="{690D8679-1FED-4B3F-A28D-1C06751E4BC5}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Steakin/index.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Domain/Entities/MealPackageProduct.cs">
     <Files>
       <File FileName="Service/Services/Interfaces/IFaqService.cs" />
       <File FileName="Service/Services/FaqService.cs" />
@@ -16,30 +15,33 @@
       <File FileName="Domain/Entities/ProductImage.cs" />
       <File FileName="Service/Services/Interfaces/IProductService.cs" />
       <File FileName="Service/Services/StatisticService.cs" />
-      <File FileName="Domain/Entities/MealPackageProduct.cs" />
-      <File FileName="../../Steakin/index.html" Line="1249" Column="19" />
+      <File FileName="Domain/Entities/MealPackageProduct.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SteakInProject" expanded="True">
+          <Node name="SteakInProject">
             <Node name="Domain" expanded="True">
-              <Node name="Entities" expanded="True" />
+              <Node name="Entities" expanded="True">
+                <Node name="MealPackageProduct.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Service" expanded="True">
               <Node name="Services" expanded="True">
                 <Node name="Interfaces" expanded="True" />
               </Node>
             </Node>
+            <Node name="SteakInProject" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

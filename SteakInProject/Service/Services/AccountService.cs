@@ -37,25 +37,25 @@ namespace Service.Services
             _configuration = configuration;
             _emailService = emailService;
         }
-        public async Task<SignUpResponse> SignUpAsync(SignUpDto model)
-        {
-            var user = _mapper.Map<AppUser>(model);
-            var identityResult = await _userManager.CreateAsync(user, model.Password);
+        //public async Task<SignUpResponse> SignUpAsync(SignUpDto model)
+        //{
+        //    var user = _mapper.Map<AppUser>(model);
+        //    var identityResult = await _userManager.CreateAsync(user, model.Password);
 
-            if (!identityResult.Succeeded)
-            {
-                return new SignUpResponse { Success = false, Errors = identityResult.Errors.Select(m => m.Description) };
-            }
+        //    if (!identityResult.Succeeded)
+        //    {
+        //        return new SignUpResponse { Success = false, Errors = identityResult.Errors.Select(m => m.Description) };
+        //    }
 
-            await _userManager.AddToRoleAsync(user, Roles.SuperAdmin.ToString());
-            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            string confirmUrl = $"{_configuration["ApiBaseUrl"]}/api/account/confirm-email?userId={user.Id}&token={token}";
-            string subject = "Please confirm your email address";
-            string htmlBody = $"<p>Click the link below to confirm your email:</p><p><a href='{confirmUrl}'>Confirm Email</a></p>";
-            await _emailService.SendAsync(user.Email, subject, htmlBody);
+        //    await _userManager.AddToRoleAsync(user, Roles.SuperAdmin.ToString());
+        //    string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        //    string confirmUrl = $"{_configuration["ApiBaseUrl"]}/api/account/confirm-email?userId={user.Id}&token={token}";
+        //    string subject = "Please confirm your email address";
+        //    string htmlBody = $"<p>Click the link below to confirm your email:</p><p><a href='{confirmUrl}'>Confirm Email</a></p>";
+        //    await _emailService.SendAsync(user.Email, subject, htmlBody);
 
-            return new SignUpResponse { Success = true, Errors = null };
-        }
+        //    return new SignUpResponse { Success = true, Errors = null };
+        //}
         public async Task<ConfirmEmailResponse> ConfirmEmailAsync(string userId, string token)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -194,6 +194,11 @@ namespace Service.Services
             }
 
             await _userManager.AddToRoleAsync(user, role.Name);
+        }
+
+        public Task<SignUpResponse> SignUpAsync(SignUpDto model)
+        {
+            throw new NotImplementedException();
         }
 
 

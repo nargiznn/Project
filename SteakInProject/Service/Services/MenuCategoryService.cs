@@ -51,6 +51,13 @@ namespace Service.Services
         {
             var categories = await _context.MenuCategories
                                             .Include(mc => mc.Products)
+                                                .ThenInclude(p => p.SpecialCategory)  // SpecialCategory'yi daxil et
+                                            .Include(mc => mc.Products)
+                                                .ThenInclude(p => p.FoodCategory)  // FoodCategory'yi daxil et
+                                            .Include(mc => mc.Products)
+                                                .ThenInclude(p => p.Cuisine)  // Cuisine'yi daxil et
+                                            .Include(mc => mc.Products)
+                                                .ThenInclude(p => p.ProductImages)  // ProductImages'ləri daxil et
                                             .AsNoTracking()
                                             .ToListAsync();
 
@@ -58,18 +65,24 @@ namespace Service.Services
             {
                 Id = mc.Id,
                 Name = mc.Name,
-                IsActive=mc.IsActive,
+                IsActive = mc.IsActive,
                 Products = mc.Products.Select(p => new ProductDto
                 {
                     Name = p.Name,
                     Ingredient = p.Ingredient,
                     Price = p.Price,
+                    SalesCount = p.SalesCount,
+                    MenuCategoryName = p.MenuCategory.Name,
+                    SpecialCategoryName = p.SpecialCategory?.Name, // Null kontrolü
+                    FoodCategoryName = p.FoodCategory?.Name, // Null kontrolü
+                    ProductCuisineName = p.Cuisine?.Name, // Null kontrolü
+                    ImageUrls = p.ProductImages.Select(pi => pi.Path).ToList()
                 }).ToList()
             });
 
             return result;
-
         }
+
 
 
         public async Task<MenuCategoryDto> GetByIdAsync(int id)

@@ -7565,10 +7565,6 @@
       "PackagePath": "staticwebassets/assets/images/background/20.jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/21.jpg",
-      "PackagePath": "staticwebassets/assets/images/background/21.jpg"
-    },
-    {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/22.jpg",
       "PackagePath": "staticwebassets/assets/images/background/22.jpg"
     },
@@ -7807,6 +7803,14 @@
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/shapes/shape-topbar.png",
       "PackagePath": "staticwebassets/assets/images/background/shapes/shape-topbar.png"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/special.jpg",
+      "PackagePath": "staticwebassets/assets/images/background/special.jpg"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/background/test1.jpg",
+      "PackagePath": "staticwebassets/assets/images/background/test1.jpg"
     },
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/banners/.DS_Store",

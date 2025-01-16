@@ -116,7 +116,7 @@
 ============================================= -->
 <section id="specials1" class="specials specials-1 menu-simple bg-overlay bg-parallax bg-overlay-dark">
     <div class="bg-section">
-        <img src="~/assets/images/background/@Model.Settings["HomePageProductBg"]" alt="Background" />
+        <img src="~/assets/images/background/@Model.Settings["HomeSpecialBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="divider--shape-1up"></div>
@@ -204,73 +204,106 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    @foreach (var item in Model.MenuCategories)
+                    @foreach (var category in Model.MenuCategories)
                     {
-                        <div class="tab-pane fade @(item.IsActive ? "active in" : "")" id="@item.Name.ToLower()">
+                        <div class="tab-pane fade @(category.IsActive ? "active in" : "")" id="@category.Name.ToLower()">
                             <div class="menu menu-board text-center">
                                 <div class="row">
                                     <div class="dishes-wrapper">
-                                        @if (item.Products.Any())
+                                        @foreach (var product in category.Products
+                                           .Where(p => p.SpecialCategoryName == "Chef Selection")
+                                           .Take(1))
                                         {
-                                            @foreach (var (product, index) in item.Products.Take(4).Select((value, idx) => (value, idx)))
-                                            {
-                                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                                    <div class="row dish-panel">
-                                                        @if (index % 2 == 0)
-                                                        {
-                                                            <!-- Şəkil Solda, Məlumat Sağda -->
-                                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                                <div class="dish--img">
-                                                                    <div class="divider--shape-left"></div>
-                                                                    <img src="~/assets/images/menu/menu-board/1.jpg" alt="dish img">
-                                                                    <div class="dish--overlay">
-                                                                        <a class="dish-popup" data-toggle="modal" data-target="#dishPopup@product.Id">
-                                                                            <i class="fa fa-search-plus"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                                <div class="dish--content">
-                                                                    <div class="dish--tag">@product.SpecialCategoryName ?? "Xüsusi kateqoriya yoxdur"</div>
-                                                                    <span class="dish--price">$@product.Price.ToString("F2")</span>
-                                                                    <h3 class="dish--title">@product.Name</h3>
-                                                                    <div class="divider--shape-4"></div>
-                                                                    <p class="dish--desc">@product.Ingredient</p>
-                                                                </div>
-                                                            </div>
-                                                        }
-                                                        <!--else
-                                                        {-->
-                                                            <!-- Məlumat Solda, Şəkil Sağda -->
-                                                            <!--<div class="col-xs-12 col-sm-6 col-md-6">
-                                                                <div class="dish--img">
-                                                                    <div class="divider--shape-left"></div>
-                                                                    <img src="~/assets/images/menu/menu-board/1.jpg" alt="dish img">
-                                                                    <div class="dish--overlay">
-                                                                        <a class="dish-popup" data-toggle="modal" data-target="#dishPopup@product.Id">
-                                                                            <i class="fa fa-search-plus"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                                <div class="dish--content">
-                                                                    <div class="dish--tag">@product.SpecialCategoryName ?? "Xüsusi kateqoriya yoxdur"</div>
-                                                                    <span class="dish--price">$@product.Price.ToString("F2")</span>
-                                                                    <h3 class="dish--title">@product.Name</h3>
-                                                                    <div class="divider--shape-4"></div>
-                                                                    <p class="dish--desc">@product.Ingredient</p>
-                                                                </div>
-                                                            </div>
-                                                        }-->
+                                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                                <div class="row dish-panel">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--content">
+                                                            <div class="dish--tag">@product.SpecialCategoryName</div>
+                                                            <span class="dish--price">$@product.Price.ToString("F2")</span>
+                                                            <h3 class="dish--title">@product.Name</h3>
+                                                            <div class="divider--shape-4"></div>
+                                                            <p class="dish--desc">@product.Ingredient</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--img">
+                                                            <div class="divider--shape-left"></div>
+                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="@product.Name">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            }
+                                            </div>
                                         }
-                                        else
+
+                                        @foreach (var product in category.Products
+                                           .Where(p => string.IsNullOrEmpty(p.SpecialCategoryName))
+                                           .Take(1))
                                         {
-                                            <p>No products found in this category.</p>
+                                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                                <div class="row dish-panel">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--content">
+                                                            <span class="dish--price">$@product.Price.ToString("F2")</span>
+                                                            <h3 class="dish--title">@product.Name</h3>
+                                                            <div class="divider--shape-4"></div>
+                                                            <p class="dish--desc">@product.Ingredient</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--img">
+                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="@product.Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @foreach (var product in category.Products
+                                           .Where(p => p.SpecialCategoryName == "New")
+                                           .Take(1))
+                                        {
+                                            <!-- New -->
+                                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                                <div class="row dish-panel">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--img">
+                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="@product.Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--content">
+                                                            <div class="dish--tag">@product.SpecialCategoryName</div>
+                                                            <span class="dish--price">$@product.Price.ToString("F2")</span>
+                                                            <h3 class="dish--title">@product.Name</h3>
+                                                            <div class="divider--shape-4"></div>
+                                                            <p class="dish--desc">@product.Ingredient</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @foreach (var product in category.Products
+                                           .Where(p => string.IsNullOrEmpty(p.SpecialCategoryName))
+                                           .Take(1))
+                                        {
+                                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                                <div class="row dish-panel">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--img">
+                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="@product.Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <div class="dish--content">
+                                                            <span class="dish--price">$@product.Price.ToString("F2")</span>
+                                                            <h3 class="dish--title">@product.Name</h3>
+                                                            <div class="divider--shape-4"></div>
+                                                            <p class="dish--desc">@product.Ingredient</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         }
                                     </div>
                                 </div>
@@ -278,9 +311,13 @@
                         </div>
                     }
                 </div>
+
+
             </div>
         </div>
     </div>
+
+
     <div class="container">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text--center">
