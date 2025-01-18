@@ -3,7 +3,7 @@ namespace Service.Services.Interfaces
 {
 	public interface IEmailService
 	{
-        Task SendEmailAsync(string toEmail, string subject, string body);
+        Task SendEmailAsync(string emailTo, string subject, string body);
     }
 }
 

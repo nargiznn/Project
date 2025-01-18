@@ -42,7 +42,12 @@ namespace SteakInProject.Controllers.Admin
         {
             return Ok(await _accountService.SearchByUserNameAsync(search));
         }
-
+        //[HttpPost]
+        //public async Task<IActionResult> CreateRole()
+        //{
+        //    await _accountService.CreateRoleAsync();
+        //    return Ok();
+        //}
         [HttpGet]
         public async Task<IActionResult> GetRoles()
         {
@@ -60,15 +65,6 @@ namespace SteakInProject.Controllers.Admin
             await _accountService.AddRoleToUserAsync(request);
             return Ok();
         }
-
-
-
-        //[HttpPost]
-        //public async Task<IActionResult> CreateRole()
-        //{
-        //    await _accountService.CreateRoleAsync();
-        //    return Ok();
-        //}
     }
 }
 

@@ -63,23 +63,23 @@
             <!-- .col-md-9 end -->
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <!-- Search
-                ============================================= -->
+    ============================================= -->
                 <div class="widget widget-search">
                     <div class="widget--content">
-                        <form class="form-search">
+                        <form asp-controller="About" asp-action="Faqs" method="get">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Type Your Search Words">
+                                <input type="text" name="searchString" class="form-control" placeholder="Type Your Search Words">
                                 <span class="input-group-btn">
-                                    <button class="btn" type="button"><i class="fa fa-search"></i></button>
+                                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
                                 </span>
                             </div>
-                            <!-- /input-group -->
                         </form>
                     </div>
                 </div>
+
                 <!-- .widget-search end -->
                 <!-- Info
-                ============================================= -->
+    ============================================= -->
                 <div class="widget widget-info">
                     <div class="divider--shape-10up"></div>
                     <div class="widget--content">

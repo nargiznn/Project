@@ -14,6 +14,7 @@ namespace Service.Services.Interfaces
         Task DeleteUsersAsync();
         Task DeleteUserByIdAsync(string id);
         Task<IEnumerable<UserDto>> SearchByUserNameAsync(string username);
+
         Task<IEnumerable<RoleDto>> GetRolesAsync();
         Task<RoleDto> GetRoleByIdAsync(string id);
         Task AddRoleToUserAsync(UserRoleDto model);

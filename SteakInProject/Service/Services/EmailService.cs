@@ -20,43 +20,24 @@ namespace Service.Services
             _configuration = configuration;
         }
 
-        public async Task SendEmailAsync(string toEmail, string subject, string body)
+        public async Task SendEmailAsync(string emailTo, string subject, string body)
         {
             var smtpSettings = _configuration.GetSection("SmtpSettings");
 
-            if (smtpSettings == null)
-            {
-                throw new ArgumentNullException("SmtpSettings configuration is missing.");
-            }
+            SmtpClient smtpClient = new SmtpClient(smtpSettings["Server"], Convert.ToInt32(smtpSettings["Port"]));
 
-            string server = smtpSettings["Server"];
-            string senderEmail = smtpSettings["SenderEmail"];
-            string senderPassword = smtpSettings["SenderPassword"];
-            string port = smtpSettings["Port"];
+            smtpClient.EnableSsl = true;
+            smtpClient.Credentials = new NetworkCredential(smtpSettings["SenderEmail"], smtpSettings["SenderPassword"]);
 
-            if (string.IsNullOrWhiteSpace(server) || string.IsNullOrWhiteSpace(senderEmail) ||
-                string.IsNullOrWhiteSpace(senderPassword) || string.IsNullOrWhiteSpace(port))
-            {
-                throw new ArgumentNullException("SMTP configuration values cannot be null or empty.");
-            }
+            MailAddress from = new MailAddress(smtpSettings["SenderEmail"], "Steak-In");
+            MailAddress to = new MailAddress(emailTo);
 
-            using var smtpClient = new SmtpClient(server)
-            {
-                Port = int.Parse(port),
-                Credentials = new NetworkCredential(senderEmail, senderPassword),
-                EnableSsl = true
-            };
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = subject;
+            message.Body = body;
+            message.IsBodyHtml = true;
 
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress(senderEmail),
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-            };
-            mailMessage.To.Add(toEmail);
-
-            await smtpClient.SendMailAsync(mailMessage);
+            await smtpClient.SendMailAsync(message);
         }
 
     }

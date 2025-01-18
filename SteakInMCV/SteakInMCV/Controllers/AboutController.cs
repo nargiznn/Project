@@ -199,11 +199,37 @@ namespace SteakInMCV.Controllers
             return View("Story", aboutVM);
         }
 
-
-
         public async Task<IActionResult> Contact()
         {
             AboutVM aboutVM = new AboutVM();
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
+                    if (settingResponse.IsSuccessStatusCode)
+                    {
+                        string settingApiResponse = await settingResponse.Content.ReadAsStringAsync();
+                        var settings = JsonConvert.DeserializeObject<IEnumerable<Setting>>(settingApiResponse);
+                        aboutVM.Settings = settings.ToDictionary(s => s.Key, s => s.Value);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + settingResponse.StatusCode;
+                        aboutVM.Settings = new Dictionary<string, string>();
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    ViewData["Error"] = $"API request failed: {ex.Message}";
+                }
+            }
+            return View(aboutVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact(AboutVM aboutVM)
+        {
             using (var client = new HttpClient())
             {
                 try
@@ -267,6 +293,7 @@ namespace SteakInMCV.Controllers
         public async Task<IActionResult> Faqs(string searchString = null)
         {
             AboutVM aboutVM = new AboutVM();
+
             using (var client = new HttpClient())
             {
                 try
@@ -280,11 +307,15 @@ namespace SteakInMCV.Controllers
                     }
                     else
                     {
-                        ViewData["Error"] = "API request failed with status code: " + settingResponse.StatusCode;
                         aboutVM.Settings = new Dictionary<string, string>();
+                        ViewData["Error"] = "Settings API call failed.";
                     }
 
-                    var faqResponse = await client.GetAsync($"{BaseURl}/api/faq/GetAll");
+                    string faqEndpoint = string.IsNullOrEmpty(searchString)
+                        ? $"{BaseURl}/api/faq/GetAll" 
+                        : $"{BaseURl}/api/faq/search?searchString={searchString}"; 
+
+                    var faqResponse = await client.GetAsync(faqEndpoint);
                     if (faqResponse.IsSuccessStatusCode)
                     {
                         string faqApiResponse = await faqResponse.Content.ReadAsStringAsync();
@@ -293,28 +324,14 @@ namespace SteakInMCV.Controllers
                     }
                     else
                     {
-                        ViewData["Error"] = "API request failed with status code: " + faqResponse.StatusCode;
                         aboutVM.Faqs = new List<Faq>();
+                        ViewData["Error"] = "FAQs API call failed.";
                     }
-                    //var faqResponse = await client.GetAsync($"{BaseURl}/api/faq/search?searchString={searchString}");
-                    //if (faqResponse.IsSuccessStatusCode)
-                    //{
-                    //    string faqApiResponse = await faqResponse.Content.ReadAsStringAsync();
-                    //    var faqs = JsonConvert.DeserializeObject<IEnumerable<Faq>>(faqApiResponse);
-                    //    aboutVM.Faqs = faqs.Where(f => f.IsActive).ToList();
-                    //}
-                    //else
-                    //{
-                    //    ViewData["Error"] = "API request failed with status code: " + faqResponse.StatusCode;
-                    //    aboutVM.Faqs = new List<Faq>();
-                    //}
-
                 }
-                catch (HttpRequestException ex)
+                catch (Exception ex)
                 {
-                    ViewData["Error"] = $"API request failed: {ex.Message}";
+                    ViewData["Error"] = $"An error occurred: {ex.Message}";
                 }
-
             }
 
             return View("Faqs", aboutVM);
