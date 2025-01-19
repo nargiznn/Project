@@ -28,8 +28,6 @@ namespace Service.Services
         public async Task<string> CreateAsync(ProductCreateDto product)
         {
             var productImages = new List<ProductImage>();
-
-            // Faylları yükləyirik və fayl yollarını saxlayırıq
             if (product.Files != null && product.Files.Count > 0)
             {
                 foreach (var file in product.Files)
@@ -76,11 +74,9 @@ namespace Service.Services
             {
                 return "Data not found";
             }
-
-            // Delete product images
             foreach (var image in findData.ProductImages)
             {
-                await _fileService.DeletePath(image.Image);  // Delete each image
+                await _fileService.DeletePath(image.Image); 
             }
 
             _context.Products.Remove(findData);
@@ -109,7 +105,7 @@ namespace Service.Services
             if (product.FoodCategoryId.HasValue) findProduct.FoodCategoryId = product.FoodCategoryId.Value;
             if (product.ProductCuisineId.HasValue) findProduct.CuisineId = product.ProductCuisineId.Value;
 
-            // Köhnə şəkilləri silirik
+
             if (product.Files != null && product.Files.Count > 0)
             {
                 foreach (var oldImage in findProduct.ProductImages)

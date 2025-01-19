@@ -29,7 +29,7 @@ namespace Service.Services
                 new StatisticDto
                 {
                     Title = "Clients Served",
-                    Value = await _context.Customers.CountAsync() 
+                    Value = await _context.Testimonials.CountAsync() 
                 },
                 new StatisticDto
                 {
@@ -44,7 +44,7 @@ namespace Service.Services
                 new StatisticDto
                 {
                     Title = "Positive Reviews",
-                    Value = await _context.Customers.CountAsync() 
+                    Value = await _context.Testimonials.CountAsync() 
                 }
             };
 

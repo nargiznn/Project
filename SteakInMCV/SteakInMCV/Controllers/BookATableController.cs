@@ -23,18 +23,17 @@ namespace SteakInMCV.Controllers
                 try
                 {
 
-
-                    var customerResponse = await client.GetAsync($"{BaseURl}/api/Customer/GetAll");
-                    if (customerResponse.IsSuccessStatusCode)
+                    var testimonialResponse = await client.GetAsync($"{BaseURl}/api/Testimonial/GetAll");
+                    if (testimonialResponse.IsSuccessStatusCode)
                     {
-                        string customerApiResponse = await customerResponse.Content.ReadAsStringAsync();
-                        bookATableVM.Customers = (IEnumerable<Customer>)JsonConvert.DeserializeObject<IEnumerable<Customer>>(customerApiResponse);
+                        string customerApiResponse = await testimonialResponse.Content.ReadAsStringAsync();
+                        bookATableVM.Testimonials = (IEnumerable<Testimonial>)JsonConvert.DeserializeObject<IEnumerable<Testimonial>>(customerApiResponse);
 
                     }
                     else
                     {
-                        ViewData["Error"] = "API request failed with status code: " + customerResponse.StatusCode;
-                        bookATableVM.Customers = new List<Customer>();
+                        ViewData["Error"] = "API request failed with status code: " + testimonialResponse.StatusCode;
+                        bookATableVM.Testimonials = new List<Testimonial>();
                     }
 
 
@@ -65,6 +64,18 @@ namespace SteakInMCV.Controllers
                         bookATableVM.Banners = new List<Banner>();
                     }
 
+                    var tableResponse = await client.GetAsync($"{BaseURl}/api/RestaurantTable/GetAll");
+                    if (tableResponse.IsSuccessStatusCode)
+                    {
+                        string tableApiResponse = await tableResponse.Content.ReadAsStringAsync();
+                        bookATableVM.RestaurantTables = JsonConvert.DeserializeObject<IEnumerable<RestaurantTable>>(tableApiResponse);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + tableResponse.StatusCode;
+                        bookATableVM.RestaurantTables = new List<RestaurantTable>();
+                    }
+
                 }
                 catch (HttpRequestException ex)
                 {
@@ -73,6 +84,19 @@ namespace SteakInMCV.Controllers
 
 
             }
+            var today = DateTime.Today;
+            var dateList = Enumerable.Range(0, 7)
+                                     .Select(i => today.AddDays(i))
+                                     .ToList();
+            ViewData["DateList"] = dateList;
+
+            var startTime = new TimeSpan(10, 0, 0);
+            var endTime = new TimeSpan(23, 0, 0); 
+            var timeList = Enumerable.Range(0, (int)(endTime - startTime).TotalHours + 1)
+                                     .Select(i => startTime.Add(TimeSpan.FromHours(i)).ToString(@"hh\:mm"))
+                                     .ToList();
+            ViewData["TimeList"] = timeList;
+
             return View(bookATableVM);
         }
 

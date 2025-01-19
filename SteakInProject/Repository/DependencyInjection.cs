@@ -10,6 +10,7 @@ namespace Repository
 		public static IServiceCollection AddRepositoryLayer(this IServiceCollection services)
 		{
             services.AddScoped<ISliderRepository, SliderRepository>();
+            services.AddScoped<IRestaurantTableRepository, RestaurantTableRepository>();
             services.AddScoped<IWelcomeInfoRepository, WelcomeInfoRepository>();
             services.AddScoped<IWelcomeImageRepository, WelcomeImageRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
@@ -19,7 +20,7 @@ namespace Repository
             services.AddScoped<IMenuCategoryRepository, MenuCategoryRepository>();
             services.AddScoped<ISpecialCategoryRepository, SpecialCategoryRepository>();
 
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ITestimonialRepository, TestimonialRepository>();
 
 
             services.AddScoped<IFaqRepository, FaqRepository>();

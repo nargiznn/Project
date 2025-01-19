@@ -15,7 +15,7 @@ namespace SteakInMCV.Controllers
     public class BlogController : Controller
     {
         private readonly string BaseURl = "http://localhost:7031";
-        public async Task<IActionResult> Standart()
+        public async Task<IActionResult> Standart(int page=1)
         {
             BlogVM blogVM = new BlogVM();
             using (var client = new HttpClient())
@@ -27,15 +27,24 @@ namespace SteakInMCV.Controllers
                     {
                         string eventApiResponse = await eventResponse.Content.ReadAsStringAsync();
                         var events = JsonConvert.DeserializeObject<IEnumerable<Event>>(eventApiResponse);
+                        int pageSize = 3; 
+                        int skip = (page - 1) * pageSize;
+                        blogVM.EventVMs = events
+                            .Select(e => new EventVM
+                            {
+                                Title = e.Title,
+                                Desc = e.Desc,
+                                ImgUrl = e.ImgUrl,
+                                Info = e.Info,
+                                TagsName = e.Tags
+                            })
+                            .Skip(skip)
+                            .Take(pageSize)
+                            .ToList();
 
-                        blogVM.EventVMs = events.Select(e => new EventVM
-                        {
-                            Title = e.Title,
-                            Desc = e.Desc,
-                            ImgUrl = e.ImgUrl,
-                            Info=e.Info,
-                            TagsName = e.Tags
-                        });
+                        int totalEvents = events.Count();
+                        ViewBag.TotalPages = (int)Math.Ceiling(totalEvents / (double)pageSize);  
+                        ViewBag.PageIndex = page;
                     }
                     else
                     {

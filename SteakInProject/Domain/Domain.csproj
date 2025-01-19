@@ -9,10 +9,12 @@
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="Configurations\" />
+    <None Remove="Enum\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Configurations\" />
+    <Folder Include="Enum\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.36">

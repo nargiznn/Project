@@ -25,6 +25,7 @@ namespace Service
             services.AddScoped<ILunchSetService, LunchSetService>();
 
             services.AddScoped<ITagService, TagService>();
+            services.AddScoped<IRestaurantTableService, RestaurantTableService>();
             services.AddScoped<ICuisineService, CuisineService>();
 
             services.AddScoped<IGalleryCategoryService, GalleryCategoryService>();
@@ -34,7 +35,7 @@ namespace Service
             services.AddScoped<IFoodCategoryService, FoodCategoryService>();
             services.AddScoped<ISpecialCategoryService, SpecialCategoryService>();
 
-            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ITestimonialService, TestimonialService>();
 
             services.AddScoped<IAwardService, AwardService>();
             services.AddScoped<IAwardLogoService, AwardLogoService>();

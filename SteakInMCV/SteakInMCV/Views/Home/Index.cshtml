@@ -355,7 +355,7 @@
                 <div id="testimonial-carousel" class="carousel carousel-dots carousel-white" data-slide="3" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="true" data-space="30" data-loop="true" data-speed="800">
                     <!-- Testimonial #1 -->
 
-                    @foreach (var customer in Model.Customers.Where(c => c.ReviewType.HasValue && c.ReviewType.Value == Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
+                    @foreach (var customer in Model.Testimonials.Where(c => c.ReviewType.HasValue && c.ReviewType.Value == Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
                     {
                         <div class="testimonial-container">
 
@@ -424,7 +424,7 @@
 
                     @if (Model.EventVMs != null && Model.EventVMs.Any())
                     {
-                        @foreach (var item in Model.EventVMs)
+                        @foreach (var item in Model.EventVMs.Take(5))
                         {
                             <div class="blog-entry">
 

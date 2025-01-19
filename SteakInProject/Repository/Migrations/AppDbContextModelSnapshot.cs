@@ -321,34 +321,25 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsPermit")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Raiting")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int?>("ReviewType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SurName")
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Text")
+                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("Domain.Entities.Event", b =>
@@ -633,10 +624,6 @@ namespace Repository.Migrations
                     b.Property<int>("FoodCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GalleryCategoryId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
                     b.Property<string>("Ingredient")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -662,8 +649,6 @@ namespace Repository.Migrations
                     b.HasIndex("CuisineId");
 
                     b.HasIndex("FoodCategoryId");
-
-                    b.HasIndex("GalleryCategoryId");
 
                     b.HasIndex("MenuCategoryId");
 
@@ -696,6 +681,63 @@ namespace Repository.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Reservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RestaurantTableId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("RestaurantTableId");
+
+                    b.ToTable("Reservation");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RestaurantTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TableNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RestaurantTable");
                 });
 
             modelBuilder.Entity("Domain.Entities.Setting", b =>
@@ -841,6 +883,47 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Testimonial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPermit")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Raiting")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int?>("ReviewType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Testimonials");
                 });
 
             modelBuilder.Entity("Domain.Entities.WelcomeImage", b =>
@@ -1094,7 +1177,7 @@ namespace Repository.Migrations
             modelBuilder.Entity("Domain.Entities.GalleryImage", b =>
                 {
                     b.HasOne("Domain.Entities.GalleryCategory", "GalleryCategory")
-                        .WithMany()
+                        .WithMany("GalleryImages")
                         .HasForeignKey("GalleryCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1154,12 +1237,6 @@ namespace Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.GalleryCategory", "GalleryCategory")
-                        .WithMany("Products")
-                        .HasForeignKey("GalleryCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.MenuCategory", "MenuCategory")
                         .WithMany("Products")
                         .HasForeignKey("MenuCategoryId")
@@ -1173,8 +1250,6 @@ namespace Repository.Migrations
                     b.Navigation("Cuisine");
 
                     b.Navigation("FoodCategory");
-
-                    b.Navigation("GalleryCategory");
 
                     b.Navigation("MenuCategory");
 
@@ -1190,6 +1265,25 @@ namespace Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Reservation", b =>
+                {
+                    b.HasOne("Domain.Entities.Customer", "Customer")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.RestaurantTable", "RestaurantTable")
+                        .WithMany("Reservations")
+                        .HasForeignKey("RestaurantTableId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("RestaurantTable");
                 });
 
             modelBuilder.Entity("EventTag", b =>
@@ -1270,6 +1364,11 @@ namespace Repository.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
             modelBuilder.Entity("Domain.Entities.FoodCategory", b =>
                 {
                     b.Navigation("Products");
@@ -1277,7 +1376,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.Entities.GalleryCategory", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("GalleryImages");
                 });
 
             modelBuilder.Entity("Domain.Entities.LunchSet", b =>
@@ -1307,6 +1406,11 @@ namespace Repository.Migrations
                     b.Navigation("MenuPackageProducts");
 
                     b.Navigation("ProductImages");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RestaurantTable", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Domain.Entities.SpecialCategory", b =>

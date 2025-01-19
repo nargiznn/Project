@@ -42,17 +42,17 @@ namespace SteakInMCV.Controllers
                         ViewData["Error"] = "API request failed with status code: " + eventResponse.StatusCode;
                         homeVM.EventVMs = new List<EventVM>();
                     }
-                    var customerResponse = await client.GetAsync($"{BaseURl}/api/Customer/GetAll");
-                    if (customerResponse.IsSuccessStatusCode)
+                    var testimonialResponse = await client.GetAsync($"{BaseURl}/api/Testimonial/GetAll");
+                    if (testimonialResponse.IsSuccessStatusCode)
                     {
-                        string customerApiResponse = await customerResponse.Content.ReadAsStringAsync();
-                        homeVM.Customers = (IEnumerable<Customer>)JsonConvert.DeserializeObject<IEnumerable<Customer>>(customerApiResponse);
+                        string testimonialApiResponse = await testimonialResponse.Content.ReadAsStringAsync();
+                        homeVM.Testimonials = (IEnumerable<Testimonial>)JsonConvert.DeserializeObject<IEnumerable<Testimonial>>(testimonialApiResponse);
 
                     }
                     else
                     {
-                        ViewData["Error"] = "API request failed with status code: " + customerResponse.StatusCode;
-                        homeVM.Customers = new List<Customer>();
+                        ViewData["Error"] = "API request failed with status code: " + testimonialResponse.StatusCode;
+                        homeVM.Testimonials = new List<Testimonial>();
                     }
 
 

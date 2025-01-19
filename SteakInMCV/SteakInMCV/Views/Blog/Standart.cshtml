@@ -79,7 +79,7 @@
                                                 </a>
                                             </div>
                                             <div class="entry--bio">
-                                            @item.Info
+                                                @item.Info
                                             </div>
                                         </div>
                                         <!-- .entry-content end -->
@@ -94,17 +94,33 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 clearfix">
                                 <ul class="pagination">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li>
-                                        <a href="#" aria-label="Next">
-                                            <span aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
-                                        </a>
-                                    </li>
+                                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                    {
+                                        if (ViewBag.PageIndex == i)
+                                        {
+                                            <li class="active"><a href="#">@i</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a asp-route-page="@i">@i</a></li>
+                                        }
+                                    }
+
+                                    @if (ViewBag.PageIndex < ViewBag.TotalPages)
+                                    {
+                                        <li>
+                                            <a asp-route-page="@(ViewBag.PageIndex + 1)" aria-label="Next">
+                                                <span aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
+                                            </a>
+                                        </li>
+                                    }
+
+                                 
                                 </ul>
-                            </div><!-- .col-md-12 end -->
-                        </div><!-- .row end -->
+                            </div>
+                        </div>
+
+
                     </div><!-- .col-md-9 end -->
                     <div class="col-xs-12 col-sm-12 col-md-3">
                         <!-- Search
@@ -148,23 +164,9 @@
                                 }
                                 <!-- .recent-entry end -->
 
-
-
                             </div>
                         </div> <!-- .widget-recent end -->
-                        <!-- Instagram Feed
-                        ============================================= -->
-                        <!--<div class="widget widget-instagram">
-                            <div class="widget--title">
-                                <h5>Instagram</h5>
-                            </div>
-                            <div class="widget--content">
-                                <div id="instafeedSidebar" class="instafeed" data-insta-number="8"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>--> <!-- .widget-instagram end -->
-                        <!-- Tag Clouds
-                        ============================================= -->
+
                         <div class="widget widget-tags">
                             <div class="widget--title">
                                 <h5>tag clouds</h5>

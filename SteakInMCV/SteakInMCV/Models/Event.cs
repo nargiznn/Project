@@ -1,8 +1,8 @@
 ﻿using System;
 namespace SteakInMCV.Models
 {
-	public class Event:BaseEntity
-	{
+    public class Event : BaseEntity
+    {
         public string Title { get; set; }
         public string Desc { get; set; }
         public string ImgUrl { get; set; }

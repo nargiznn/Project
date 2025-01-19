@@ -93,11 +93,11 @@ namespace SteakInMCV.Controllers
                     }
                 }
 
-                var customerResponse = await client.GetAsync($"{BaseURl}/api/customer/GetAll");
-                if (customerResponse.IsSuccessStatusCode)
+                var testimonialResponse = await client.GetAsync($"{BaseURl}/api/Testimonial/GetAll");
+                if (testimonialResponse.IsSuccessStatusCode)
                 {
-                    string customerApiResponse = await customerResponse.Content.ReadAsStringAsync();
-                    aboutVM.Customers = JsonConvert.DeserializeObject<IEnumerable<Customer>>(customerApiResponse).ToList();
+                    string testimonialApiResponse = await testimonialResponse.Content.ReadAsStringAsync();
+                    aboutVM.Testimonials = JsonConvert.DeserializeObject<IEnumerable<Testimonial>>(testimonialApiResponse).ToList();
                 }
             }
 
@@ -149,11 +149,11 @@ namespace SteakInMCV.Controllers
                     aboutVM.EventVMs = new List<EventVM>();
                 }
 
-                var customerResponse = await client.GetAsync($"{BaseURl}/api/customer/GetAll");
-                if (customerResponse.IsSuccessStatusCode)
+                var testimonialResponse = await client.GetAsync($"{BaseURl}/api/Testimonial/GetAll");
+                if (testimonialResponse.IsSuccessStatusCode)
                 {
-                    string customerApiResponse = await customerResponse.Content.ReadAsStringAsync();
-                    aboutVM.Customers = JsonConvert.DeserializeObject<IEnumerable<Customer>>(customerApiResponse).ToList();
+                    string testimonialApiResponse = await testimonialResponse.Content.ReadAsStringAsync();
+                    aboutVM.Testimonials = JsonConvert.DeserializeObject<IEnumerable<Testimonial>>(testimonialApiResponse).ToList();
                 }
 
                 var awardResponse = await client.GetAsync($"{BaseURl}/api/award/GetAll");
@@ -338,63 +338,7 @@ namespace SteakInMCV.Controllers
         }
 
 
-        public async Task<IActionResult> Gallery()
-        {
-            AboutVM aboutVM = new AboutVM();
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
-                    if (settingResponse.IsSuccessStatusCode)
-                    {
-                        string settingApiResponse = await settingResponse.Content.ReadAsStringAsync();
-                        var settings = JsonConvert.DeserializeObject<IEnumerable<Setting>>(settingApiResponse);
-                        aboutVM.Settings = settings.ToDictionary(s => s.Key, s => s.Value);
-                    }
-                    else
-                    {
-                        ViewData["Error"] = "API request failed with status code: " + settingResponse.StatusCode;
-                        aboutVM.Settings = new Dictionary<string, string>();
-                    }
 
-                    var gallerycategoryResponse = await client.GetAsync($"{BaseURl}/api/gallerycategory/GetAll");
-                    if (gallerycategoryResponse.IsSuccessStatusCode)
-                    {
-                        string galleryCategoryApiResponse = await gallerycategoryResponse.Content.ReadAsStringAsync();
-                        aboutVM.GalleryCategories = JsonConvert.DeserializeObject<IEnumerable<GalleryCategory>>(galleryCategoryApiResponse);
-                    }
-                    else
-                    {
-                        ViewData["Error"] = "API request failed with status code: " + gallerycategoryResponse.StatusCode;
-                        aboutVM.GalleryCategories = new List<GalleryCategory>();
-                    }
-
-                    var galleryImageResponse = await client.GetAsync($"{BaseURl}/api/galleryimage/GetAll");
-                    if (galleryImageResponse.IsSuccessStatusCode)
-                    {
-                        string galleryImageApiResponse = await galleryImageResponse.Content.ReadAsStringAsync();
-                        aboutVM.GalleryImagesVM = JsonConvert.DeserializeObject<IEnumerable<GalleryImageVM>>(galleryImageApiResponse);
-                    }
-                    else
-                    {
-                        ViewData["Error"] = "API request failed with status code: " + galleryImageResponse.StatusCode;
-                        aboutVM.GalleryImagesVM = new List<GalleryImageVM>();
-                    }
-
-
-
-
-                }
-                catch (HttpRequestException ex)
-                {
-                    ViewData["Error"] = $"API request failed: {ex.Message}";
-                }
-
-            }
-
-            return View("Gallery", aboutVM);
-        }
 
     }
 }

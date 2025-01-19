@@ -4,44 +4,58 @@
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/EmailController.cs" relfile="SteakInProject/Controllers/EmailController.cs" line="22" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Services/EmailService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Helpers/DTOs/Product/ProductDto.cs">
     <Files>
-      <File FileName="Service/Services/Interfaces/IEmailService.cs" Line="6" Column="43" />
-      <File FileName="Service/Services/EmailService.cs" Line="36" Column="39" />
-      <File FileName="SteakInProject/Controllers/EmailController.cs" Line="68" Column="1" />
-      <File FileName="Domain/Entities/EmailRequest.cs" Line="6" Column="15" />
-      <File FileName="SteakInProject/appsettings.json" Line="1" Column="1" />
-      <File FileName="SteakInProject/appsettings.Development.json" Line="9" Column="12" />
-      <File FileName="SteakInProject/Program.cs" Line="117" Column="1" />
-      <File FileName="Service/Services/AccountService.cs" Line="1" Column="1" />
+      <File FileName="Domain/Entities/RestaurantTable.cs" Line="16" Column="1" />
+      <File FileName="Domain/Entities/Reservation.cs" Line="20" Column="1" />
+      <File FileName="Domain/Entities/Customer.cs" Line="1" Column="1" />
+      <File FileName="SteakInProject/Controllers/RestaurantTableController.cs" Line="21" Column="6" />
+      <File FileName="Repository/Repositories/Interfaces/ITableRepository.cs" Line="12" Column="1" />
+      <File FileName="Repository/Repositories/TableRepository.cs" Line="16" Column="1" />
+      <File FileName="Repository/DependencyInjection.cs" Line="9" Column="3" />
+      <File FileName="Service/Helpers/DTOs/RestaurantTable/RestaurantTableDto.cs" Line="16" Column="1" />
+      <File FileName="Service/Helpers/Mapping/MappingProfile.cs" Line="249" Column="1" />
+      <File FileName="Service/Services/Interfaces/IRestaurantTableService.cs" Line="12" Column="1" />
+      <File FileName="Service/Services/RestaurantTableService.cs" Line="29" Column="89" />
+      <File FileName="Service/DependencyInjection.cs" Line="28" Column="81" />
+      <File FileName="SteakInProject/Controllers/MenuCategoryController.cs" Line="1" Column="1" />
+      <File FileName="SteakInProject/Controllers/FaqController.cs" Line="24" Column="10" />
+      <File FileName="Service/Services/Interfaces/IFaqService.cs" Line="9" Column="1" />
+      <File FileName="Service/Services/FaqService.cs" Line="32" Column="96" />
+      <File FileName="Repository/Data/AppDbContext.cs" Line="44" Column="61" />
+      <File FileName="Domain/Entities/ProductImage.cs" Line="17" Column="2" />
+      <File FileName="Service/Helpers/DTOs/Product/ProductDto.cs" Line="1" Column="1" />
+      <File FileName="Service/Services/ProductService.cs" Line="135" Column="47" />
+      <File FileName="SteakInProject/Controllers/ProductController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SteakInProject" expanded="True">
-            <Node name="Domain" expanded="True">
-              <Node name="Entities" expanded="True" />
-            </Node>
-            <Node name="Repository" expanded="True">
-              <Node name="Data" expanded="True" />
-            </Node>
             <Node name="Service">
+              <Node name="Helpers" expanded="True">
+                <Node name="DTOs" expanded="True">
+                  <Node name="Product" expanded="True">
+                    <Node name="ProductDto.cs" selected="True" />
+                  </Node>
+                  <Node name="Table" expanded="True" />
+                </Node>
+                <Node name="Mapping" expanded="True" />
+              </Node>
               <Node name="Services" expanded="True">
                 <Node name="Interfaces" expanded="True" />
-                <Node name="EmailService.cs" selected="True" />
               </Node>
             </Node>
             <Node name="SteakInProject">
               <Node name="Controllers" expanded="True" />
-              <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
 </Properties>

@@ -36,7 +36,6 @@
     <None Remove="Helpers\DTOs\MenuCategory\" />
     <None Remove="Helpers\DTOs\SpecialCategory\" />
     <None Remove="Helpers\DTOs\Tag\" />
-    <None Remove="Helpers\DTOs\Customer\" />
     <None Remove="Helpers\DTOs\Award\" />
     <None Remove="Helpers\DTOs\Logo\" />
     <None Remove="Helpers\DTOs\Setting\" />
@@ -52,6 +51,8 @@
     <None Remove="Helpers\DTOs\MealPackage\" />
     <None Remove="Helpers\DTOs\LunchSet\" />
     <None Remove="Helpers\DTOs\LunchSetProduct\" />
+    <None Remove="Helpers\DTOs\Testimonial\" />
+    <None Remove="Helpers\DTOs\RestaurantTable\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\DTOs\" />
@@ -64,7 +65,6 @@
     <Folder Include="Helpers\DTOs\MenuCategory\" />
     <Folder Include="Helpers\DTOs\SpecialCategory\" />
     <Folder Include="Helpers\DTOs\Tag\" />
-    <Folder Include="Helpers\DTOs\Customer\" />
     <Folder Include="Helpers\DTOs\Award\" />
     <Folder Include="Helpers\DTOs\Logo\" />
     <Folder Include="Helpers\DTOs\Setting\" />
@@ -80,5 +80,7 @@
     <Folder Include="Helpers\DTOs\MealPackage\" />
     <Folder Include="Helpers\DTOs\LunchSet\" />
     <Folder Include="Helpers\DTOs\LunchSetProduct\" />
+    <Folder Include="Helpers\DTOs\Testimonial\" />
+    <Folder Include="Helpers\DTOs\RestaurantTable\" />
   </ItemGroup>
 </Project>

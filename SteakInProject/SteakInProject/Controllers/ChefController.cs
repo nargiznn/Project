@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Exceptions;
 using Service.Helpers.DTOs.Chef;
-using Service.Helpers.DTOs.Customer;
 using Service.Services.Interfaces;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

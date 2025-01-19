@@ -5,7 +5,6 @@ using Service.Helpers.DTOs.Account;
 using Service.Helpers.DTOs.Award;
 using Service.Helpers.DTOs.Chef;
 using Service.Helpers.DTOs.Cuisine;
-using Service.Helpers.DTOs.Customer;
 using Service.Helpers.DTOs.Event;
 using Service.Helpers.DTOs.FoodCategory;
 using Service.Helpers.DTOs.Logo;
@@ -27,6 +26,8 @@ using Service.Helpers.DTOs.Statistic;
 using Service.Helpers.DTOs.MealPackage;
 using Service.Helpers.DTOs.LunchSet;
 using Service.Helpers.LunchSetProduct;
+using Service.Helpers.DTOs.Testimonial;
+using Service.Helpers.DTOs.Table;
 
 namespace Service.Helpers.Mapping
 {
@@ -168,9 +169,9 @@ namespace Service.Helpers.Mapping
             });
 
 
-            CreateMap<Customer, CustomerDto>();
-            CreateMap<CustomerCreateDto, Customer>();
-            CreateMap<CustomerEditDto, Customer>()
+            CreateMap<Testimonial, TestimonialDto>();
+            CreateMap<TestimonialCreateDto, Testimonial>();
+            CreateMap<TestimonialEditDto, Testimonial>()
             .ForAllMembers(opts =>
             {
                 opts.AllowNull();
@@ -247,6 +248,8 @@ opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
 
 
             CreateMap<Faq, FaqDto>();
+
+            CreateMap<RestaurantTable, RestaurantTableDto>();
             CreateMap<Client, ClientDto>();
             CreateMap<GalleryCategory, GalleryCategoryDto>();
             CreateMap<GalleryImage, GalleryImageDto>()

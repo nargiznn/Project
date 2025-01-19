@@ -18,8 +18,8 @@
                             </div>
                             <div class="clearfix"></div>
                             <ol class="breadcrumb">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="index.html">shop</a></li>
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li><a asp-controller="Shop" asp-action="Product">shop</a></li>
                                 <li class="active">Shop Products</li>
                             </ol>
                             <div class="divider--shape-1down"></div>
@@ -51,34 +51,16 @@
                                                     <i class="fa fa-angle-down"></i>
                                                     <select>
                                                         <option selected="" value="Default">Product Name</option>
-                                                        <option value="Larger">Newest Items</option>
-                                                        <option value="Larger">oldest Items</option>
-                                                        <option value="Larger">Hot Items</option>
-                                                        <option value="Small">Highest Price</option>
+                                                        <option value="Larger">A-Z</option>
+                                                        <option value="Larger">Z-A</option>
                                                         <option value="Medium">Lowest Price</option>
                                                     </select>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="product-sort">
-                                                    <span>Show:</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                    <select>
-                                                        <option selected="" value="10">10 items / page</option>
-                                                        <option value="25">25 items / page</option>
-                                                        <option value="50">50 items / page</option>
-                                                        <option value="100">100 items / page</option>
-                                                    </select>
-                                                </div>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <!-- .product-options end -->
-                                    <div class="product-view-mode text-right pull-none-xs">
-                                        <span>view as:</span>
-                                        <a class="active" href="#"><i class="fa fa-th-large"></i></a>
-                                        <a href="#"><i class="fa fa-th-list"></i></a>
-                                    </div>
                                     <!-- .product-num end -->
                                 </div>
                                 <!-- .shop-options end -->
@@ -214,7 +196,7 @@
                         </div><!-- .widget-filter end -->
                         <!-- Instagram Feed
                         ============================================= -->
-                        <div class="widget widget-instagram">
+                        <!--<div class="widget widget-instagram">
                             <div class="widget--title">
                                 <h5>Instagram</h5>
                             </div>
@@ -222,7 +204,7 @@
                                 <div id="instafeedSidebar" class="instafeed" data-insta-number="8"></div>
                                 <div class="clearfix"></div>
                             </div>
-                        </div> <!-- .widget-instagram end -->
+                        </div>--> <!-- .widget-instagram end -->
                         <!-- Tag Clouds
                         ============================================= -->
                         <div class="widget widget-tags">

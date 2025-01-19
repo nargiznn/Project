@@ -7,8 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository.Data
 {
-	public class AppDbContext:IdentityDbContext<AppUser>
-	{
+	public class AppDbContext :IdentityDbContext<AppUser>
+
+    {
+        //IdentityDbContext<AppUser>
         public DbSet<Chef> Chefs { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<ChefImage> ChefImages { get; set; }
@@ -39,7 +41,10 @@ namespace Repository.Data
         public DbSet<SpecialCategory> SpecialCategories { get; set; }
         public DbSet<Tag> Tags { get; set; }
 
+        public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<RestaurantTable> RestaurantTables { get; set; }
 
         public DbSet<Award> Awards { get; set; }
         public DbSet<AwardLogo> AwardLogos { get; set; }
@@ -49,9 +54,17 @@ namespace Repository.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Banner> Banners { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Reservation>()
+    .HasOne(r => r.RestaurantTable)
+    .WithMany(rt => rt.Reservations)
+    .HasForeignKey(r => r.RestaurantTableId)
+    .OnDelete(DeleteBehavior.Restrict);
+
+
             modelBuilder.Entity<Product>()
           .HasOne(p => p.Cuisine)
           .WithMany(c => c.Products)
@@ -72,6 +85,8 @@ namespace Repository.Data
 
             modelBuilder.Entity<MealPackageProduct>()
        .HasKey(mpp => new { mpp.MealPackageId, mpp.ProductId });
+
+
 
             //modelBuilder.Entity<MealPackageProduct>()
             //    .HasOne(mpp => mpp.MealPackage)
