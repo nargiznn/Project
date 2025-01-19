@@ -51,7 +51,14 @@
                 <!-- .aret end -->
 
                 <div class="product-img mb-50">
-                    <img class="img-responsive" src="~/assets/images/shop/full/1.jpg" alt="product image">
+                    @*<img class="img-responsive" src="~/assets/images/shop/full/@Model.Product.ImageUrls" alt="product image">*@
+                    @*<img class="img-responsive" src="~/assets/images/shop/grid/@Model.Product.ImageUrls" alt="product image">*@
+
+                    @{
+                        var firstImage2 = Model.Product.ImageUrls?.FirstOrDefault() ?? "default.jpg";
+                    }
+                    <img lass="img-responsive" src="~/assets/images/shop/grid/@firstImage2" alt="product.jpg" />
+
                 </div>
                 <!-- .product-img end -->
                 <div class="product-title">
@@ -86,10 +93,14 @@
                 <div class="product-details">
                     <h5>Other Details :</h5>
                     <ul class="list-unstyled">
-                        <li>Category : <span>@Model.Product.MenuCategoryId</span></li>
+                        <li>Category : <span>@Model.Product.MenuCategoryName</span></li>
                         <li>Code : <span>#0214</span></li>
                         <li>Availabiltity : <span>Available</span></li>
-                        <li>Brand : <span>Book</span></li>
+                        @if (!string.IsNullOrEmpty(Model.Product.SpecialCategoryName))
+                        {
+                            <li>Special : <span>@Model.Product.SpecialCategoryName</span></li>
+                        }
+
                     </ul>
                 </div>
                 <!-- .product-details end -->
@@ -250,86 +261,41 @@
                     </div>
                     <div class="row">
                         <!-- Product #1 -->
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="~/assets/images/shop/grid/1.jpg" alt="Product" />
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="#">Add To Cart</a>
+                        @foreach (var item in Model.Products.Where(p => p.MenuCategoryName == Model.Product.MenuCategoryName).Take(3))
+                        {
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="product-item">
+                                    <div class="product--img">
+                                        @*<img src="~/assets/images/shop/grid/item.ImageUrls?.FirstOrDefault() ?? "default.jpg"" alt="Product" />*@
+
+                                        @{
+                                            var firstImage = item.ImageUrls?.FirstOrDefault() ?? "default.jpg";
+                                        }
+                                        <img src="~/assets/images/shop/grid/@firstImage" alt="@item.Name" />
+                                        <div class="product--hover">
+                                            <div class="product--action">
+                                                <a href="#">Add To Cart</a>
+                                            </div>
                                         </div>
+                                        <!-- .product-overlay end -->
                                     </div>
-                                    <!-- .product-overlay end -->
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Honey Pancakes</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$24.95</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                </div>
-                                <!-- .product-bio end -->
-                            </div>
-                        </div>
-                        <!-- .product-filter end -->
-                        <!-- Product #2 -->
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="~/assets/images/shop/grid/2.jpg" alt="Product" />
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="#">Add To Cart</a>
+                                    <!-- .product-img end -->
+                                    <div class="product--content">
+                                        <div class="product--title">
+                                            <h3><a href="#">@item.Name</a></h3>
                                         </div>
-                                    </div>
-                                    <!-- .product-overlay end -->
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Sweet Fruits Toast</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$38.95</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                </div>
-                                <!-- .product-bio end -->
-                            </div>
-                        </div>
-                        <!-- .product-filter end -->
-                        <!-- Product #3 -->
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="~/assets/images/shop/grid/3.jpg" alt="Product" />
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="#">Add To Cart</a>
+                                        <!-- .product-title end -->
+                                        <div class="product--price">
+                                            <span>$@item.Price.ToString("F2")</span>
                                         </div>
+                                        <!-- .product-price end -->
                                     </div>
-                                    <!-- .product-overlay end -->
+                                    <!-- .product-bio end -->
                                 </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Coconut Drink</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$34.95</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                </div>
-                                <!-- .product-bio end -->
                             </div>
-                        </div>
+                        }
                         <!-- .product-filter end -->
+
                     </div>
                     <!-- .row end -->
                 </div>
@@ -339,7 +305,7 @@
             <div class="col-xs-12 col-sm-12  col-md-3 sidebar-full">
                 <!-- Search
                 ============================================= -->
-                <div class="widget widget-search">
+                <!--<div class="widget widget-search">
                     <div class="widget--content">
                         <form class="form-search">
                             <div class="input-group">
@@ -348,11 +314,11 @@
                                     <button class="btn" type="button"><i class="fa fa-search"></i></button>
                                 </span>
 
-                            </div>
+                            </div>-->
                             <!-- /input-group -->
-                        </form>
+                        <!--</form>
                     </div>
-                </div> <!-- .widget-search end -->
+                </div>--> <!-- .widget-search end -->
                 <!-- Recent Products
                 ============================================= -->
                 <div class="widget widget-recent-products">
@@ -361,28 +327,32 @@
                     </div>
                     <div class="widget--content">
                         <!-- Product #1 -->
-                        @foreach (var item in Model.Products.OrderByDescending(p => p.SalesCount).Take(2))
+                        @foreach (var item in Model.Products.OrderByDescending(p => p.SalesCount).Take(5))
                         {
-                        <div class="product clearfix">
-                            <img src="~/assets/images/shop/thumb/3.jpg" alt="product" />
-                            <div class="product-desc">
-                                <div class="product-title">
-                                    <a href="#">@item.Name</a>
-                                </div>
-                                <div class="product-meta">
-                                    <span>$@item.Price.ToString("F2")</span>
+                            <div class="product clearfix">
+                                @{
+                                    var firstImage = item.ImageUrls?.FirstOrDefault() ?? "default.jpg";
+                                }
+                                <img src="~/assets/images/shop/thumb/@firstImage" alt="@item.Name" />
+                                <div class="product-desc">
+                                    <div class="product-title">
+                                        <a href="#">@item.Name</a>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span>$@item.Price</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         }
                         <!-- .recent-product end -->
+                        <!-- Product #2 -->
 
                     </div>
 
                 </div> <!-- .widget-recent end -->
                 <!-- Filter
                 ============================================= -->
-                <div class="widget widget-filter">
+                <!--<div class="widget widget-filter">
                     <div class="widget--title">
                         <h5>Pricing Filter</h5>
                     </div>
@@ -394,7 +364,7 @@
                         </p>
                         <a class="btn btn--secondary btn--bordered btn--rounded" href="#">Filter Now</a>
                     </div>
-                </div><!-- .widget-filter end -->
+                </div>--><!-- .widget-filter end -->
                 <!-- Instagram Feed
                 ============================================= -->
                 <!--<div class="widget widget-instagram">
@@ -409,18 +379,15 @@
                 <!-- .widget-instagram end -->
                 <!-- Tag Clouds
                 ============================================= -->
-                <div class="widget widget-tags">
+                <!--<div class="widget widget-tags">
                     <div class="widget--title">
                         <h5>tag clouds</h5>
                     </div>
                     <div class="widget--content">
-                        @foreach (var item in Model.Tags)
-                        {
-                           <a href="#">@item.Name</a>
-                        }
+            
 
                     </div>
-                </div> <!-- .widget-tags end -->
+                </div>--> <!-- .widget-tags end -->
             </div>
             <!-- .sidebar-full end -->
         </div>

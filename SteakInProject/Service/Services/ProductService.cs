@@ -151,10 +151,22 @@ namespace Service.Services
             return _mapper.Map<List<ProductDto>>(products);
         }
 
-        public Task<Product> GetById(int id)
+        public async Task<ProductDto> GetByIdAsync(int id)
         {
-            return _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            var result = await _context.Products
+                              .Include(p => p.MenuCategory)
+                              .Include(p => p.SpecialCategory)
+                              .Include(p => p.FoodCategory)
+                              .Include(p => p.Cuisine)
+                              .Include(p => p.ProductImages)
+                              .AsNoTracking()
+                              .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (result is null) return null;
+
+            return _mapper.Map<ProductDto>(result);
         }
+
     }
 }
 

@@ -50,7 +50,7 @@ namespace SteakInProject.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            return Ok(await _productService.GetById(id));
+            return Ok(await _productService.GetByIdAsync(id));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)

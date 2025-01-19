@@ -1,0 +1,334 @@
+﻿@model BlogVM
+        <!-- Page Title #1
+        ============================================= -->
+        <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
+            <div class="bg-section">
+                <img src="~/assets/images/page-title/@Model.Settings["SingleBlogBg"]" alt="Background" />
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="title title-1 text-center">
+                            <div class="title--content">
+                                <div class="title--subtitle">@Model.Settings["BlogSubtitle"]</div>
+                                <div class="title--heading">
+                                    <h1>@Model.Settings["BlogSingleSubtitle"]</h1>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Blog" asp-action="Standart">blog</a>
+                                </li>
+                                <li class="active">Single Post</li>
+                            </ol>
+                            <div class="divider--shape-1down"></div>
+                        </div>
+                        <!-- .title end -->
+                    </div>
+                    <!-- .col-md-12 end -->
+                </div>
+                <!-- .row end -->
+            </div>
+            <!-- .container end -->
+        </section>
+        <!-- #page-title end -->
+        <!-- Blog Single Right Sidebar
+        ============================================= -->
+        <section id="blog" class="blog blog-single">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-9">
+                        <!-- Blog Entry -->
+                        <div class="blog-entry">
+
+                            <div class="entry--content">
+                                <div class="entry--meta">
+                                    <span>@Model.EventVM.CreatedDate.ToString("MMM dd, yyyy")</span> /
+                                    <span>comments <a href="#">11</a></span> /
+
+                                    @if (Model.EventVM.TagsName != null && Model.EventVM.TagsName.Any())
+                                    {
+                                        <span>
+                                            @foreach (var tag in Model.EventVM.TagsName)
+                                            {
+                                                <a href="#">@tag</a>
+                                                @if (tag != Model.EventVM.TagsName.Last())
+                                                {
+                                                    <span>, </span>
+                                                }
+                                            }
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span></span>
+                                    }
+                                </div>
+
+
+                                <div class="entry--title">
+                                    <h4><a href="#">@Model.EventVM.Title</a></h4>
+                                </div>
+                                <div class="entry--img">
+                                    <a href="#">
+                                        <img src="~/assets/images/blog/standard/1.jpg" alt="entry image" />
+                                    </a>
+                                </div>
+                                <div class="entry--bio">
+                                    <p>
+                                        @Model.EventVM.Info
+                                    </p>
+                                </div>
+                                <div class="entry--share">
+                                    <div class="pull-left">
+                                        <span class="share--title">share this article: </span>
+                                    </div>
+                                    <div class="text-right">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    </div>
+                                </div>
+                                <!-- .entry-share end -->
+                            </div>
+                        </div>
+                        <!-- .blog-entry end -->
+
+                        <div class="entry-widget entry-bio clearfix">
+                            <div class="entry-widget-title">
+                                <h4>about author</h4>
+                            </div>
+                            <div class="entry-widget-content">
+                                <img src="~/assets/images/team/thumb/1.jpg" alt="author" />
+                                <div class="entry-bio-desc">
+                                    <p>we’re Steak In, an award-winning digital marketing agency based in New York. Founded by Begha over many cups of tea at her kitchen table in 2009, our brand promise is simple: to provide powerful digital marketing solutions to small and medium businesses.</p>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-vimeo-square"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa fa-rss"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .entry-bio end -->
+
+                        <div class="entry-widget entry-related clearfix">
+                            <div class="entry-widget-title">
+                                <h4>related posts</h4>
+                            </div>
+                            <div class="entry-widget-content">
+                                <div class="row">
+                                    <!-- Related Post #1 -->
+                                    @foreach (var item in Model.EventVMs.Where(p => p.TagsName.Any(tag => Model.EventVM.TagsName.Contains(tag))).Take(3))
+                                    {
+                                        <div class="col-xs-12 col-sm-4 col-md-4 entry">
+                                            <div class="entry--img">
+                                                <a href="#">
+                                                    <img src="~/assets/images/blog/grid/@item.ImgUrl" alt="title" />
+                                                </a>
+                                            </div>
+                                            <div class="entry--title">
+                                                <h5><a href="#">@item.Title</a></h5>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <!-- .row end -->
+                            </div>
+                        </div>
+
+                        <!-- .entry-related end -->
+                        <div class="entry-widget entry-comments clearfix">
+                            <div class="entry-widget-title">
+                                <h4>comments</h4>
+                            </div>
+                            <div class="entry-widget-content">
+                                <ul class="comments-list">
+                                    <li class="comment-body">
+                                        <div class="avatar">
+                                            <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                        </div>
+                                        <div class="comment">
+                                            <h6>Anthony Hunter</h6>
+                                            <div class="date">Jan 28, 2017 - 08:07 pm</div>
+                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
+                                            <a class="reply" href="#">reply</a>
+                                        </div>
+                                    </li>
+                                    <!-- comment end -->
+
+                                    <li class="comment-body">
+                                        <div class="avatar">
+                                            <img src="~/assets/images/team/thumb/3.jpg" alt="avatar" />
+                                        </div>
+                                        <div class="comment">
+                                            <h6>Mohamed Habaza</h6>
+                                            <div class="date">Jan 28, 2017 - 10:07 pm</div>
+                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
+                                            <a class="reply" href="#">reply</a>
+                                        </div>
+
+                                        <ul class="comment-children">
+                                            <li class="comment-body">
+                                                <div class="avatar">
+                                                    <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                                </div>
+                                                <div class="comment">
+                                                    <h6>Mahmoud Baghagho</h6>
+                                                    <div class="date">Jan 28, 2017 - 10:07 pm</div>
+                                                    <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
+                                                    <a class="reply" href="#">reply</a>
+                                                </div>
+                                                <ul class="comment-children">
+                                                    <li class="comment-body">
+                                                        <div class="avatar">
+                                                            <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                                        </div>
+                                                        <div class="comment">
+                                                            <h6>Adam Smith</h6>
+                                                            <div class="date">Jan 28, 2017 - 10:30 pm</div>
+                                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
+                                                            <a class="reply" href="#">reply</a>
+                                                        </div>
+                                                    </li>
+                                                    <!-- comment end -->
+                                                </ul>
+                                            </li>
+                                            <!-- comment end -->
+
+                                            <li class="comment-body">
+                                                <div class="avatar">
+                                                    <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                                </div>
+                                                <div class="comment">
+                                                    <h6>Anthony Hunter</h6>
+                                                    <div class="date">Jan 28, 2017 - 08:07 pm</div>
+                                                    <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
+                                                    <a class="reply" href="#">reply</a>
+                                                </div>
+                                            </li>
+                                            <!-- comment end -->
+
+                                        </ul>
+                                        <!-- .comment-children end -->
+                                    </li>
+                                    <!-- comment end -->
+
+                                    <li class="comment-body">
+                                        <div class="avatar">
+                                            <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                        </div>
+                                        <div class="comment">
+                                            <h6>Adam Smith</h6>
+                                            <div class="date">Jan 28, 2017 - 10:30 pm</div>
+                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
+                                            <a class="reply" href="#">reply</a>
+                                        </div>
+                                    </li>
+                                    <!-- comment end -->
+
+                                </ul>
+                                <!-- .comments-list end -->
+                            </div>
+                        </div>
+                        <!-- .entry-comments end -->
+
+                        <div class="entry-widget entry-add-comment mb-0 clearfix">
+                            <div class="entry-widget-title">
+                                <h4>Leave A Reply</h4>
+                            </div>
+                            <div class="entry-widget-content">
+                                <form id="post-comment" class="mb-0">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <input type="text" class="form-control" id="first-name" placeholder="First Name:" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <input type="text" class="form-control" id="last-name" placeholder="Last Name:" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <input type="email" class="form-control" id="email" placeholder="Email:" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <input type="text" class="form-control" id="website" placeholder="website:" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <textarea class="form-control" id="comment" rows="2" placeholder="Comment"></textarea>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <button type="submit" class="btn btn--secondary btn--block">Post Your Comment</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- .entry-comments end -->
+
+                    </div>
+                    <!-- .col-md-9 end -->
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <!-- Recent Posts
+    ============================================= -->
+                        <div class="widget widget-recent-posts">
+                            <div class="widget--title">
+                                <h5>recent posts</h5>
+                            </div>
+                            <div class="widget--content">
+                                @foreach (var item in Model.EventVMs.TakeLast(2))
+                                {
+                                    <div class="entry">
+                                        <img src="~/assets/images/blog/thumb/@item.ImgUrl alt="title" />
+                                        <div class="entry-desc">
+                                            <div class="entry-meta">
+                                                <a href="#">@Model.EventVM.CreatedDate.ToString("MMM dd, yyyy")</a>
+                                            </div>
+                                            <div class="entry-title">
+                                                <a href="#">@item.Title</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- .recent-entry end -->
+
+
+                            </div>
+                        </div> <!-- .widget-recent end -->
+                        <!-- Instagram Feed
+    ============================================= -->
+                        <!--<div class="widget widget-instagram">
+                            <div class="widget--title">
+                                <h5>Instagram</h5>
+                            </div>
+                            <div class="widget--content">
+                                <div id="instafeedSidebar" class="instafeed" data-insta-number="8"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>--> <!-- .widget-instagram end -->
+                        <!-- Tag Clouds
+    ============================================= -->
+                        <div class="widget widget-tags">
+                            <div class="widget--title">
+                                <h5>tag clouds</h5>
+                            </div>
+                            <div class="widget--content">
+                                @foreach (var tag in Model.EventVM.TagsName)
+                                {
+                                    <a href="#">@tag</a>
+                                }
+                            </div>
+                        </div> <!-- .widget-tags end -->
+
+                    </div>
+                    <!-- .col-md-3 end -->
+                </div>
+                <!-- .row end -->
+            </div>
+            <!-- .container end -->
+        </section>
+        <!-- #blog end -->
+

@@ -10,7 +10,7 @@ namespace Service.Services.Interfaces
         Task<string> EditAsync(int id, ProductEditDto product);
         Task<IEnumerable<ProductDto>> GetAllAsync();
         Task<string> DeleteAsync(int id);
-        Task<Product> GetById(int id);
+        Task<ProductDto> GetByIdAsync(int id);
     }
 }
 

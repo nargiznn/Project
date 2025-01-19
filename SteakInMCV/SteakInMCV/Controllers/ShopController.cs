@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SteakInMCV.Models;
 using SteakInMCV.ViewModels;
@@ -15,7 +17,7 @@ namespace SteakInMCV.Controllers
     public class ShopController : Controller
     {
         private readonly string BaseURl = "http://localhost:7031";
-        public async Task<IActionResult> Product()
+        public async Task<IActionResult> Product(int page)
         {
             ShopVM shopVM = new ShopVM();
             using (var client = new HttpClient())
@@ -24,10 +26,17 @@ namespace SteakInMCV.Controllers
                 {
 
                     var productResponse = await client.GetAsync($"{BaseURl}/api/Product/GetAll");
+                    int pageSize = 9;
+                    int skip = (page - 1) * pageSize;
                     if (productResponse.IsSuccessStatusCode)
                     {
                         string productApiResponse = await productResponse.Content.ReadAsStringAsync();
-                        shopVM.Products = JsonConvert.DeserializeObject<IEnumerable<Product>>(productApiResponse);
+                        var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(productApiResponse);
+
+                        shopVM.Products = products.Skip(skip).Take(pageSize).ToList();
+                        int totalProducts = products.Count();
+                        ViewBag.TotalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+                        ViewBag.PageIndex = page;
                     }
                     else
                     {
@@ -91,6 +100,18 @@ namespace SteakInMCV.Controllers
                     {
                         ViewData["Error"] = "API request failed with status code: " + tagResponse.StatusCode;
                         shopVM.Tags = new List<Tag>();
+                    }
+
+                    var productAllResponse = await client.GetAsync($"{BaseURl}/api/Product/GetAll");
+                    if (productAllResponse.IsSuccessStatusCode)
+                    {
+                        string productAllApiResponse = await productAllResponse.Content.ReadAsStringAsync();
+                        shopVM.Products = JsonConvert.DeserializeObject<IEnumerable<Product>>(productAllApiResponse);
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed with status code: " + productAllResponse.StatusCode;
+                        shopVM.Products = new List<Product>();
                     }
 
                     var productResponse = await client.GetAsync($"{BaseURl}/api/product/getbyid/{id}");
