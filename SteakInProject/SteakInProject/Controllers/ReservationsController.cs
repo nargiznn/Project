@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Enum;
 using Microsoft.AspNetCore.Mvc;
+using Service.Helpers.DTOs.Reservation;
 using Service.Services.Interfaces;
 
 namespace SteakInProject.Controllers
@@ -17,12 +18,23 @@ namespace SteakInProject.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateReservation([FromBody] Reservation reservation)
+        public async Task<IActionResult> CreateReservation([FromBody] ReservationCreateDto reservationDto)
         {
-            if (reservation == null)
+            if (reservationDto == null)
             {
                 return BadRequest("Invalid reservation data");
             }
+            var reservation = new Reservation
+            {
+                Name = reservationDto.Name,
+                Surname = reservationDto.Surname,
+                Email = reservationDto.Email,
+                PhoneNumber = reservationDto.PhoneNumber,
+                Date = reservationDto.Date,
+                Time = reservationDto.Time,
+                PeopleCount = reservationDto.PeopleCount,
+                Status = ReservationStatus.Pending  
+            };
 
             var createdReservation = await _reservationService.CreateReservationAsync(reservation);
             return CreatedAtAction(nameof(GetReservationById), new { id = createdReservation.Id }, createdReservation);

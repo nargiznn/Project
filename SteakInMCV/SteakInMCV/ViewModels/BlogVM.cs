@@ -9,8 +9,8 @@ namespace SteakInMCV.ViewModels
         public IEnumerable<EventVM> EventVMs { get; set; } = new List<EventVM>();
 
         public EventVM EventVM { get; set; }
-
-
+        //public CommentVM CommentVM { get; set; }
+        public List<CommentVM> Comments { get; internal set; }
     }
 }
 

@@ -98,6 +98,7 @@ namespace SteakInMCV.Controllers
             {
                 try
                 {
+                    // Fetch event details
                     var eventResponse = await client.GetAsync($"{BaseURl}/api/Event/GetAll");
                     if (eventResponse.IsSuccessStatusCode)
                     {
@@ -128,6 +129,7 @@ namespace SteakInMCV.Controllers
                         blogVM.EventVMs = new List<EventVM>();
                     }
 
+                    // Fetch settings
                     var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
                     if (settingResponse.IsSuccessStatusCode)
                     {
@@ -140,12 +142,13 @@ namespace SteakInMCV.Controllers
                         ViewData["Error"] = "API request failed with status code: " + settingResponse.StatusCode;
                         blogVM.Settings = new Dictionary<string, string>();
                     }
+
+                    // Fetch a single event
                     var eventSingleResponse = await client.GetAsync($"{BaseURl}/api/event/getbyid/{id}");
                     if (eventSingleResponse.IsSuccessStatusCode)
                     {
                         string eventSingleApiResponse = await eventSingleResponse.Content.ReadAsStringAsync();
                         var eventSingle = JsonConvert.DeserializeObject<Event>(eventSingleApiResponse);
-
 
                         blogVM.EventVM = new EventVM
                         {
@@ -162,6 +165,32 @@ namespace SteakInMCV.Controllers
                         ViewData["Error"] = "API request failed with status code: " + eventSingleResponse.StatusCode;
                         blogVM.EventVM = null;
                     }
+
+                    // Fetch event comments and replies
+                    var commentResponse = await client.GetAsync($"{BaseURl}/api/Comments/GetCommentsByEvent/event/{id}");
+                    if (commentResponse.IsSuccessStatusCode)
+                    {
+                        string commentApiResponse = await commentResponse.Content.ReadAsStringAsync();
+                        var comments = JsonConvert.DeserializeObject<IEnumerable<CommentVM>>(commentApiResponse);
+
+                        blogVM.Comments = comments.Select(c => new CommentVM
+                        {
+                            AuthorName = c.AuthorName,
+                            Content = c.Content,
+                            Status = c.Status,
+                            Replies = c.Replies.Select(r => new ReplyVM
+                            {
+                                AuthorName = r.AuthorName,
+                                Content = r.Content,
+                                Status = r.Status
+                            }).ToList()
+                        }).ToList();
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "API request failed to get comments with status code: " + commentResponse.StatusCode;
+                        blogVM.Comments = new List<CommentVM>();
+                    }
                 }
                 catch (HttpRequestException ex)
                 {
@@ -170,6 +199,7 @@ namespace SteakInMCV.Controllers
             }
             return View("Single", blogVM);
         }
+
 
     }
 }

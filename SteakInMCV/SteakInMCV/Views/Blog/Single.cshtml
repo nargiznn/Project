@@ -142,101 +142,70 @@
                             </div>
                         </div>
 
-                        <!-- .entry-related end -->
                         <div class="entry-widget entry-comments clearfix">
                             <div class="entry-widget-title">
-                                <h4>comments</h4>
+                                <h4>Comments</h4>
                             </div>
                             <div class="entry-widget-content">
                                 <ul class="comments-list">
-                                    <li class="comment-body">
-                                        <div class="avatar">
-                                            <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
-                                        </div>
-                                        <div class="comment">
-                                            <h6>Anthony Hunter</h6>
-                                            <div class="date">Jan 28, 2017 - 08:07 pm</div>
-                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
-                                            <a class="reply" href="#">reply</a>
-                                        </div>
-                                    </li>
-                                    <!-- comment end -->
-
-                                    <li class="comment-body">
-                                        <div class="avatar">
-                                            <img src="~/assets/images/team/thumb/3.jpg" alt="avatar" />
-                                        </div>
-                                        <div class="comment">
-                                            <h6>Mohamed Habaza</h6>
-                                            <div class="date">Jan 28, 2017 - 10:07 pm</div>
-                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
-                                            <a class="reply" href="#">reply</a>
-                                        </div>
-
-                                        <ul class="comment-children">
-                                            <li class="comment-body">
-                                                <div class="avatar">
-                                                    <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
-                                                </div>
-                                                <div class="comment">
-                                                    <h6>Mahmoud Baghagho</h6>
-                                                    <div class="date">Jan 28, 2017 - 10:07 pm</div>
-                                                    <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
-                                                    <a class="reply" href="#">reply</a>
-                                                </div>
+                                    @foreach (var comment in Model.Comments)
+                                    {
+                                        <li class="comment-body">
+                                            <div class="avatar">
+                                                <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                            </div>
+                                            <div class="comment">
+                                                <h6>@comment.AuthorName</h6>
+                                                <div class="date">@comment.CreatedDate.ToString("MMM dd, yyyy - hh:mm tt")</div> 
+                                                <p>@comment.Content</p>
+                                                <a class="reply" href="javascript:void(0)" data-comment-id="@comment.Id">Reply</a>
+                                            </div>
+                                            @if (comment.Replies != null && comment.Replies.Any())
+                                            {
                                                 <ul class="comment-children">
-                                                    <li class="comment-body">
-                                                        <div class="avatar">
-                                                            <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
-                                                        </div>
-                                                        <div class="comment">
-                                                            <h6>Adam Smith</h6>
-                                                            <div class="date">Jan 28, 2017 - 10:30 pm</div>
-                                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
-                                                            <a class="reply" href="#">reply</a>
-                                                        </div>
-                                                    </li>
-                                                    <!-- comment end -->
+                                                    @foreach (var reply in comment.Replies)
+                                                    {
+                                                        <li class="comment-body">
+                                                            <div class="avatar">
+                                                                <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                                            </div>
+                                                            <div class="comment">
+                                                                <h6>@reply.AuthorName</h6>
+                                                                <div class="date">@reply.CreatedDate.ToString("MMM dd, yyyy - hh:mm tt")</div> 
+                                                                <p>@reply.Content</p>
+                                                                <a class="reply" href="javascript:void(0)" data-comment-id="@reply.Id">Reply</a>
+                                                            </div>
+
+                                                            @if (reply.Replies != null && reply.Replies.Any())
+                                                            {
+                                                                <ul class="comment-children">
+                                                                    @foreach (var replyToReply in reply.Replies)
+                                                                    {
+                                                                        <li class="comment-body">
+                                                                            <div class="avatar">
+                                                                                <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
+                                                                            </div>
+                                                                            <div class="comment">
+                                                                                <h6>@replyToReply.AuthorName</h6>
+                                                                                <div class="date">@replyToReply.CreatedDate.ToString("MMM dd, yyyy - hh:mm tt")</div> 
+                                                                                <p>@replyToReply.Content</p>
+                                                                                <a class="reply" href="javascript:void(0)" data-comment-id="@replyToReply.Id">Reply</a>
+                                                                            </div>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+                                                        </li>
+                                                    }
                                                 </ul>
-                                            </li>
-                                            <!-- comment end -->
-
-                                            <li class="comment-body">
-                                                <div class="avatar">
-                                                    <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
-                                                </div>
-                                                <div class="comment">
-                                                    <h6>Anthony Hunter</h6>
-                                                    <div class="date">Jan 28, 2017 - 08:07 pm</div>
-                                                    <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
-                                                    <a class="reply" href="#">reply</a>
-                                                </div>
-                                            </li>
-                                            <!-- comment end -->
-
-                                        </ul>
-                                        <!-- .comment-children end -->
-                                    </li>
-                                    <!-- comment end -->
-
-                                    <li class="comment-body">
-                                        <div class="avatar">
-                                            <img src="~/assets/images/team/thumb/2.jpg" alt="avatar" />
-                                        </div>
-                                        <div class="comment">
-                                            <h6>Adam Smith</h6>
-                                            <div class="date">Jan 28, 2017 - 10:30 pm</div>
-                                            <p>The example about the mattress sizing page you mentioned in the last WBF can be a perfect example of new keywords and content, and broadening the funnel as well. I can only imagine the sale numbers if that was the site of a mattress selling company.</p>
-                                            <a class="reply" href="#">reply</a>
-                                        </div>
-                                    </li>
-                                    <!-- comment end -->
-
+                                            }
+                                        </li>
+                                    }
                                 </ul>
-                                <!-- .comments-list end -->
                             </div>
                         </div>
-                        <!-- .entry-comments end -->
+
+
 
                         <div class="entry-widget entry-add-comment mb-0 clearfix">
                             <div class="entry-widget-title">
