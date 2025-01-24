@@ -56,6 +56,7 @@
     <None Remove="Helpers\DTOs\RestaurantTable\" />
     <None Remove="Helpers\DTOs\Subscribe\" />
     <None Remove="Helpers\DTOs\Comment\" />
+    <None Remove="Helpers\DTOs\Reservation\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\DTOs\" />
@@ -87,5 +88,6 @@
     <Folder Include="Helpers\DTOs\RestaurantTable\" />
     <Folder Include="Helpers\DTOs\Subscribe\" />
     <Folder Include="Helpers\DTOs\Comment\" />
+    <Folder Include="Helpers\DTOs\Reservation\" />
   </ItemGroup>
 </Project>

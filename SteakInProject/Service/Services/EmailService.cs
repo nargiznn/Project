@@ -24,7 +24,8 @@ namespace Service.Services
         {
             if (string.IsNullOrEmpty(emailTo))
             {
-                throw new ArgumentNullException(nameof(emailTo), "Email address cannot be null or empty.");
+                Console.WriteLine("Email address is null or empty.");
+                return; 
             }
 
             var smtpSettings = _configuration.GetSection("SmtpSettings");
@@ -46,6 +47,7 @@ namespace Service.Services
 
             await smtpClient.SendMailAsync(message);
         }
+
 
 
     }

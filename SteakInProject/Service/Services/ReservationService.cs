@@ -29,96 +29,92 @@ namespace Service.Services
         {
             _dbContext.Reservations.Add(reservation);
             await _dbContext.SaveChangesAsync();
-
             string subject = "Reservation Pending";
             string message = "Your reservation is currently pending and will be reviewed shortly.";
 
-            var emailAddresses = await _dbContext.Users
-                                                  .Where(u => !string.IsNullOrEmpty(u.Email))
-                                                  .Select(u => u.Email)
-                                                  .ToListAsync();
+            var email = reservation.Email; 
 
-            if (emailAddresses != null && emailAddresses.Any())
+            if (!string.IsNullOrEmpty(email))
             {
-                foreach (var email in emailAddresses)
-                {
-                    var mimeMessage = new MimeMessage();
-                    mimeMessage.From.Add(MailboxAddress.Parse("nargizzn@code.edu.az"));
-                    mimeMessage.To.Add(MailboxAddress.Parse(email));
-                    mimeMessage.Subject = subject;
-                    mimeMessage.Body = new TextPart(TextFormat.Html) { Text = message };
+                var mimeMessage = new MimeMessage();
+                mimeMessage.From.Add(MailboxAddress.Parse("nargizzn@code.edu.az"));
+                mimeMessage.To.Add(MailboxAddress.Parse(email));
+                mimeMessage.Subject = subject;
+                mimeMessage.Body = new TextPart(TextFormat.Html) { Text = message };
 
-                    using var smtp = new SmtpClient();
-                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    smtp.Authenticate("nargizzn@code.edu.az", "yswa bxqt nfqf iifz");
-                    smtp.Send(mimeMessage);
-                    smtp.Disconnect(true);
-                }
+                using var smtp = new SmtpClient();
+                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                smtp.Authenticate("nargizzn@code.edu.az", "yswa bxqt nfqf iifz");
+                smtp.Send(mimeMessage);
+                smtp.Disconnect(true);
             }
             else
             {
-                Console.WriteLine("No active users found.");
+                Console.WriteLine("Email address is null or empty.");
             }
 
             return reservation;
         }
 
+
         public async Task<List<Reservation>> GetReservationsAsync()
         {
-            return await _dbContext.Reservations.ToListAsync();
+            var reservations = await _dbContext.Reservations
+                .Select(r => new Reservation
+                {
+                    Id = r.Id,
+                    Name = r.Name ?? string.Empty,  
+                    Surname = r.Surname ?? string.Empty,
+                    Email = r.Email ?? string.Empty,
+                    PhoneNumber = r.PhoneNumber ?? string.Empty,
+                    Date = r.Date,
+                    Time = r.Time,
+                    PeopleCount = r.PeopleCount,
+                    Status = r.Status
+                })
+                .ToListAsync();
+
+            return reservations;
         }
+
 
         public async Task<Reservation> UpdateReservationStatusAsync(int id, ReservationStatus status)
         {
             var reservation = await _dbContext.Reservations.FindAsync(id);
-            if (reservation == null) return null;
+
+            if (reservation == null)
+            {
+                return null;
+            }
 
             reservation.Status = status;
-            _dbContext.Reservations.Update(reservation);
             await _dbContext.SaveChangesAsync();
-
-            string subject = status switch
+            if (!string.IsNullOrEmpty(reservation.Email))
             {
-                ReservationStatus.Approved => "Reservation Approved",
-                ReservationStatus.Rejected => "Reservation Canceled",
-                _ => "Reservation Status Updated"
-            };
+                string subject = status == ReservationStatus.Approved ? "Reservation Accepted" : "Reservation Canceled";
+                string message = status == ReservationStatus.Approved
+                                 ? "Your reservation has been accepted."
+                                 : "Your reservation has been canceled.";
 
-            string message = status switch
-            {
-                ReservationStatus.Approved => "Your reservation has been approved.",
-                ReservationStatus.Rejected => "Your reservation has been canceled.",
-                _ => "Your reservation status has been updated."
-            };
+                var mimeMessage = new MimeMessage();
+                mimeMessage.From.Add(MailboxAddress.Parse("nargizzn@code.edu.az"));
+                mimeMessage.To.Add(MailboxAddress.Parse(reservation.Email));
+                mimeMessage.Subject = subject;
+                mimeMessage.Body = new TextPart(TextFormat.Html) { Text = message };
 
-            var emailAddresses = await _dbContext.Users
-                                                  .Where(u => !string.IsNullOrEmpty(u.Email))
-                                                  .Select(u => u.Email)
-                                                  .ToListAsync();
-
-            if (emailAddresses != null && emailAddresses.Any())
-            {
-                foreach (var email in emailAddresses)
-                {
-                    var mimeMessage = new MimeMessage();
-                    mimeMessage.From.Add(MailboxAddress.Parse("nargizzn@code.edu.az"));
-                    mimeMessage.To.Add(MailboxAddress.Parse(email));
-                    mimeMessage.Subject = subject;
-                    mimeMessage.Body = new TextPart(TextFormat.Html) { Text = message };
-
-                    using var smtp = new SmtpClient();
-                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    smtp.Authenticate("nargizzn@code.edu.az", "yswa bxqt nfqf iifz");
-                    smtp.Send(mimeMessage);
-                    smtp.Disconnect(true);
-                }
+                using var smtp = new SmtpClient();
+                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                smtp.Authenticate("nargizzn@code.edu.az", "yswa bxqt nfqf iifz");
+                smtp.Send(mimeMessage);
+                smtp.Disconnect(true);
             }
             else
             {
-                Console.WriteLine("No active users found.");
+                Console.WriteLine("No valid email address found for this reservation.");
             }
 
             return reservation;
         }
+
     }
 }
