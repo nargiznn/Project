@@ -5,7 +5,7 @@ namespace SteakInProject.Controllers.Admin
 {
     [Route("api/admin/[controller]/[action]")]
     [ApiController]
-    public class BaseController: ControllerBase
+    public class MainController: ControllerBase
     {
 
     }

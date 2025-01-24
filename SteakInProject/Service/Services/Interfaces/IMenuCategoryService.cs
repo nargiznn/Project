@@ -1,4 +1,5 @@
 ﻿using System;
+using Service.Helpers.DTOs.MealPackage;
 using Service.Helpers.DTOs.MenuCategory;
 
 namespace Service.Services.Interfaces
@@ -10,6 +11,8 @@ namespace Service.Services.Interfaces
         Task<MenuCategoryDto> GetByIdAsync(int id);
         Task DeleteAsync(int id);
         Task EditAsync(int id, MenuCategoryEditDto menuCategory);
+        Task<IEnumerable<MenuCategoryDto>> SearchAsync(string str);
+
     }
 }
 

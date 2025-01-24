@@ -9,12 +9,21 @@ namespace Repository
 	{
 		public static IServiceCollection AddRepositoryLayer(this IServiceCollection services)
 		{
+            services.AddScoped<IAwardRepository, AwardRepository>();
+
+            services.AddScoped<ILunchSetRepository, LunchSetRepository>();
+            services.AddScoped<IMealPackageRepository, MealPackageRepository>();
+
+
             services.AddScoped<ISliderRepository, SliderRepository>();
+
+            services.AddScoped<ISubscribeRepository, SubscribeRepository>();
+
             services.AddScoped<IRestaurantTableRepository, RestaurantTableRepository>();
             services.AddScoped<IWelcomeInfoRepository, WelcomeInfoRepository>();
             services.AddScoped<IWelcomeImageRepository, WelcomeImageRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
-
+            
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IFoodCategoryRepository, FoodCategoryRepository>();
             services.AddScoped<IMenuCategoryRepository, MenuCategoryRepository>();
@@ -25,7 +34,7 @@ namespace Repository
 
             services.AddScoped<IFaqRepository, FaqRepository>();
 
-            services.AddScoped<IAwardRepository, AwardRepository>();
+
             services.AddScoped<IAwardLogoRepository, AwardLogoRepository>();
 
             services.AddScoped<ICuisineRepository, CuisineRepository>();

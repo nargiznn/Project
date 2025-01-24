@@ -1,12 +1,13 @@
 ﻿using System;
+using Domain.Common;
+
 namespace Service.Helpers.DTOs.Award
 {
-	public class AwardDto
+	public class AwardDto:BaseEntity
 	{
-        public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime Year { get; set; }
-        public string Desc { get; set; }
+        public string Year { get; set; }
+
     }
 }
 

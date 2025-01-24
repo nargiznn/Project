@@ -6,10 +6,11 @@ namespace Service.Services.Interfaces
 	public interface IAwardService
 	{
         Task CreateAsync(AwardCreateDto award);
-        Task<IEnumerable<AwardDto>> GetAllAsync();
         Task<AwardDto> GetByIdAsync(int id);
+        Task<IEnumerable<AwardDto>> SearchAsync(string str);
+        Task<IEnumerable<AwardDto>> GetAllAsync();
         Task DeleteAsync(int id);
-        Task EditAsync(int id, AwardEditDto award);
+        Task EditAsync(int id, AwardEditDto request);
     }
 }
 

@@ -4,6 +4,7 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Exceptions;
+using Repository.Repositories.Interfaces;
 using Service.Helpers.DTOs.MealPackage;
 using Service.Helpers.DTOs.MenuCategory;
 using Service.Helpers.DTOs.Product;
@@ -13,55 +14,51 @@ namespace Service.Services
 {
 	public class MenuCategoryService:IMenuCategoryService
 	{
-        private readonly AppDbContext _context;
+        private readonly IMenuCategoryRepository _menuCategoryRepo;
         private readonly IMapper _mapper;
-
-        public MenuCategoryService(AppDbContext context,
-                              IMapper mapper)
+        public MenuCategoryService(IMenuCategoryRepository menuCatRepository, IMapper mapper)
         {
-            _context = context;
+            _menuCategoryRepo = menuCatRepository;
             _mapper = mapper;
         }
-
         public async Task CreateAsync(MenuCategoryCreateDto menuCategory)
         {
-            await _context.MenuCategories.AddAsync(_mapper.Map<MenuCategory>(menuCategory));
-            await _context.SaveChangesAsync();
+            var existingMenuCategory = await _menuCategoryRepo.GetAllWithExpression(
+                x => x.Name == menuCategory.Name
+            );
+            if (existingMenuCategory.Any())
+            {
+                throw new ArgumentException("An MenuCategory with the same name already exists.");
+            }
+            var newMenuCategory = _mapper.Map<MenuCategory>(menuCategory);
+            if (!menuCategory.IsActive.HasValue)
+            {
+                newMenuCategory.IsActive = false;
+            }
+
+            await _menuCategoryRepo.CreateAsync(newMenuCategory);
         }
+
 
         public async Task DeleteAsync(int id)
         {
-            var menuCategory = await _context.MenuCategories.FindAsync(id) ?? throw new NotFoundException("Data notfound");
-            _context.MenuCategories.Remove(menuCategory);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task EditAsync(int id, MenuCategoryEditDto menuCategory)
-        {
-            var existMenuCategory = await _context.MenuCategories.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id) ?? throw new NotFoundException("Data notfound");
-
-            _mapper.Map(menuCategory, existMenuCategory);
-
-            _context.MenuCategories.Update(existMenuCategory);
-
-            await _context.SaveChangesAsync();
+            await _menuCategoryRepo.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<MenuCategoryDto>> GetAllAsync()
         {
-            var categories = await _context.MenuCategories
-                                            .Include(mc => mc.Products)
-                                                .ThenInclude(p => p.SpecialCategory)  // SpecialCategory'yi daxil et
-                                            .Include(mc => mc.Products)
-                                                .ThenInclude(p => p.FoodCategory)  // FoodCategory'yi daxil et
-                                            .Include(mc => mc.Products)
-                                                .ThenInclude(p => p.Cuisine)  // Cuisine'yi daxil et
-                                            .Include(mc => mc.Products)
-                                                .ThenInclude(p => p.ProductImages)  // ProductImages'ləri daxil et
-                                            .AsNoTracking()
-                                            .ToListAsync();
+            var categories = await _menuCategoryRepo.GetAllWithIncludeAsync(
+                include: query => query.Include(mc => mc.Products)
+                                       .ThenInclude(p => p.SpecialCategory)
+                                       .Include(mc => mc.Products)
+                                       .ThenInclude(p => p.FoodCategory)
+                                       .Include(mc => mc.Products)
+                                       .ThenInclude(p => p.Cuisine)
+                                       .Include(mc => mc.Products)
+                                       .ThenInclude(p => p.ProductImages)
+            );
 
-            var result = categories.Select(mc => new MenuCategoryDto
+            var result = categories.Cast<MenuCategory>().Select(mc => new MenuCategoryDto
             {
                 Id = mc.Id,
                 Name = mc.Name,
@@ -72,10 +69,10 @@ namespace Service.Services
                     Ingredient = p.Ingredient,
                     Price = p.Price,
                     SalesCount = p.SalesCount,
-                    MenuCategoryName = p.MenuCategory.Name,
-                    SpecialCategoryName = p.SpecialCategory?.Name, // Null kontrolü
-                    FoodCategoryName = p.FoodCategory?.Name, // Null kontrolü
-                    ProductCuisineName = p.Cuisine?.Name, // Null kontrolü
+                    MenuCategoryName = mc.Name,
+                    SpecialCategoryName = p.SpecialCategory?.Name,
+                    FoodCategoryName = p.FoodCategory?.Name,
+                    ProductCuisineName = p.Cuisine?.Name,
                     ImageUrls = p.ProductImages.Select(pi => pi.Path).ToList()
                 }).ToList()
             });
@@ -87,12 +84,54 @@ namespace Service.Services
 
         public async Task<MenuCategoryDto> GetByIdAsync(int id)
         {
-            var result = await _context.MenuCategories.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
-
-            if (result is null) return null;
-
-            return _mapper.Map<MenuCategoryDto>(result);
+            return _mapper.Map<MenuCategoryDto>(await _menuCategoryRepo.GetByIdAsync(id));
         }
+
+        public async Task<IEnumerable<MenuCategoryDto>> SearchAsync(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+            {
+                var allMenuCategorys = await _menuCategoryRepo.GetAllAsync();
+                return _mapper.Map<IEnumerable<MenuCategoryDto>>(allMenuCategorys);
+            }
+            var menuCategories = await _menuCategoryRepo.GetAllWithExpression(c =>
+                c.Name.Contains(str) || c.Name.Contains(str)
+            );
+
+            if (!menuCategories.Any())
+            {
+                throw new NotFoundException("No MenuCategory found matching the search criteria.");
+            }
+
+            return _mapper.Map<IEnumerable<MenuCategoryDto>>(menuCategories);
+        }
+
+
+        public async Task EditAsync(int id, MenuCategoryEditDto menuCategory)
+        {
+            var existingMenuCategory = await _menuCategoryRepo.GetByIdAsync(id);
+            if (existingMenuCategory == null)
+            {
+                throw new NotFoundException("MenuCategory not found");
+            }
+            var duplicateMenuCategory = await _menuCategoryRepo.GetAllWithExpression(
+                x => x.Name == (menuCategory.Name ?? existingMenuCategory.Name) &&
+                     x.Id != id
+            );
+
+            if (duplicateMenuCategory.Any())
+            {
+                throw new ArgumentException("An MenuCategory with the same name already exists.");
+            }
+            existingMenuCategory.Name = string.IsNullOrWhiteSpace(menuCategory.Name) ? existingMenuCategory.Name : menuCategory.Name;
+
+            if (menuCategory.IsActive.HasValue)
+            {
+                existingMenuCategory.IsActive = menuCategory.IsActive.Value;
+            }
+            await _menuCategoryRepo.EditAsync(existingMenuCategory);
+        }
+
     }
 }
 

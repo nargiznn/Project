@@ -22,6 +22,10 @@ namespace Repository.Repositories
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
+        public async Task<bool> IsExist(Expression<Func<T, bool>> expression)
+        {
+            return await _dbSet.AnyAsync(expression);
+        }
 
         public async Task DeleteAsync(int id)
         {

@@ -22,6 +22,11 @@ namespace Service.Services
 
         public async Task SendEmailAsync(string emailTo, string subject, string body)
         {
+            if (string.IsNullOrEmpty(emailTo))
+            {
+                throw new ArgumentNullException(nameof(emailTo), "Email address cannot be null or empty.");
+            }
+
             var smtpSettings = _configuration.GetSection("SmtpSettings");
 
             SmtpClient smtpClient = new SmtpClient(smtpSettings["Server"], Convert.ToInt32(smtpSettings["Port"]));
@@ -32,13 +37,16 @@ namespace Service.Services
             MailAddress from = new MailAddress(smtpSettings["SenderEmail"], "Steak-In");
             MailAddress to = new MailAddress(emailTo);
 
-            MailMessage message = new MailMessage(from, to);
-            message.Subject = subject;
-            message.Body = body;
-            message.IsBodyHtml = true;
+            MailMessage message = new MailMessage(from, to)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            };
 
             await smtpClient.SendMailAsync(message);
         }
+
 
     }
 }

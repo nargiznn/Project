@@ -26,6 +26,9 @@
     <None Remove="Views\Blog\" />
     <None Remove="Views\Shop\" />
     <None Remove="Views\Element\" />
+    <None Remove="Areas\Admin\ViewModels\Award\" />
+    <None Remove="Areas\Admin\Views\Award\" />
+    <None Remove="Models\Enum\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -48,6 +51,9 @@
     <Folder Include="Views\Blog\" />
     <Folder Include="Views\Shop\" />
     <Folder Include="Views\Element\" />
+    <Folder Include="Areas\Admin\ViewModels\Award\" />
+    <Folder Include="Areas\Admin\Views\Award\" />
+    <Folder Include="Models\Enum\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

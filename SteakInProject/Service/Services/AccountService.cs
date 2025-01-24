@@ -23,13 +23,14 @@ namespace Service.Services
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
-        private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
+        private readonly IEmailService _emailService;
 
-        public AccountService(UserManager<AppUser> userManager, IMapper mapper,
-                              RoleManager<IdentityRole> roleManager,
-                              IConfiguration configuration,
-                              IEmailService emailService)
+        public AccountService(UserManager<AppUser> userManager,
+                           IMapper mapper,
+                           RoleManager<IdentityRole> roleManager,
+                           IConfiguration configuration,
+                           IEmailService emailService)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -37,83 +38,37 @@ namespace Service.Services
             _configuration = configuration;
             _emailService = emailService;
         }
-        public async Task<SignUpResponse> SignUpAsync(SignUpDto model)
-        {
-            var user = _mapper.Map<AppUser>(model);
-            var identityResult = await _userManager.CreateAsync(user, model.Password);
 
-            if (!identityResult.Succeeded)
+        public async Task AddRoleToUserAsync(string userId, string roleId)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                  ?? throw new NotFoundException(ExceptionMessages.NotFoundMessage);
+            var role = await _roleManager.FindByIdAsync(roleId)
+                            ?? throw new NotFoundException(ExceptionMessages.NotFoundMessage);
+            await _userManager.AddToRoleAsync(user, role.ToString());
+        }
+
+        public async Task<VerificationResponse> ConfirmEmail(string userId, string token)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                             ?? throw new NotFoundException(ExceptionMessages.NotFoundMessage);
+            string decodedToken = Uri.UnescapeDataString(token);
+            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
+
+            if (!result.Succeeded)
             {
-                return new SignUpResponse { Success = false, Errors = identityResult.Errors.Select(m => m.Description) };
+                return new VerificationResponse
+                {
+                    Success = false,
+                    Errors = result.Errors.Select(result => result.Description)
+                };
             }
 
-            await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
-            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            string confirmUrl = $"{_configuration["ApiBaseUrl"]}/api/account/confirm-email?userId={user.Id}&token={token}";
-            string subject = "Please confirm your email address";
-            string htmlBody = $"<p>Click the link below to confirm your email:</p><p><a href='{confirmUrl}'>Confirm Email</a></p>";
-            await _emailService.SendEmailAsync(user.Email, subject, htmlBody);
-
-            return new SignUpResponse { Success = true, Errors = null };
-        }
-        public async Task<ConfirmEmailResponse> ConfirmEmailAsync(string userId, string token)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
+            return new VerificationResponse
             {
-                return new ConfirmEmailResponse { Success = false, Errors = new List<string> { "User not found." } };
-            }
-
-            var result = await _userManager.ConfirmEmailAsync(user, token);
-            if (result.Succeeded)
-            {
-                return new ConfirmEmailResponse { Success = true };
-            }
-
-            return new ConfirmEmailResponse { Success = false, Errors = result.Errors.Select(e => e.Description).ToList() };
-        }
-        public async Task<IEnumerable<UserDto>> GetUsersAsync()
-        {
-            var users = await _userManager.Users.ToListAsync();
-            var mappedDatas = new List<UserDto>();
-
-            foreach (var item in users)
-            {
-                var userRoles = await _userManager.GetRolesAsync(item);
-                var mappedData = _mapper.Map<UserDto>(item);
-                mappedData.Roles = userRoles.ToList();
-                mappedDatas.Add(mappedData);
-            }
-
-            return mappedDatas;
-        }
-
-        public async Task<UserDto> GetUserByIdAsync(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null) throw new NotFoundException(ExceptionMessages.NotFoundMessage);
-            return _mapper.Map<UserDto>(user);
-        }
-        public async Task DeleteUsersAsync()
-        {
-            var users = await _userManager.Users.ToListAsync();
-            foreach (var item in users)
-            {
-                await _userManager.DeleteAsync(item);
-            }
-        }
-
-        public async Task DeleteUserByIdAsync(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null) throw new NotFoundException(ExceptionMessages.NotFoundMessage);
-            await _userManager.DeleteAsync(user);
-        }
-
-        public async Task<IEnumerable<UserDto>> SearchByUserNameAsync(string str)
-        {
-            var users = await _userManager.Users.ToListAsync();
-            return _mapper.Map<IEnumerable<UserDto>>(users.Where(m => m.UserName.Contains(str)));
+                Success = true,
+                Errors = null
+            };
         }
 
         public async Task CreateRoleAsync()
@@ -124,31 +79,157 @@ namespace Service.Services
                 {
                     await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
                 }
+
             }
+        }
+
+        public async Task DeleteUserByIdAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+                throw new NotFoundException(ExceptionMessages.NotFoundMessage);
+
+            await _userManager.DeleteAsync(user);
+        }
+
+        public async Task DeleteUsersAsync()
+        {
+            var users = await _userManager.Users.ToListAsync();
+
+            foreach (var user in users)
+            {
+                await _userManager.DeleteAsync(user);
+            }
+        }
+
+        public async Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordRequestDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return new ForgotPasswordResponse
+                {
+                    Success = false,
+                    Errors = new List<string> { "Email address not found." }
+                };
+            }
+
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var resetLink = $"https://localhost:7188/api/ui/Account/ResetPassword?userId={user.Id}&token={Uri.EscapeDataString(resetToken)}";
+
+
+            await SendPasswordResetEmailAsync(model.Email, user.UserName, resetLink);
+
+            return new ForgotPasswordResponse
+            {
+                Success = true,
+                Errors = null
+            };
+        }
+
+        public async Task<RoleDto> GetRoleByIdAsync(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id)
+                            ?? throw new NotFoundException(ExceptionMessages.NotFoundMessage);
+            return _mapper.Map<RoleDto>(role);
         }
 
         public async Task<IEnumerable<RoleDto>> GetRolesAsync()
         {
             return _mapper.Map<IEnumerable<RoleDto>>(await _roleManager.Roles.ToListAsync());
         }
-        public async Task<RoleDto> GetRoleByIdAsync(string id)
+
+        public async Task<UserDto> GetUserByIdAsync(string id)
         {
-            var role = await _roleManager.Roles.FirstOrDefaultAsync(m => m.Id == id);
-            if (role == null) throw new NotFoundException(ExceptionMessages.NotFoundMessage);
-            return _mapper.Map<RoleDto>(role);
+            var user = await _userManager.FindByIdAsync(id);
+
+            return user == null ? throw new NotFoundException(ExceptionMessages.NotFoundMessage) : _mapper.Map<UserDto>(user);
         }
-        public async Task<SignInResponse> SignInAsync(SignInDto model)
+
+        public async Task<IEnumerable<UserDto>> GetUsersAsync()
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
+            return _mapper.Map<IEnumerable<UserDto>>(await _userManager.Users.ToListAsync());
+        }
+
+        public async Task RemoveRoleFromUserAsync(string userId, string roleId)
+        {
+            var user = await _userManager.FindByIdAsync(userId)
+                ?? throw new NotFoundException(ExceptionMessages.NotFoundMessage);
+            var role = await _roleManager.FindByIdAsync(roleId)
+                            ?? throw new NotFoundException(ExceptionMessages.NotFoundMessage);
+            await _userManager.RemoveFromRoleAsync(user, role.ToString());
+        }
+
+        public async Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordRequestDto model)
+        {
+            var user = await _userManager.FindByIdAsync(model.UserId);
+            if (user == null)
             {
-                return new SignInResponse
+                return new ResetPasswordResponse
                 {
-                    Errors = new List<string> { "Login failed" },
                     Success = false,
-                    Token = null
+                    Errors = new List<string> { "User not found." }
                 };
             }
+
+            var resetPasswordResult = await _userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
+            if (!resetPasswordResult.Succeeded)
+            {
+                return new ResetPasswordResponse
+                {
+                    Success = false,
+                    Errors = resetPasswordResult.Errors.Select(e => e.Description).ToList()
+                };
+            }
+
+            return new ResetPasswordResponse
+            {
+                Success = true,
+                Errors = null
+            };
+        }
+
+        public async Task<IEnumerable<UserDto>> SearchByUsernameAsync(string str)
+        {
+            var users = await _userManager.Users.ToListAsync();
+
+            return _mapper.Map<IEnumerable<UserDto>>(users.Where(m => m.UserName.Trim().ToLower().Contains(str.Trim().ToLower())));
+        }
+
+        public async Task SendPasswordResetEmailAsync(string email, string username, string resetLink)
+        {
+            string subject = "Password Reset Request";
+
+            string htmlTemplate;
+            using (StreamReader reader = new StreamReader("wwwroot/templates/password_reset.html"))
+            {
+                htmlTemplate = reader.ReadToEnd();
+            }
+
+            htmlTemplate = htmlTemplate.Replace("{{username}}", username);
+            htmlTemplate = htmlTemplate.Replace("{{reset-link}}", resetLink);
+            htmlTemplate = htmlTemplate.Replace("{{app-name}}", "YourApp");
+            htmlTemplate = htmlTemplate.Replace("{{year}}", DateTime.Now.Year.ToString());
+            htmlTemplate = htmlTemplate.Replace("{{domain}}", "yourapp.com");
+
+            _emailService.SendEmailAsync(email, subject, htmlTemplate);
+        }
+
+        public async Task<SignInResponse> SignInAsync(SignInDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.UsernameOrEmail);
+            if (user is null)
+            {
+                user = await _userManager.FindByNameAsync(model.UsernameOrEmail);
+            }
+            if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
+                return new SignInResponse
+                {
+                    Success = false,
+                    Errors = new List<string> { "Login failed" },
+                    Token = null
+                };
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -160,13 +241,54 @@ namespace Service.Services
             };
         }
 
+        public async Task<SignUpResponse> SignUpAsync(SignUpDto model)
+        {
+            var user = _mapper.Map<AppUser>(model);
+            var identityResponse = await _userManager.CreateAsync(user, model.Password);
+
+            if (!identityResponse.Succeeded)
+            {
+                return new SignUpResponse
+                {
+                    Success = false,
+                    Errors = identityResponse.Errors.Select(x => x.Description)
+                };
+            }
+
+            await _userManager.AddToRoleAsync(user, Roles.SuperAdmin.ToString());
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var confirmationLink = $"https://localhost:7031/api/ui/Account/ConfirmEmail?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+            string subject = "Register confirm email";
+
+            string html = string.Empty;
+
+            using (StreamReader reader = new("wwwroot/templates/verification.html"))
+            {
+                html = reader.ReadToEnd();
+            }
+
+            html = html.Replace("{{confirm-link}}", confirmationLink);
+            html = html.Replace("{{username}}", user.UserName);
+
+            _emailService.SendEmailAsync(user.Email, subject, html);
+
+            return new SignUpResponse
+            {
+                Success = true,
+                Errors = null
+            };
+        }
+
         private string GenerateJwtToken(string username, List<string> roles)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, username),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, username)
+                new(JwtRegisteredClaimNames.Sub, username),
+                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new(ClaimTypes.NameIdentifier, username)
             };
 
             roles.ForEach(role =>
@@ -187,24 +309,6 @@ namespace Service.Services
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-
-        public async Task AddRoleToUserAsync(UserRoleDto model)
-        {
-            var user = await _userManager.FindByIdAsync(model.UserId);
-            if (user == null) throw new NotFoundException(ExceptionMessages.NotFoundMessage);
-
-            var role = await _roleManager.FindByIdAsync(model.RoleId);
-            if (role == null) throw new NotFoundException(ExceptionMessages.NotFoundMessage);
-
-            var userRoles = await _userManager.GetRolesAsync(user);
-            if (userRoles.Contains(role.Name))
-            {
-                throw new BadRequestException("User already has this role.");
-            }
-
-            await _userManager.AddToRoleAsync(user, role.Name);
         }
     }
 }

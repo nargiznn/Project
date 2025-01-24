@@ -24,6 +24,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="MailKit" Version="4.9.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.9.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Helpers\DTOs\" />
@@ -53,6 +54,8 @@
     <None Remove="Helpers\DTOs\LunchSetProduct\" />
     <None Remove="Helpers\DTOs\Testimonial\" />
     <None Remove="Helpers\DTOs\RestaurantTable\" />
+    <None Remove="Helpers\DTOs\Subscribe\" />
+    <None Remove="Helpers\DTOs\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\DTOs\" />
@@ -82,5 +85,7 @@
     <Folder Include="Helpers\DTOs\LunchSetProduct\" />
     <Folder Include="Helpers\DTOs\Testimonial\" />
     <Folder Include="Helpers\DTOs\RestaurantTable\" />
+    <Folder Include="Helpers\DTOs\Subscribe\" />
+    <Folder Include="Helpers\DTOs\Comment\" />
   </ItemGroup>
 </Project>

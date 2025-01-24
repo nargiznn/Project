@@ -13,6 +13,7 @@ namespace Repository.Repositories.Interfaces
         Task<IEnumerable<T>> GetAllWithExpression(Expression<Func<T,bool>> predicate);
         Task<T> GetWithExpression(Expression<Func<T, bool>> predicate);
 		Task DeleteAsync(int id);
+        Task<bool> IsExist(Expression<Func<T, bool>> expression);
 
     }
 }

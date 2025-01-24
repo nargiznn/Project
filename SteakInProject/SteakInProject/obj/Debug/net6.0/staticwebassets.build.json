@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "rqwbaxW3R+OyyuccP4aRqLdCJ+g1PQAZUUUF2FLhPI0=",
+  "Hash": "vGA0xcIvXbWrTs/4SSkE/rDl0MKVumyNE1Fmv5Z7prI=",
   "Source": "SteakInProject",
   "BasePath": "_content/SteakInProject",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "SteakInProject/wwwroot",
+      "Source": "SteakInProject",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/",
+      "BasePath": "_content/SteakInProject",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/.DS_Store",
+      "SourceId": "SteakInProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/",
+      "BasePath": "_content/SteakInProject",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/templates/verification.html",
+      "SourceId": "SteakInProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/",
+      "BasePath": "_content/SteakInProject",
+      "RelativePath": "templates/verification.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/templates/verification.html"
+    }
+  ]
 }

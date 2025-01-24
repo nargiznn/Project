@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iYm4qnjl2n/jhFzt4dbfLR0yiP0cuJa7domfRc2NL5gH3hSEgSI5oUk4CAk3+eETYoz1KT8DQJMu/KUpTuOxqg==",
+  "dgSpecHash": "8DqR8TXfwG4U1Hwm5hQAYFl6STP5kbd4izKX5hgVP25MTWXbgX1J8tot1EAJh0syRqSyENfUi19iMKUdXICl4g==",
   "success": true,
   "projectFilePath": "/Users/nergiznadirli/Desktop/Project/SteakInProject/Domain/Domain.csproj",
   "expectedPackageFiles": [
@@ -46,9 +46,13 @@
     "/Users/nergiznadirli/.nuget/packages/microsoft.identitymodel.tokens/6.36.0/microsoft.identitymodel.tokens.6.36.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/microsoft.netcore.platforms/3.1.9/microsoft.netcore.platforms.3.1.9.nupkg.sha512",
+    "/Users/nergiznadirli/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/mimekit/4.9.0/mimekit.4.9.0.nupkg.sha512",
+    "/Users/nergiznadirli/.nuget/packages/swashbuckle.aspnetcore.annotations/6.9.0/swashbuckle.aspnetcore.annotations.6.9.0.nupkg.sha512",
+    "/Users/nergiznadirli/.nuget/packages/swashbuckle.aspnetcore.swagger/6.9.0/swashbuckle.aspnetcore.swagger.6.9.0.nupkg.sha512",
+    "/Users/nergiznadirli/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.9.0/swashbuckle.aspnetcore.swaggergen.6.9.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/system.collections.immutable/6.0.1/system.collections.immutable.6.0.1.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/system.configuration.configurationmanager/4.7.0/system.configuration.configurationmanager.4.7.0.nupkg.sha512",
@@ -66,9 +70,7 @@
     "/Users/nergiznadirli/.nuget/packages/system.security.principal.windows/4.7.0/system.security.principal.windows.4.7.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/system.text.encoding.codepages/8.0.0/system.text.encoding.codepages.8.0.0.nupkg.sha512",
     "/Users/nergiznadirli/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
-    "/Users/nergiznadirli/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512",
-    "/Users/nergiznadirli/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.31/microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",
-    "/Users/nergiznadirli/.nuget/packages/microsoft.netcore.app.ref/6.0.31/microsoft.netcore.app.ref.6.0.31.nupkg.sha512"
+    "/Users/nergiznadirli/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

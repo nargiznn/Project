@@ -1,5 +1,6 @@
 ﻿using System;
 using Domain.Common;
+using Domain.Entities;
 
 namespace Service.Helpers.DTOs.MealPackage
 {
@@ -12,4 +13,3 @@ namespace Service.Helpers.DTOs.MealPackage
         public List<string> ProductNames { get; set; }
     }
 }
-

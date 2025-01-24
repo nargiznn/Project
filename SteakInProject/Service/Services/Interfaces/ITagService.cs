@@ -1,4 +1,5 @@
 ﻿using System;
+using Service.Helpers.DTOs.Award;
 using Service.Helpers.DTOs.Tag;
 
 namespace Service.Services.Interfaces
@@ -10,6 +11,8 @@ namespace Service.Services.Interfaces
         Task<TagDto> GetByIdAsync(int id);
         Task DeleteAsync(int id);
         Task EditAsync(int id, TagEditDto tag);
+        Task<IEnumerable<TagDto>> SearchAsync(string str);
+
     }
 }
 

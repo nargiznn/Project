@@ -7,19 +7,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository.Data
 {
-	public class AppDbContext :IdentityDbContext<AppUser>
-
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
-        //IdentityDbContext<AppUser>
+        public DbSet<Award> Awards { get; set; }
         public DbSet<Chef> Chefs { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<ChefImage> ChefImages { get; set; }
         public DbSet<ChefPosition> ChefPositions { get; set; }
         public DbSet<SocialMediaLink> SocialMediaLinks { get; set; }
-
+        public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }
         public DbSet<Client> Clients { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<CommentReply> CommentReplies { get; set; }
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<GalleryCategory> GalleryCategories { get; set; }
         public DbSet<GalleryImage> GalleryImages { get; set; }
@@ -43,26 +44,25 @@ namespace Repository.Data
 
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
         public DbSet<RestaurantTable> RestaurantTables { get; set; }
 
-        public DbSet<Award> Awards { get; set; }
+
         public DbSet<AwardLogo> AwardLogos { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<Banner> Banners { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Reservation>()
-    .HasOne(r => r.RestaurantTable)
-    .WithMany(rt => rt.Reservations)
-    .HasForeignKey(r => r.RestaurantTableId)
-    .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Comment>()
+            //            .HasMany(c => c.Replies)
+            //            .WithOne(r => r.Comment)
+            //            .HasForeignKey(r => r.CommentId);
 
 
             modelBuilder.Entity<Product>()

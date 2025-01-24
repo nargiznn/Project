@@ -34,85 +34,80 @@
 <!-- #page-title end -->
 <!-- Reservation #1
 ============================================= -->
-<section id="reservation1" class="reservation bg-white pb-80 pt-90">
+<section id="reservation" class="reservation bg-white pb-80 pt-90">
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
-                <div class="reservation-form mt-10 mb-10 text-center">
-                    <div class="reservation--dec">
-                        @Model.Settings["ReservationDec"]
-                    </div>
-                    <form method="post" action="~/assets/php/reservation.php" class="reservationForm mb-0">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-4">
-                                <div class="form-select">
-                                    <i class="fa fa-angle-down"></i>
-                                    <select class="form-control" name="people" id="num">
-                                        <option value="">Number of people</option>
-                                        @foreach (var item in Model.RestaurantTables)
-                                        {
-                                            <option value="2">@item.Capacity People</option>
-
-                                        }
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4">
-                                <div class="form-select">
-                                    <i class="fa fa-angle-down"></i>
-                                    <select class="form-control" name="day" id="day">
-                                        <option value="">Date</option>
-                                        @if (ViewData["DateList"] is List<DateTime> dateList)
-                                        {
-                                            foreach (var date in dateList)
-                                            {
-                                                <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("MMMM dd, yyyy")</option>
-                                            }
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4">
-                                <div class="form-select">
-                                    <i class="fa fa-angle-down"></i>
-                                    <select class="form-control" name="time" id="time">
-                                        <option value="">Time</option>
-                                        @if (ViewData["TimeList"] is List<string> timeList)
-                                        {
-                                            foreach (var time in timeList)
-                                            {
-                                                <option value="@time">@time</option>
-                                            }
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <button type="submit" id="submit-reservation" class="btn btn--secondary btn--block">Find Table</button>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <!--Alert Message-->
-                                <div class="reservation-result"></div>
-                            </div>
-                        </div>
-                        <!-- .row end -->
-                    </form>
-                    <!-- form end -->
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="text-uppercase text-center">
-                            <strong><span>Reservation Powered by</span> <a href="#">Opentable</a></strong>
-                        </div>
-                    </div>
-                </div>
-                <!-- .contact-form end -->
-            </div>
-            <!-- .col-md-8 end -->
+        <div class="text-center mb-4">
+            <p>@Model.Settings["ReservationDec"]</p>
         </div>
-        <!-- .row end -->
+        <form method="post" asp-controller="BookATable" asp-action="MakeReservation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <!-- Capacity Selection -->
+                <div class="col-md-4">
+                    <select asp-for="Capacity" class="form-control" required>
+                        <option value="" disabled selected>Adam sayı</option>
+                        @foreach (var table in Model.RestaurantTables)
+                        {
+                            <option value="@table.Capacity">@table.Capacity nəfər</option>
+                        }
+                    </select>
+
+                </div>
+                <!-- Date Selection -->
+                <div class="col-md-4">
+                    <select asp-for="Date" class="form-control" required>
+                        <option value="" disabled selected>Tarix seçin</option>
+                        @foreach (var date in ViewData["DateList"] as List<DateTime>)
+                        {
+                            <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("dd MMM yyyy")</option>
+                        }
+                    </select>
+                </div>
+                <!-- Time Selection -->
+                <div class="col-md-4">
+                    <select asp-for="Time" class="form-control" required>
+                        <option value="" disabled selected>Vaxt seçin</option>
+                        @foreach (var time in ViewData["TimeList"] as List<string>)
+                        {
+                            <option value="@time">@time</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <input type="text" asp-for="ContactFormModel.FirstName" class="form-control" placeholder="Ad" required />
+                    <span asp-validation-for="ContactFormModel.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" asp-for="ContactFormModel.LastName" class="form-control" placeholder="Soyad" required />
+                    <span asp-validation-for="ContactFormModel.LastName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <input type="email" asp-for="ContactFormModel.Email" class="form-control" placeholder="Email" required />
+                    <span asp-validation-for="ContactFormModel.Email" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" asp-for="ContactFormModel.Phone" class="form-control" placeholder="Telefon" required />
+                    <span asp-validation-for="ContactFormModel.Phone" class="text-danger"></span>
+                </div>
+                <div class="col-md-12">
+                    <textarea asp-for="ContactFormModel.Message" class="form-control" rows="4" placeholder="Mesaj" required></textarea>
+                    <span asp-validation-for="ContactFormModel.Message" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Rezervasiya Et</button>
+            </div>
+        </form>
+
     </div>
-    <!-- .container end -->
 </section>
+
 <!-- #reservation1 end -->
 <!-- Testimonial #5
 ============================================= -->

@@ -3,7 +3,8 @@ namespace Service.Helpers.DTOs.MenuCategory
 {
 	public class MenuCategoryEditDto
 	{
-        public string Name { get; set; }
+        public string? Name { get; set; }
+        public bool? IsActive { get; set; }
     }
 }
 

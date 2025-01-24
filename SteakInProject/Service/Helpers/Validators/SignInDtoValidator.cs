@@ -8,7 +8,7 @@ namespace CompanyProject.Helpers.Validators
     {
         public SignInDtoValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().WithMessage("email required").EmailAddress().WithMessage("format is wrong");
+            RuleFor(x => x.UsernameOrEmail).NotEmpty().WithMessage("email required").EmailAddress().WithMessage("format is wrong");
             RuleFor(x => x.Password).NotEmpty().WithMessage("password required");
         }
     }

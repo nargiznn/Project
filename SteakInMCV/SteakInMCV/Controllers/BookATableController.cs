@@ -1,105 +1,89 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SteakInMCV.Models;
 using SteakInMCV.ViewModels;
-using SteakInMCV.ViewModels.Events;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SteakInMCV.Controllers
 {
     public class BookATableController : Controller
     {
-        private readonly string BaseURl = "http://localhost:7031";
+        private readonly string _baseUrl = "http://localhost:7031";
+
+        private async Task<T> FetchDataFromApi<T>(string endpoint)
+        {
+            using var client = new HttpClient();
+            var response = await client.GetAsync($"{_baseUrl}/api/{endpoint}");
+            if (!response.IsSuccessStatusCode) return default;
+
+            string apiResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(apiResponse);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            BookATableVM bookATableVM = new BookATableVM();
-            using (var client = new HttpClient())
-            {
-                try
-                {
+            var bookATableVM = TempData["BookATableVM"] != null
+                ? JsonConvert.DeserializeObject<BookATableVM>((string)TempData["BookATableVM"])
+                : new BookATableVM();
 
-                    var testimonialResponse = await client.GetAsync($"{BaseURl}/api/Testimonial/GetAll");
-                    if (testimonialResponse.IsSuccessStatusCode)
-                    {
-                        string customerApiResponse = await testimonialResponse.Content.ReadAsStringAsync();
-                        bookATableVM.Testimonials = (IEnumerable<Testimonial>)JsonConvert.DeserializeObject<IEnumerable<Testimonial>>(customerApiResponse);
+            bookATableVM.Testimonials = await FetchDataFromApi<IEnumerable<Testimonial>>("Testimonial/GetAll") ?? Enumerable.Empty<Testimonial>();
+            var settings = await FetchDataFromApi<IEnumerable<Setting>>("Setting/GetAll");
+            bookATableVM.Settings = settings?.ToDictionary(s => s.Key, s => s.Value) ?? new Dictionary<string, string>();
+            bookATableVM.Banners = await FetchDataFromApi<List<Banner>>("Banner/GetAll") ?? new List<Banner>();
+            bookATableVM.RestaurantTables = await FetchDataFromApi<IEnumerable<RestaurantTable>>("RestaurantTable/GetAll") ?? Enumerable.Empty<RestaurantTable>();
 
-                    }
-                    else
-                    {
-                        ViewData["Error"] = "API request failed with status code: " + testimonialResponse.StatusCode;
-                        bookATableVM.Testimonials = new List<Testimonial>();
-                    }
-
-
-
-
-                    var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
-                    if (settingResponse.IsSuccessStatusCode)
-                    {
-                        string settingApiResponse = await settingResponse.Content.ReadAsStringAsync();
-                        var settings = JsonConvert.DeserializeObject<IEnumerable<Setting>>(settingApiResponse);
-                        bookATableVM.Settings = settings.ToDictionary(s => s.Key, s => s.Value);
-                    }
-
-                    else
-                    {
-                        ViewData["Error"] = "API request failed with status code: " + settingResponse.StatusCode;
-                        bookATableVM.Settings = new Dictionary<string, string>();
-                    }
-                    var bannerResponse = await client.GetAsync($"{BaseURl}/api/banner/GetAll");
-                    if (bannerResponse.IsSuccessStatusCode)
-                    {
-                        string bannerApiResponse = await bannerResponse.Content.ReadAsStringAsync();
-                        bookATableVM.Banners = JsonConvert.DeserializeObject<List<Banner>>(bannerApiResponse).ToList();
-                    }
-                    else
-                    {
-                        ViewData["Error"] = "API request failed with status code: " + bannerResponse.StatusCode;
-                        bookATableVM.Banners = new List<Banner>();
-                    }
-
-                    var tableResponse = await client.GetAsync($"{BaseURl}/api/RestaurantTable/GetAll");
-                    if (tableResponse.IsSuccessStatusCode)
-                    {
-                        string tableApiResponse = await tableResponse.Content.ReadAsStringAsync();
-                        bookATableVM.RestaurantTables = JsonConvert.DeserializeObject<IEnumerable<RestaurantTable>>(tableApiResponse);
-                    }
-                    else
-                    {
-                        ViewData["Error"] = "API request failed with status code: " + tableResponse.StatusCode;
-                        bookATableVM.RestaurantTables = new List<RestaurantTable>();
-                    }
-
-                }
-                catch (HttpRequestException ex)
-                {
-                    ViewData["Error"] = $"API request failes:{ex.Message}";
-                }
-
-
-            }
-            var today = DateTime.Today;
-            var dateList = Enumerable.Range(0, 7)
-                                     .Select(i => today.AddDays(i))
-                                     .ToList();
-            ViewData["DateList"] = dateList;
-
-            var startTime = new TimeSpan(10, 0, 0);
-            var endTime = new TimeSpan(23, 0, 0); 
-            var timeList = Enumerable.Range(0, (int)(endTime - startTime).TotalHours + 1)
-                                     .Select(i => startTime.Add(TimeSpan.FromHours(i)).ToString(@"hh\:mm"))
-                                     .ToList();
-            ViewData["TimeList"] = timeList;
+            ViewData["DateList"] = GenerateDateList();
+            ViewData["TimeList"] = GenerateTimeList();
 
             return View(bookATableVM);
         }
 
+        [HttpPost]
+        public IActionResult SaveTempData(BookATableVM model)
+        {
+            TempData["BookATableVM"] = JsonConvert.SerializeObject(model);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MakeReservation(BookATableVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                TempData["Error"] = string.Join(", ", errors);
+                return RedirectToAction("Index");
+            }
+
+            var reservation = new Reservation
+            {
+                PeopleCount = model.Capacity,
+                Date = model.Date,
+                Time = TimeSpan.Parse(model.Time),
+                ContactForm = model.ContactFormModel
+            };
+
+
+            using var client = new HttpClient();
+            var content = new StringContent(JsonConvert.SerializeObject(reservation), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"{_baseUrl}/api/Reservations/CreateReservation/create", content);
+
+            TempData[response.IsSuccessStatusCode ? "Success" : "Error"] = response.IsSuccessStatusCode
+                ? "Rezervasiya uğurla tamamlandı!"
+                : "Rezervasiya uğursuz oldu.";
+            return RedirectToAction("Index");
+        }
+
+        private static List<DateTime> GenerateDateList() =>
+            Enumerable.Range(0, 7).Select(i => DateTime.Today.AddDays(i)).ToList();
+
+        private static List<string> GenerateTimeList() =>
+            Enumerable.Range(10, 14).Select(hour => new TimeSpan(hour, 0, 0).ToString(@"hh\:mm")).ToList();
     }
 }
-

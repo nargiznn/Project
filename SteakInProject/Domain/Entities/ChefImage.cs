@@ -13,6 +13,8 @@ namespace Domain.Entities
         public string Path { get; set; }
         public int ChefId { get; set; }
         public Chef Chef { get; set; }
+
+
     }
 }
 

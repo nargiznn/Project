@@ -193,4 +193,6 @@
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.pdb
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.genruntimeconfig.cache
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/ref/SteakInProject.dll
+/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/bin/Debug/net6.0/Swashbuckle.AspNetCore.Annotations.dll
+/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/bin/Debug/net6.0/SteakInProject.staticwebassets.runtime.json
 /Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/obj/Debug/net6.0/SteakInProject.csproj.CopyComplete

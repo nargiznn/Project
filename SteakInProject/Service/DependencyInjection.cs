@@ -12,11 +12,17 @@ namespace Service
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IFileService, FileService>();
+
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IReplyService, ReplyService>();
+
             services.AddScoped<IChefService, ChefService>();
             services.AddScoped<ISliderService, SliderService>();
             services.AddScoped<IWelcomeInfoService, WelcomeInfoService>();
             services.AddScoped<IWelcomeImageService, WelcomeImageService>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<ISubscribeService, SubscribeService>();
+            services.AddScoped<IReservationService, ReservationService>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IFaqService, FaqService>();

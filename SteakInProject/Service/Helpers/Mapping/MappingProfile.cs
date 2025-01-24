@@ -28,6 +28,10 @@ using Service.Helpers.DTOs.LunchSet;
 using Service.Helpers.LunchSetProduct;
 using Service.Helpers.DTOs.Testimonial;
 using Service.Helpers.DTOs.Table;
+using Service.Helpers.DTOs.Faq;
+using Service.Helpers.DTOs.Subscribe;
+using Service.Helpers.DTOs.Comment;
+using Domain.Enum;
 
 namespace Service.Helpers.Mapping
 {
@@ -71,7 +75,7 @@ namespace Service.Helpers.Mapping
                            opts.AllowNull();
                            opts.Condition((src, dest, srcMember) => srcMember != null);
                        });
-
+            #region Cuisine
             CreateMap<Cuisine, CuisineDto>();
             CreateMap<CuisineCreateDto, Cuisine>();
             CreateMap<CuisineEditDto, Cuisine>()
@@ -80,7 +84,7 @@ namespace Service.Helpers.Mapping
                  opts.Condition((src, dest, srcMember) => srcMember != null);
              });
 
-
+            #endregion
 
             CreateMap<Slider, SliderDto>();
             CreateMap<SliderCreateDto, Slider>();
@@ -100,6 +104,15 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
+            #region Comment and reply
+            CreateMap<CommentCreateDto, Comment>();
+            CreateMap<ReplyCreateDto, CommentReply>();
+            CreateMap<Comment, CommentDto>()
+           .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+           .ForMember(dest => dest.Replies, opt => opt.MapFrom(src => src.CommentReplies)).ReverseMap();
+            CreateMap<CommentReply, CommentReplyDto>() .ReverseMap();
+            CreateMap<CommentReply, ReplyDto>().ReverseMap();
+            #endregion
 
             CreateMap<WelcomeInfo, WelcomeInfoDto>();
             CreateMap<WelcomeInfoCreateDto, WelcomeInfo>();
@@ -131,7 +144,7 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
-
+            #region MenuCategory
             CreateMap<MenuCategory, MenuCategoryDto>();
             CreateMap<MenuCategoryCreateDto, MenuCategory>();
             CreateMap<MenuCategoryEditDto, MenuCategory>()
@@ -140,6 +153,8 @@ namespace Service.Helpers.Mapping
                 opts.AllowNull();
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
+
+            #endregion
 
             CreateMap<FoodCategory, FoodCategoryDto>();
             CreateMap<FoodCategoryCreateDto, FoodCategory>();
@@ -150,6 +165,7 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
+            #region SpecialCategory
             CreateMap<SpecialCategory, SpecialCategoryDto>();
             CreateMap<SpecialCategoryCreateDto, SpecialCategory>();
             CreateMap<SpecialCategoryEditDto, SpecialCategory>()
@@ -158,7 +174,8 @@ namespace Service.Helpers.Mapping
                 opts.AllowNull();
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
-
+            #endregion
+            #region Tag
             CreateMap<Tag, TagDto>();
             CreateMap<TagCreateDto, Tag>();
             CreateMap<TagEditDto, Tag>()
@@ -167,7 +184,7 @@ namespace Service.Helpers.Mapping
                 opts.AllowNull();
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
-
+            #endregion
 
             CreateMap<Testimonial, TestimonialDto>();
             CreateMap<TestimonialCreateDto, Testimonial>();
@@ -178,15 +195,38 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
+            #region Award
+            CreateMap<Award, AwardDto>()
+                .ForMember(x => x.Year, opt => opt.MapFrom(src => src.Year.ToString("yyyy")));
 
-            CreateMap<Award, AwardDto>();
-            CreateMap<AwardCreateDto, Award>();
+            CreateMap<AwardCreateDto, Award>()
+                .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Year));
+
             CreateMap<AwardEditDto, Award>()
             .ForAllMembers(opts =>
             {
                 opts.AllowNull();
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
+
+            #endregion
+
+            #region Faq
+            CreateMap<Faq, FaqDto>();
+            CreateMap<FaqCreateDto, Faq>();
+            CreateMap<FaqEditDto, Faq>()
+            .ForAllMembers(opts =>
+            {
+                opts.AllowNull();
+                opts.Condition((src, dest, srcMember) => srcMember != null);
+            });
+            #endregion
+
+            #region Subscribe
+            CreateMap<SubscribeCreateDto, Subscribe>();
+            CreateMap<Subscribe, SubscribeDto>();
+            #endregion
+
 
             CreateMap<AwardLogo, LogoDto>();
             CreateMap<LogoCreateDto, AwardLogo>();
@@ -207,12 +247,37 @@ namespace Service.Helpers.Mapping
 
             CreateMap<Statistic, StatisticDto>();
 
+
+            #region LunchSet
             CreateMap<LunchSet, LunchSetDto>().ForMember(dest => dest.ProductNames, opt =>
 opt.MapFrom(src => src.LunchSetProducts.Select(t => t.ProductId).ToList()));
-            CreateMap<MealPackage, MealPackageDto>()
-            .ForMember(dest => dest.ProductNames, opt =>
-opt.MapFrom(src => src.MealPackageProducts.Select(t => t.ProductId).ToList()));
+            CreateMap<LunchSetCreateDto, LunchSet>();
+            CreateMap<LunchSetEditDto, LunchSet>()
+            .ForAllMembers(opts =>
+            {
+                opts.AllowNull();
+                opts.Condition((src, dest, srcMember) => srcMember != null);
+            });
+            #endregion
             CreateMap<Domain.Entities.LunchSetProduct, LunchSetProductDto>();
+
+            #region MealPackage
+            CreateMap<MealPackage, MealPackageDto>()
+ .ForMember(dest => dest.ProductNames, opt =>
+opt.MapFrom(src => src.MealPackageProducts.Select(t => t.ProductId).ToList()));
+            CreateMap<MealPackageCreateDto, MealPackage>();
+            CreateMap<MealPackageEditDto, MealPackage>()
+            .ForAllMembers(opts =>
+            {
+                opts.AllowNull();
+                opts.Condition((src, dest, srcMember) => srcMember != null);
+            });
+            #endregion
+
+
+
+
+
             #region Account
             CreateMap<SignUpDto, AppUser>();
             CreateMap<AppUser, UserDto>();
@@ -247,7 +312,7 @@ opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
             });
 
 
-            CreateMap<Faq, FaqDto>();
+
 
             CreateMap<RestaurantTable, RestaurantTableDto>();
             CreateMap<Client, ClientDto>();

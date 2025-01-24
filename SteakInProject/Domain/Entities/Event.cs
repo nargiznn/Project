@@ -10,6 +10,8 @@ namespace Domain.Entities
 		public string ImgUrl { get; set; }
         public string Info { get; set; }
         public List<Tag> Tags { get; set; }
-	}
+        public List<Comment> Comments { get; set; }
+        public List<CommentReply> CommentReplies { get; set; }
+    }
 }
 
