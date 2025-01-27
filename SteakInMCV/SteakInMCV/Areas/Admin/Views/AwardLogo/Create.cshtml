@@ -1,0 +1,72 @@
+﻿@model AwardLogoCreateVM
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Velonic</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                                <li class="breadcrumb-item active">AwardLogo Data Tables</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Data Tables</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data" asp-controller="AwardLogo" asp-action="Create">
+                                <div class="form-group">
+                                    <label for="ImgUrl">ImgUrl</label>
+                                    <input asp-for="ImgUrl" class="form-control" id="ImgUrl">
+                                    <span class="text-danger" asp-validation-for="ImgUrl"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="AltText">AltText</label>
+                                    <input asp-for="AltText" class="form-control" id="AltText">
+                                    <span class="text-danger" asp-validation-for="AltText"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="photo">Image</label>
+                                    <input type="file" asp-for="Image" class="form-control" id="photo">
+                                    <span class="text-danger" asp-validation-for="Image"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </form>
+
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div> <!-- end row-->
+
+
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by <b>Techzaa</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+
+</div>

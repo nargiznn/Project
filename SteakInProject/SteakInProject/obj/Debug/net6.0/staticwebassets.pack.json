@@ -5,8 +5,32 @@
       "PackagePath": "staticwebassets/.DS_Store"
     },
     {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/templates/.DS_Store",
+      "PackagePath": "staticwebassets/templates/.DS_Store"
+    },
+    {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/templates/verification.html",
       "PackagePath": "staticwebassets/templates/verification.html"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/.DS_Store",
+      "PackagePath": "staticwebassets/uploads/.DS_Store"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/0214a2b0-3db6-4d19-83d0-7b9dd3a82077.jpg",
+      "PackagePath": "staticwebassets/uploads/0214a2b0-3db6-4d19-83d0-7b9dd3a82077.jpg"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/64cdce90-db90-4432-8ad7-d8c1335f5964.png",
+      "PackagePath": "staticwebassets/uploads/64cdce90-db90-4432-8ad7-d8c1335f5964.png"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/ec60a6e5-2636-49ac-b4aa-c1c5696b7084.png",
+      "PackagePath": "staticwebassets/uploads/ec60a6e5-2636-49ac-b4aa-c1c5696b7084.png"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/fcf1e5f1-daca-4c88-9fbd-4d46dfb53623.jpg",
+      "PackagePath": "staticwebassets/uploads/fcf1e5f1-daca-4c88-9fbd-4d46dfb53623.jpg"
     },
     {
       "Id": "obj/Debug/net6.0/staticwebassets/msbuild.SteakInProject.Microsoft.AspNetCore.StaticWebAssets.props",

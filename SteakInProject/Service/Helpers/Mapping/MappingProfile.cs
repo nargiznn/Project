@@ -32,6 +32,8 @@ using Service.Helpers.DTOs.Faq;
 using Service.Helpers.DTOs.Subscribe;
 using Service.Helpers.DTOs.Comment;
 using Domain.Enum;
+using System.Reflection.Metadata;
+using Service.Helpers.DTOs.AwardLogo;
 
 namespace Service.Helpers.Mapping
 {
@@ -132,7 +134,7 @@ namespace Service.Helpers.Mapping
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
-
+            #region Event
             CreateMap<Event, EventDto>().ForMember(dest => dest.Tags, opt =>
         opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
 
@@ -143,6 +145,10 @@ namespace Service.Helpers.Mapping
                 opts.AllowNull();
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
+            #endregion
+
+
+
 
             #region MenuCategory
             CreateMap<MenuCategory, MenuCategoryDto>();
@@ -227,15 +233,28 @@ namespace Service.Helpers.Mapping
             CreateMap<Subscribe, SubscribeDto>();
             #endregion
 
+            #region AwardLogo
+            CreateMap<AwardLogo, AwardLogoDto>();
+            CreateMap<AwardLogoCreateDto, AwardLogo>()
+                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image.FileName));
+            CreateMap<AwardLogoEditDto, AwardLogo>()
+                .ForAllMembers(opts =>
+                {
+                    opts.AllowNull();
+                    opts.Condition((src, dest, srcMember) => srcMember != null);
+                });
+            #endregion
 
-            CreateMap<AwardLogo, LogoDto>();
-            CreateMap<LogoCreateDto, AwardLogo>();
-            CreateMap<LogoEditDto, AwardLogo>()
-            .ForAllMembers(opts =>
-            {
-                opts.AllowNull();
-                opts.Condition((src, dest, srcMember) => srcMember != null);
-            });
+
+
+            //CreateMap<AwardLogo, LogoDto>();
+            //CreateMap<LogoCreateDto, AwardLogo>();
+            //CreateMap<LogoEditDto, AwardLogo>()
+            //.ForAllMembers(opts =>
+            //{
+            //    opts.AllowNull();
+            //    opts.Condition((src, dest, srcMember) => srcMember != null);
+            //});
 
             CreateMap<Setting, SettingDto>();
             CreateMap<SettingEditDto, Setting>()

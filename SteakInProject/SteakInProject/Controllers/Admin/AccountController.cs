@@ -71,7 +71,7 @@ namespace SteakInProject.Controllers.Admin
         {
             return Ok(await _accountService.GetRolesAsync());
         }
-
+        
         [ProducesResponseType(typeof(RoleDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]

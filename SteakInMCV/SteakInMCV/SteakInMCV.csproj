@@ -29,6 +29,8 @@
     <None Remove="Areas\Admin\ViewModels\Award\" />
     <None Remove="Areas\Admin\Views\Award\" />
     <None Remove="Models\Enum\" />
+    <None Remove="Areas\Admin\ViewModels\AwardLogo\" />
+    <None Remove="Areas\Admin\Views\AwardLogo\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -54,6 +56,8 @@
     <Folder Include="Areas\Admin\ViewModels\Award\" />
     <Folder Include="Areas\Admin\Views\Award\" />
     <Folder Include="Models\Enum\" />
+    <Folder Include="Areas\Admin\ViewModels\AwardLogo\" />
+    <Folder Include="Areas\Admin\Views\AwardLogo\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

@@ -11,63 +11,43 @@ namespace SteakInProject.Controllers
 {
 	public class EventController:BaseController
 	{
-        private readonly IEventService _eventService;
-        private readonly AppDbContext _context;
-        public EventController(IEventService eventService, AppDbContext context)
+         private readonly IEventService _eventService;
+
+        public EventController(IEventService eventService)
         {
             _eventService = eventService;
-            _context = context;
         }
 
-        [ProducesResponseType(typeof(EventDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(EventDto), StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                return Ok(await _eventService.GetByIdAsync(id));
+                var eventDto = await _eventService.GetByIdAsync(id);
+                return Ok(eventDto);
             }
             catch (NotFoundException)
             {
-                return NotFound();
+                return NotFound("Event not found");
             }
         }
 
-
-        [ProducesResponseType(typeof(EventDto), StatusCodes.Status200OK)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _eventService.GetAllAsync());
+            var events = await _eventService.GetAllAsync();
+            return Ok(events);
         }
 
-        [ProducesResponseType(typeof(EventDto), StatusCodes.Status200OK)]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] EventCreateDto request)
         {
-            try
-            {
-                await _eventService.DeleteAsync(id);
-                return Ok();
-            }
-            catch (NotFoundException)
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpGet("tags")]
-        [ProducesResponseType(typeof(List<Tag>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetTags()
-        {
-            return Ok(await _context.Tags.AsNoTracking().ToListAsync());
+            await _eventService.CreateAsync(request);
+            return CreatedAtAction(nameof(Create), "Event created successfully");
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(EventDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] EventEditDto request)
+        public async Task<IActionResult> Edit(int id, [FromBody] EventEditDto request)
         {
             try
             {
@@ -76,15 +56,22 @@ namespace SteakInProject.Controllers
             }
             catch (NotFoundException)
             {
-                return NotFound();
+                return NotFound("Event not found");
             }
         }
-        [HttpPost]
-        [ProducesResponseType(typeof(EventDto), StatusCodes.Status201Created)]
-        public async Task<IActionResult> Create([FromBody] EventCreateDto request)
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-            await _eventService.CreateAsync(request);
-            return CreatedAtAction(nameof(Create), "Event created successfully");
+            try
+            {
+                await _eventService.DeleteAsync(id);
+                return Ok("Event deleted successfully");
+            }
+            catch (NotFoundException)
+            {
+                return NotFound("Event not found");
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Reflection.Metadata;
 using AutoMapper;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Exceptions;
+using Repository.Repositories.Interfaces;
 using Service.Helpers.DTOs.Event;
 using Service.Services.Interfaces;
 
@@ -11,83 +13,77 @@ namespace Service.Services
 {
     public class EventService : IEventService
 	{
-        private readonly AppDbContext _context;
+        private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
+        private readonly IFileService _fileService;
 
-        public EventService(AppDbContext context,
-                              IMapper mapper)
+        public EventService(IEventRepository eventRepository, IMapper mapper, IFileService fileService)
         {
-            _context = context;
+            _eventRepository = eventRepository;
             _mapper = mapper;
+            _fileService = fileService;
         }
 
         public async Task CreateAsync(EventCreateDto events)
         {
-            var newEvent = _mapper.Map<Event>(events);
+            if (events is null) throw new ArgumentNullException(nameof(events));
 
-            // Set Tags based on the provided Tag IDs
-            if (events.TagIds != null && events.TagIds.Any())
+            var eventEntity = _mapper.Map<Event>(events);
+
+            //if (events.TagIds?.Any() == true)
+            //{
+            //    eventEntity.Tags = await _eventRepository.GetAllWithExpression(t => events.TagIds.Contains(t.Id)).ToListAsync();
+            //}
+
+            if (events.UploadImage != null)
             {
-                newEvent.Tags = await _context.Tags
-                                              .Where(t => events.TagIds.Contains(t.Id))
-                                              .ToListAsync();
+                var uploadedFile = await _fileService.UploadAsync(events.UploadImage);
+                eventEntity.ImgUrl = uploadedFile.Response;
             }
 
-            await _context.Events.AddAsync(newEvent);
-            await _context.SaveChangesAsync();
+            await _eventRepository.CreateAsync(eventEntity);
         }
 
         public async Task EditAsync(int id, EventEditDto events)
         {
-            var existingEvent = await _context.Events
-                                              .Include(e => e.Tags)
-                                              .FirstOrDefaultAsync(e => e.Id == id)
-                                              ?? throw new NotFoundException("Event not found");
+            var existingEvent = await _eventRepository.GetByIdAsync(id);
+            if (existingEvent is null) throw new NotFoundException("Event not found");
 
-            // Map updated fields
             _mapper.Map(events, existingEvent);
 
-            // Update Tags if TagIds are provided
-            if (events.TagIds != null)
+            //if (events.TagIds?.Any() == true)
+            //{
+            //    existingEvent.Tags = await _eventRepository.GetAllWithExpression(t => events.TagIds.Contains(t.Id)).ToListAsync();
+            //}
+
+            if (events.UploadImage != null)
             {
-                existingEvent.Tags = await _context.Tags
-                                                   .Where(t => events.TagIds.Contains(t.Id))
-                                                   .ToListAsync();
+                _fileService.DeletePath(existingEvent.ImgUrl);
+                var uploadedFile = await _fileService.UploadAsync(events.UploadImage);
+                existingEvent.ImgUrl = uploadedFile.Response;
             }
 
-            _context.Events.Update(existingEvent);
-            await _context.SaveChangesAsync();
+            await _eventRepository.EditAsync(existingEvent);
         }
 
         public async Task<IEnumerable<EventDto>> GetAllAsync()
         {
-            var events = await _context.Events
-                                        .Include(e => e.Tags) // Include tags
-                                        .AsNoTracking()
-                                        .ToListAsync();
-
-            return _mapper.Map<List<EventDto>>(events);
+            var events = await _eventRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<EventDto>>(events);
         }
-
 
         public async Task<EventDto> GetByIdAsync(int id)
         {
-            var result = await _context.Events
-                                        .Include(e => e.Tags) // Include tags
-                                        .AsNoTracking()
-                                        .FirstOrDefaultAsync(e => e.Id == id);
-
-            if (result is null) throw new NotFoundException("Event not found");
-
-            return _mapper.Map<EventDto>(result);
+            var eventEntity = await _eventRepository.GetByIdAsync(id);
+            return _mapper.Map<EventDto>(eventEntity);
         }
+
         public async Task DeleteAsync(int id)
         {
-            var menuEvent = await _context.Events.FindAsync(id) ?? throw new NotFoundException("Data notfound");
-            _context.Events.Remove(menuEvent);
-            await _context.SaveChangesAsync();
+            var eventEntity = await _eventRepository.GetByIdAsync(id);
+            _fileService.DeletePath(eventEntity.ImgUrl);
+            await _eventRepository.DeleteAsync(id);
         }
-
     }
 }
 

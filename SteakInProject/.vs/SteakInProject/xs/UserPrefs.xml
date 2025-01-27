@@ -1,73 +1,42 @@
 ﻿<Properties StartupConfiguration="{690D8679-1FED-4B3F-A28D-1C06751E4BC5}|Default">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/EmailController.cs" relfile="SteakInProject/Controllers/EmailController.cs" line="22" column="1" />
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Helpers/DTOs/Comment/CommentCreateDto.cs" relfile="Service/Helpers/DTOs/Comment/CommentCreateDto.cs" line="8" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Domain/Entities/CommentReply.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Services/EventService.cs">
     <Files>
-      <File FileName="Domain/Entities/Reservation.cs" Line="11" Column="42" />
-      <File FileName="Domain/Entities/RestaurantTable.cs" Line="15" Column="1" />
-      <File FileName="Repository/Data/AppDbContext.cs" Line="69" Column="34" />
-      <File FileName="Domain/Enum/ReservationStatus.cs" Line="9" Column="19" />
-      <File FileName="Service/Services/Interfaces/IReservationService.cs" Line="11" Column="90" />
-      <File FileName="Service/Services/ReservationService.cs" />
-      <File FileName="SteakInProject/Controllers/ReservationsController.cs" Line="22" Column="37" />
-      <File FileName="Service/Services/Interfaces/IEmailService.cs" />
-      <File FileName="Service/Services/EmailService.cs" />
-      <File FileName="Domain/Entities/AppUser.cs" Line="9" Column="1" />
-      <File FileName="SteakInProject/appsettings.Development.json" Line="20" Column="1" />
-      <File FileName="Domain/Entities/Comment.cs" Line="13" Column="45" />
-      <File FileName="Domain/Enum/CommentStatus.cs" Line="12" Column="1" />
-      <File FileName="Service/Services/Interfaces/ICommentService.cs" Line="5" Column="38" />
-      <File FileName="Service/Services/CommentService.cs" Line="25" Column="1" />
-      <File FileName="SteakInProject/Controllers/CommentsController.cs" Line="19" Column="10" />
-      <File FileName="Domain/Entities/CommentReply.cs" Line="18" Column="1" />
-      <File FileName="Service/Helpers/DTOs/Comment/CommentDto.cs" Line="19" Column="1" />
-      <File FileName="Service/Helpers/DTOs/Comment/CommentCreateDto.cs" Line="17" Column="1" />
-      <File FileName="Service/Helpers/Mapping/MappingProfile.cs" Line="115" Column="74" />
-      <File FileName="Service/Helpers/DTOs/Comment/CommentReplyDto.cs" Line="15" Column="1" />
-      <File FileName="Domain/Enum/ReplyStatus.cs" Line="12" Column="1" />
-      <File FileName="Service/Helpers/DTOs/Comment/ReplyDto.cs" Line="17" Column="1" />
-      <File FileName="Service/Helpers/DTOs/Comment/ReplyCreateDto.cs" Line="12" Column="1" />
-      <File FileName="Service/Services/Interfaces/IReplyService.cs" Line="13" Column="6" />
-      <File FileName="Service/Services/ReplyService.cs" Line="60" Column="1" />
-      <File FileName="SteakInProject/Controllers/ReplyController.cs" Line="13" Column="1" />
-      <File FileName="Service/DependencyInjection.cs" Line="19" Column="61" />
-      <File FileName="Domain/Common/BaseEntity.cs" Line="7" Column="1" />
-      <File FileName="Domain/Entities/Event.cs" Line="18" Column="1" />
+      <File FileName="Domain/Entities/Event.cs" />
+      <File FileName="Domain/Entities/Tag.cs" />
+      <File FileName="Repository/Data/AppDbContext.cs" />
+      <File FileName="Service/Helpers/DTOs/Event/EventDto.cs" />
+      <File FileName="Service/Helpers/DTOs/Event/EventCreateDto.cs" />
+      <File FileName="Service/Helpers/DTOs/Event/EventEditDto.cs" />
+      <File FileName="Service/Helpers/Mapping/MappingProfile.cs" />
+      <File FileName="Service/Services/Interfaces/IFileService.cs" />
+      <File FileName="Service/Services/Interfaces/IEventService.cs" Line="7" Column="35" />
+      <File FileName="Service/Services/EventService.cs" Line="35" Column="120" />
+      <File FileName="Repository/Repositories/Interfaces/IBaseRepository.cs" />
+      <File FileName="Repository/Repositories/Interfaces/IEventRepository.cs" />
+      <File FileName="Repository/Repositories/BaseRepository.cs" />
+      <File FileName="Repository/Repositories/EventRepository.cs" />
+      <File FileName="Repository/DependencyInjection.cs" />
+      <File FileName="SteakInProject/Controllers/EventController.cs" />
+      <File FileName="SteakInProject/Controllers/Admin/AccountController.cs" Line="99" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SteakInProject" expanded="True">
-            <Node name="Domain">
-              <Node name="Common" expanded="True" />
-              <Node name="Entities" expanded="True">
-                <Node name="CommentReply.cs" selected="True" />
-              </Node>
-              <Node name="Enum" expanded="True" />
-            </Node>
-            <Node name="Repository">
-              <Node name="Migrations" expanded="True" />
+            <Node name="Domain" expanded="True">
+              <Node name="Entities" expanded="True" />
             </Node>
             <Node name="Service">
-              <Node name="Helpers">
-                <Node name="DTOs">
-                  <Node name="Comment" expanded="True" />
-                </Node>
-                <Node name="Mapping" expanded="True" />
-              </Node>
-              <Node name="Services">
+              <Node name="Services" expanded="True">
                 <Node name="Interfaces" expanded="True" />
+                <Node name="EventService.cs" selected="True" />
               </Node>
             </Node>
-            <Node name="SteakInProject">
-              <Node name="Controllers" expanded="True" />
+            <Node name="SteakInProject" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="Admin" expanded="True" />
+                <Node name="UI" expanded="True" />
+              </Node>
               <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
@@ -75,5 +44,13 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/EmailController.cs" relfile="SteakInProject/Controllers/EmailController.cs" line="22" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
 </Properties>

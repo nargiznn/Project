@@ -30,7 +30,7 @@ namespace Service.Services
             string fileExtention = Path.GetExtension(file.FileName);
             if (!validExtentions.Contains(fileExtention))
             {
-                return new UploadResponse { HasError = true, Response = $"file extention is wrong ,must be jpg,png,gif" };
+                return new UploadResponse { HasError = true, Response = $"File extention is wrong!(valid extentions : ({string.Join(",", validExtentions)}))" };
 
             }
             long size = file.Length;
@@ -40,12 +40,16 @@ namespace Service.Services
 
             }
             string fileName = Guid.NewGuid().ToString() + fileExtention;
-            if (!Directory.Exists("uploads"))
+
+            if (!Directory.Exists("wwwroot//Uploads"))
             {
-                Directory.CreateDirectory("uploads");
+                Directory.CreateDirectory("wwwroot//Uploads");
             }
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", fileName);
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot//Uploads", fileName);
+
             using FileStream stream = new(path, FileMode.Create);
+
             await file.CopyToAsync(stream);
             return new UploadResponse { HasError = false, Response = fileName };
         }

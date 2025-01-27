@@ -312,14 +312,17 @@ namespace SteakInMCV.Controllers
                     }
 
                     string faqEndpoint = string.IsNullOrEmpty(searchString)
-                        ? $"{BaseURl}/api/faq/GetAll" 
-                        : $"{BaseURl}/api/faq/search?searchString={searchString}"; 
+              ? $"{BaseURl}/api/faq/GetAll"
+              : $"{BaseURl}/api/Faq/Search/search?searchString={searchString}";
+
+
 
                     var faqResponse = await client.GetAsync(faqEndpoint);
                     if (faqResponse.IsSuccessStatusCode)
                     {
                         string faqApiResponse = await faqResponse.Content.ReadAsStringAsync();
                         var faqs = JsonConvert.DeserializeObject<IEnumerable<Faq>>(faqApiResponse);
+
                         aboutVM.Faqs = faqs.Where(f => f.IsActive).ToList();
                     }
                     else
