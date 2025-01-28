@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{690D8679-1FED-4B3F-A28D-1C06751E4BC5}|Default">
-  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/EmailController.cs" relfile="SteakInProject/Controllers/EmailController.cs" line="22" column="1" />
@@ -9,38 +9,34 @@
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ProductService.cs" relfile="Service/Services/ProductService.cs" line="33" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInProject/Controllers/ProductController.cs">
+    <Files>
+      <File FileName="SteakInProject/Controllers/ProductController.cs" Line="24" Column="1" />
+      <File FileName="Service/Services/ProductService.cs" Line="33" Column="1" />
+      <File FileName="Domain/Entities/SpecialCategory.cs" Line="9" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SteakInProject">
+          <Node name="SteakInProject" expanded="True">
             <Node name="Domain" expanded="True">
               <Node name="Common" expanded="True" />
               <Node name="Entities" expanded="True" />
             </Node>
-            <Node name="Service">
-              <Node name="Helpers" expanded="True">
-                <Node name="DTOs" expanded="True">
-                  <Node name="Cuisine" expanded="True" />
-                  <Node name="MenuCategory" expanded="True" />
-                  <Node name="Product" expanded="True" />
-                  <Node name="SpecialCategory" expanded="True" />
-                </Node>
-              </Node>
-              <Node name="Services">
-                <Node name="Interfaces" expanded="True" />
-              </Node>
+            <Node name="Service" expanded="True">
+              <Node name="Services" expanded="True" />
             </Node>
-            <Node name="SteakInProject" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+            <Node name="SteakInProject">
+              <Node name="Controllers" expanded="True">
+                <Node name="ProductController.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

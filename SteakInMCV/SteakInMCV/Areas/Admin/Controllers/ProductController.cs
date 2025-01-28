@@ -7,6 +7,7 @@ using SteakInMCV.Areas.Admin.ViewModels.Cuisine;
 using SteakInMCV.Areas.Admin.ViewModels.MenuCategory;
 using SteakInMCV.Areas.Admin.ViewModels.Product;
 using SteakInMCV.Areas.Admin.ViewModels.SpecialCategory;
+using SteakInMCV.Models;
 
 namespace SteakInMCV.Areas.Admin.Controllers
 {
@@ -14,19 +15,30 @@ namespace SteakInMCV.Areas.Admin.Controllers
     public class ProductController:Controller
 	{
         private readonly string BaseURl = "http://localhost:7031";
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int size = 10)
         {
-            IEnumerable<ProductVM> awardLogo = null;
+            IEnumerable<ProductVM> productList = null;
+
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"{BaseURl}/api/Product/GetAll"))
+                var url = $"{BaseURl}/api/Product/GetAll?page={page}&size={size}";
+                using (var response = await httpClient.GetAsync(url))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    awardLogo = JsonConvert.DeserializeObject<IEnumerable<ProductVM>>(apiResponse);
+                    productList = JsonConvert.DeserializeObject<List<ProductVM>>(apiResponse);
                 }
             }
-            return View(awardLogo);
+            var totalPages = (int)Math.Ceiling(productList.Count() / (double)size);
+            var paginatedList = new PaginatedList<ProductVM>(
+                productList.Skip((page - 1) * size).Take(size).ToList(),
+                totalPages,
+                page,
+                size
+            );
+
+            return View(paginatedList);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
