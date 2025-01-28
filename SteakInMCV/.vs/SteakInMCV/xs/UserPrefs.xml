@@ -1,29 +1,13 @@
 ﻿<Properties StartupConfiguration="{C4568561-B540-4A0A-A85B-88312252C892}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInMCV/Areas/Admin/Views/Product/Create.cshtml">
-    <Files>
-      <File FileName="SteakInMCV/Areas/Admin/ViewModels/Product/ProductVM.cs" Line="19" Column="1" />
-      <File FileName="SteakInMCV/Areas/Admin/ViewModels/Product/ProductEditVM.cs" Line="21" Column="1" />
-      <File FileName="SteakInMCV/Areas/Admin/ViewModels/Product/ProductCreateVM.cs" Line="23" Column="1" />
-      <File FileName="SteakInMCV/Areas/Admin/Controllers/ProductController.cs" Line="72" Column="14" />
-      <File FileName="SteakInMCV/Areas/Admin/Views/Product/Create.cshtml" Line="21" Column="90" />
-      <File FileName="SteakInMCV/Areas/Admin/Views/Product/Detail.cshtml" Line="85" Column="24" />
-      <File FileName="SteakInMCV/Areas/Admin/ViewModels/MenuCategory/MenuCategoryVM.cs" Line="14" Column="1" />
-      <File FileName="SteakInMCV/Areas/Admin/ViewModels/SpecialCategory/SpecialCategoryVM.cs" Line="11" Column="1" />
-      <File FileName="SteakInMCV/Areas/Admin/ViewModels/Cuisine/CuisineVM.cs" Line="12" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SteakInMCV">
             <Node name="SteakInMCV">
-              <Node name="Areas">
-                <Node name="Admin">
+              <Node name="Areas" expanded="True">
+                <Node name="Admin" expanded="True">
                   <Node name="Controllers" expanded="True" />
                   <Node name="ViewModels" expanded="True">
                     <Node name="Cuisine" expanded="True" />
@@ -32,24 +16,22 @@
                     <Node name="SpecialCategory" expanded="True" />
                   </Node>
                   <Node name="Views">
-                    <Node name="Award" expanded="True" />
-                    <Node name="Product" expanded="True">
-                      <Node name="Create.cshtml" selected="True" />
-                    </Node>
+                    <Node name="_ViewImports.cshtml" selected="True" />
                   </Node>
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Views">
-                <Node name="Home" expanded="True" />
-                <Node name="Shared" expanded="True" />
-              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MultiItemStartupConfigurations />
 </Properties>

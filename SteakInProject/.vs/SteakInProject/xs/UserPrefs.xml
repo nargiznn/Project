@@ -1,53 +1,46 @@
 ﻿<Properties StartupConfiguration="{690D8679-1FED-4B3F-A28D-1C06751E4BC5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Helpers/DTOs/Product/ProductDto.cs">
-    <Files>
-      <File FileName="SteakInProject/Controllers/ProductController.cs" Line="1" Column="1" />
-      <File FileName="Service/Services/ProductService.cs" Line="33" Column="1" />
-      <File FileName="Service/Services/Interfaces/IProductService.cs" Line="9" Column="60" />
-      <File FileName="Service/Helpers/DTOs/Product/ProductDto.cs" Line="1" Column="1" />
-      <File FileName="SteakInProject/Controllers/MenuCategoryController.cs" Line="1" Column="1" />
-      <File FileName="Service/Helpers/DTOs/MenuCategory/MenuCategoryDto.cs" />
-      <File FileName="Service/Helpers/DTOs/SpecialCategory/SpecialCategoryDto.cs" />
-      <File FileName="Service/Helpers/DTOs/Cuisine/CuisineDto.cs" />
-      <File FileName="Domain/Entities/Product.cs" />
-      <File FileName="Domain/Common/BaseEntity.cs" />
-      <File FileName="Service/Helpers/DTOs/Product/ProductCreateDto.cs" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="SteakInProject" expanded="True">
-            <Node name="Service">
-              <Node name="Helpers" expanded="True">
-                <Node name="DTOs" expanded="True">
-                  <Node name="Product" expanded="True">
-                    <Node name="ProductDto.cs" selected="True" />
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="Services" expanded="True">
-                <Node name="Interfaces" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="SteakInProject">
-              <Node name="Controllers" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/EmailController.cs" relfile="SteakInProject/Controllers/EmailController.cs" line="22" column="1" />
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/AccountService.cs" relfile="Service/Services/AccountService.cs" line="220" column="1" />
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/UI/AccountController.cs" relfile="SteakInProject/Controllers/UI/AccountController.cs" line="39" column="1" />
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ReservationService.cs" relfile="Service/Services/ReservationService.cs" line="28" column="1" />
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ProductService.cs" relfile="Service/Services/ProductService.cs" line="32" column="1" />
+      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ProductService.cs" relfile="Service/Services/ProductService.cs" line="33" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SteakInProject">
+            <Node name="Domain" expanded="True">
+              <Node name="Common" expanded="True" />
+              <Node name="Entities" expanded="True" />
+            </Node>
+            <Node name="Service">
+              <Node name="Helpers" expanded="True">
+                <Node name="DTOs" expanded="True">
+                  <Node name="Cuisine" expanded="True" />
+                  <Node name="MenuCategory" expanded="True" />
+                  <Node name="Product" expanded="True" />
+                  <Node name="SpecialCategory" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Services">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="SteakInProject" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>

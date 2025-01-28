@@ -71,10 +71,6 @@ namespace Service.Services
             return "Success"; 
         }
 
-
-
-
-
         public async Task<string> DeleteAsync(int id)
         {
             var exisProduct = await _context.Products.FindAsync(id);
