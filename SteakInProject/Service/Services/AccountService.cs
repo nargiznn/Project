@@ -273,7 +273,7 @@ namespace Service.Services
             html = html.Replace("{{confirm-link}}", confirmationLink);
             html = html.Replace("{{username}}", user.UserName);
 
-            _emailService.SendEmailAsync(user.Email, subject, html);
+            _emailService.Send(user.Email, subject, html);
 
             return new SignUpResponse
             {

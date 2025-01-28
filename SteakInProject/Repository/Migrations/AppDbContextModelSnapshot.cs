@@ -647,9 +647,6 @@ namespace Repository.Migrations
                     b.Property<int>("CuisineId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FoodCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Ingredient")
                         .HasColumnType("nvarchar(max)");
 
@@ -671,8 +668,6 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CuisineId");
-
-                    b.HasIndex("FoodCategoryId");
 
                     b.HasIndex("MenuCategoryId");
 
@@ -720,6 +715,7 @@ namespace Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -1282,12 +1278,6 @@ namespace Repository.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.FoodCategory", "FoodCategory")
-                        .WithMany("Products")
-                        .HasForeignKey("FoodCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.MenuCategory", "MenuCategory")
                         .WithMany("Products")
                         .HasForeignKey("MenuCategoryId")
@@ -1299,8 +1289,6 @@ namespace Repository.Migrations
                         .HasForeignKey("SpecialCategoryId");
 
                     b.Navigation("Cuisine");
-
-                    b.Navigation("FoodCategory");
 
                     b.Navigation("MenuCategory");
 
@@ -1406,11 +1394,6 @@ namespace Repository.Migrations
                     b.Navigation("CommentReplies");
 
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Domain.Entities.FoodCategory", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Domain.Entities.GalleryCategory", b =>

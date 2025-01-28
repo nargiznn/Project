@@ -238,6 +238,7 @@ namespace Service.Helpers.Mapping
             CreateMap<AwardLogoCreateDto, AwardLogo>()
                 .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image.FileName));
             CreateMap<AwardLogoEditDto, AwardLogo>()
+                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image.FileName))
                 .ForAllMembers(opts =>
                 {
                     opts.AllowNull();
@@ -245,16 +246,6 @@ namespace Service.Helpers.Mapping
                 });
             #endregion
 
-
-
-            //CreateMap<AwardLogo, LogoDto>();
-            //CreateMap<LogoCreateDto, AwardLogo>();
-            //CreateMap<LogoEditDto, AwardLogo>()
-            //.ForAllMembers(opts =>
-            //{
-            //    opts.AllowNull();
-            //    opts.Condition((src, dest, srcMember) => srcMember != null);
-            //});
 
             CreateMap<Setting, SettingDto>();
             CreateMap<SettingEditDto, Setting>()
@@ -293,10 +284,6 @@ opt.MapFrom(src => src.MealPackageProducts.Select(t => t.ProductId).ToList()));
             });
             #endregion
 
-
-
-
-
             #region Account
             CreateMap<SignUpDto, AppUser>();
             CreateMap<AppUser, UserDto>();
@@ -306,7 +293,6 @@ opt.MapFrom(src => src.MealPackageProducts.Select(t => t.ProductId).ToList()));
             CreateMap<Product, ProductDto>()
                 .ForMember(dest => dest.MenuCategoryName, opt => opt.MapFrom(src => src.MenuCategory.Name))
                 .ForMember(dest => dest.SpecialCategoryName, opt => opt.MapFrom(src => src.SpecialCategory.Name))
-                .ForMember(dest => dest.FoodCategoryName, opt => opt.MapFrom(src => src.FoodCategory.Name))
                 .ForMember(dest => dest.ProductCuisineName, opt => opt.MapFrom(src => src.Cuisine.Name))
                .ForMember(dest => dest.ImageUrls, opt => opt.MapFrom(src => src.ProductImages.Select(pi => pi.Path).ToList()));
 

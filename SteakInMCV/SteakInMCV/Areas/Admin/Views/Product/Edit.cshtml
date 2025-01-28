@@ -1,0 +1,81 @@
+﻿@model ProductEditVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Edit Product</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id">
+                                <div class="form-group">
+                                    <label for="Name">Name</label>
+                                    <input asp-for="Name" class="form-control" id="Name" />
+                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Ingredient">Ingredient</label>
+                                    <input asp-for="Ingredient" class="form-control" id="Ingredient" />
+                                    <span class="text-danger" asp-validation-for="Ingredient"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Price">Price</label>
+                                    <input asp-for="Price" class="form-control" id="Price" type="number" step="0.01" />
+                                    <span class="text-danger" asp-validation-for="Price"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="MenuCategoryId">Menu Category</label>
+                                    <select asp-for="MenuCategoryId" asp-items="Model.MenuCategories" class="form-control" id="category"></select>
+                                    <span class="text-danger" asp-validation-for="MenuCategoryId"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="SpecialCategoryId">Special Category</label>
+                                    <select asp-for="SpecialCategoryId" asp-items="Model.SpecialCategories" class="form-control" id="category"></select>
+                                    <span class="text-danger" asp-validation-for="SpecialCategoryId"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ProductCuisineId">Cuisine</label>
+                                    <select asp-for="ProductCuisineId" asp-items="Model.ProductCuisines" class="form-control" id="Cuisine"></select>
+                                    <span class="text-danger" asp-validation-for="ProductCuisineId"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Files">Images</label>
+                                    <input asp-for="Files" type="file" class="form-control" id="inputFiles" multiple />
+                                    <span asp-validation-for="Files" class="text-danger"></span>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <a href="@Url.Action("Index", "Product", new { area = "Admin" })" class="btn btn-secondary ml-2">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by <b>Techzaa</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

@@ -1,56 +1,53 @@
 ﻿<Properties StartupConfiguration="{690D8679-1FED-4B3F-A28D-1C06751E4BC5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Services/EventService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Helpers/DTOs/Product/ProductDto.cs">
     <Files>
-      <File FileName="Domain/Entities/Event.cs" />
-      <File FileName="Domain/Entities/Tag.cs" />
-      <File FileName="Repository/Data/AppDbContext.cs" />
-      <File FileName="Service/Helpers/DTOs/Event/EventDto.cs" />
-      <File FileName="Service/Helpers/DTOs/Event/EventCreateDto.cs" />
-      <File FileName="Service/Helpers/DTOs/Event/EventEditDto.cs" />
-      <File FileName="Service/Helpers/Mapping/MappingProfile.cs" />
-      <File FileName="Service/Services/Interfaces/IFileService.cs" />
-      <File FileName="Service/Services/Interfaces/IEventService.cs" Line="7" Column="35" />
-      <File FileName="Service/Services/EventService.cs" Line="35" Column="120" />
-      <File FileName="Repository/Repositories/Interfaces/IBaseRepository.cs" />
-      <File FileName="Repository/Repositories/Interfaces/IEventRepository.cs" />
-      <File FileName="Repository/Repositories/BaseRepository.cs" />
-      <File FileName="Repository/Repositories/EventRepository.cs" />
-      <File FileName="Repository/DependencyInjection.cs" />
-      <File FileName="SteakInProject/Controllers/EventController.cs" />
-      <File FileName="SteakInProject/Controllers/Admin/AccountController.cs" Line="99" Column="9" />
+      <File FileName="SteakInProject/Controllers/ProductController.cs" Line="1" Column="1" />
+      <File FileName="Service/Services/ProductService.cs" Line="33" Column="1" />
+      <File FileName="Service/Services/Interfaces/IProductService.cs" Line="9" Column="60" />
+      <File FileName="Service/Helpers/DTOs/Product/ProductDto.cs" Line="1" Column="1" />
+      <File FileName="SteakInProject/Controllers/MenuCategoryController.cs" Line="1" Column="1" />
+      <File FileName="Service/Helpers/DTOs/MenuCategory/MenuCategoryDto.cs" />
+      <File FileName="Service/Helpers/DTOs/SpecialCategory/SpecialCategoryDto.cs" />
+      <File FileName="Service/Helpers/DTOs/Cuisine/CuisineDto.cs" />
+      <File FileName="Domain/Entities/Product.cs" />
+      <File FileName="Domain/Common/BaseEntity.cs" />
+      <File FileName="Service/Helpers/DTOs/Product/ProductCreateDto.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SteakInProject" expanded="True">
-            <Node name="Domain" expanded="True">
-              <Node name="Entities" expanded="True" />
-            </Node>
             <Node name="Service">
+              <Node name="Helpers" expanded="True">
+                <Node name="DTOs" expanded="True">
+                  <Node name="Product" expanded="True">
+                    <Node name="ProductDto.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
               <Node name="Services" expanded="True">
                 <Node name="Interfaces" expanded="True" />
-                <Node name="EventService.cs" selected="True" />
               </Node>
             </Node>
-            <Node name="SteakInProject" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="Admin" expanded="True" />
-                <Node name="UI" expanded="True" />
-              </Node>
-              <Node name="appsettings.json" expanded="True" />
+            <Node name="SteakInProject">
+              <Node name="Controllers" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/EmailController.cs" relfile="SteakInProject/Controllers/EmailController.cs" line="22" column="1" />
+      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/AccountService.cs" relfile="Service/Services/AccountService.cs" line="220" column="1" />
+      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/UI/AccountController.cs" relfile="SteakInProject/Controllers/UI/AccountController.cs" line="39" column="1" />
+      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ReservationService.cs" relfile="Service/Services/ReservationService.cs" line="28" column="1" />
+      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ProductService.cs" relfile="Service/Services/ProductService.cs" line="32" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

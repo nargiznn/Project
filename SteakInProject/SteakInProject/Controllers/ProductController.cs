@@ -22,11 +22,14 @@ namespace SteakInProject.Controllers
                 return BadRequest(ModelState);
             }
             var response = await _productService.CreateAsync(request);
-
-            if (response != "Success") return BadRequest(response);
-
+            if (response != "Success")
+            {
+                Console.WriteLine($"API Response: {response}");
+                return BadRequest(response);
+            }
             return Ok(response);
         }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromForm] ProductEditDto request)
         {

@@ -84,11 +84,11 @@
                                                     <div class="dish--img">
                                                         @if (product.ImageUrls != null && product.ImageUrls.Any())
                                                         {
-                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="dish">
+                                                            <img src="@product.ImageUrls.FirstOrDefault()" alt="dish">
                                                         }
                                                         else
                                                         {
-                                                            <img src="~/assets/images/menu/dish/default.jpg" alt="Default Image">
+                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="Default Image">
                                                         }
                                                     </div>
                                                     <div class="dish--content">

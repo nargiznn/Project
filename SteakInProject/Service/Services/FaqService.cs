@@ -13,8 +13,8 @@ using Service.Services.Interfaces;
 
 namespace Service.Services
 {
-	public class FaqService:IFaqService
-	{
+    public class FaqService : IFaqService
+    {
         private readonly IFaqRepository _faqRepo;
         private readonly IMapper _mapper;
         public FaqService(IFaqRepository faqRepository, IMapper mapper)
@@ -32,9 +32,9 @@ namespace Service.Services
                 throw new ArgumentException("An Faq with the same question already exists.");
             }
             var newFaq = _mapper.Map<Faq>(faq);
-            if (!faq.IsActive.HasValue) 
+            if (!faq.IsActive.HasValue)
             {
-                newFaq.IsActive = false; 
+                newFaq.IsActive = false;
             }
 
             await _faqRepo.CreateAsync(newFaq);

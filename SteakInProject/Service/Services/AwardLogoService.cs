@@ -47,13 +47,21 @@ namespace Service.Services
 
         public async Task EditAsync(int id, AwardLogoEditDto awardLogo)
         {
-            var existAwardLogo = await _context.AwardLogos.AsNoTracking()
-                                                    .FirstOrDefaultAsync(x => x.Id == id)
-                                                         ?? throw new NotFoundException("AwardLogo not found");
+            var existAwardLogo = await _context.AwardLogos.FirstOrDefaultAsync(x => x.Id == id)
+                                      ?? throw new NotFoundException("AwardLogo not found");
+
+            if (awardLogo.Image != null)
+            {
+                var response = await _fileService.UploadAsync(awardLogo.Image);
+                existAwardLogo.Image = $"http://localhost:7031/uploads/{response.Response}";
+            }
+
             _mapper.Map(awardLogo, existAwardLogo);
+
             _context.Update(existAwardLogo);
             await _context.SaveChangesAsync();
         }
+
 
         public async Task<IEnumerable<AwardLogoDto>> GetAllAsync()
         {

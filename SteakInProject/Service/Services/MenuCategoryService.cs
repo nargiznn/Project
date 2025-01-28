@@ -51,7 +51,7 @@ namespace Service.Services
                 include: query => query.Include(mc => mc.Products)
                                        .ThenInclude(p => p.SpecialCategory)
                                        .Include(mc => mc.Products)
-                                       .ThenInclude(p => p.FoodCategory)
+                                       //.ThenInclude(p => p.FoodCategory)
                                        .Include(mc => mc.Products)
                                        .ThenInclude(p => p.Cuisine)
                                        .Include(mc => mc.Products)
@@ -71,7 +71,6 @@ namespace Service.Services
                     SalesCount = p.SalesCount,
                     MenuCategoryName = mc.Name,
                     SpecialCategoryName = p.SpecialCategory?.Name,
-                    FoodCategoryName = p.FoodCategory?.Name,
                     ProductCuisineName = p.Cuisine?.Name,
                     ImageUrls = p.ProductImages.Select(pi => pi.Path).ToList()
                 }).ToList()

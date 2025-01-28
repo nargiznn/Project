@@ -14,10 +14,13 @@ namespace Service.Services
     public class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
+        private readonly AppSettings _appSettings;
 
-        public EmailService(IConfiguration configuration)
+        public EmailService(IConfiguration configuration,
+                            IOptions<AppSettings> appSettings)
         {
             _configuration = configuration;
+            _appSettings = appSettings.Value;
         }
 
         public async Task SendEmailAsync(string emailTo, string subject, string body)
@@ -47,7 +50,22 @@ namespace Service.Services
 
             await smtpClient.SendMailAsync(message);
         }
+        public void Send(string to, string subject, string html, string from = null)
+        {
+            // create message
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse(from ?? _appSettings.From));
+            email.To.Add(MailboxAddress.Parse(to));
+            email.Subject = subject;
+            email.Body = new TextPart(TextFormat.Html) { Text = html };
 
+            // send email
+            using var smtp = new MailKit.Net.Smtp.SmtpClient();
+            smtp.Connect(_appSettings.Host, _appSettings.Port, SecureSocketOptions.StartTls);
+            smtp.Authenticate(_appSettings.UserName, _appSettings.Password);
+            smtp.Send(email);
+            smtp.Disconnect(true);
+        }
 
 
     }

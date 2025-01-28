@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProductVM>
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="header-title">Product Data Table</h4>
+                            <a class="btn btn-success" asp-controller="Product" asp-action="Create">Add Product</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="basic-datatable" class="table table-striped w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Ingredient</th>
+                                        <th>MenuCategory</th>
+                                        <th>SpecialCategory</th>
+                                        <th>Cuisine</th>
+                                        <th>Image</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Price</td>
+                                            <td>@(item.Ingredient.Length > 30 ? item.Ingredient.Substring(0, 30) + "..." : item.Ingredient)</td>
+                                            <td>@item.MenuCategoryName</td>
+                                            <td>@item.SpecialCategoryName</td>
+                                            <td>@item.ProductCuisineName</td>
+                                            <td>
+                                                <img src="@item.ImageUrls.FirstOrDefault()"
+                                                     style="width: 100px; height: 70px; object-fit: cover;"
+                                                     alt="Product Image" />
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                                                <a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page Content -->
+<!-- ============================================================== -->

@@ -64,7 +64,7 @@ namespace SteakInProject.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] AwardLogoEditDto request)
+        public async Task<IActionResult> Edit([FromRoute] int id, [FromForm] AwardLogoEditDto request)
         {
             try
             {

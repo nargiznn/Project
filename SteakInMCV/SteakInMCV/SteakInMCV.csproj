@@ -31,6 +31,11 @@
     <None Remove="Models\Enum\" />
     <None Remove="Areas\Admin\ViewModels\AwardLogo\" />
     <None Remove="Areas\Admin\Views\AwardLogo\" />
+    <None Remove="Areas\Admin\Views\Product\" />
+    <None Remove="Areas\Admin\ViewModels\Product\" />
+    <None Remove="Areas\Admin\ViewModels\MenuCategory\" />
+    <None Remove="Areas\Admin\ViewModels\SpecialCategory\" />
+    <None Remove="Areas\Admin\ViewModels\Cuisine\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -58,6 +63,11 @@
     <Folder Include="Models\Enum\" />
     <Folder Include="Areas\Admin\ViewModels\AwardLogo\" />
     <Folder Include="Areas\Admin\Views\AwardLogo\" />
+    <Folder Include="Areas\Admin\Views\Product\" />
+    <Folder Include="Areas\Admin\ViewModels\Product\" />
+    <Folder Include="Areas\Admin\ViewModels\MenuCategory\" />
+    <Folder Include="Areas\Admin\ViewModels\SpecialCategory\" />
+    <Folder Include="Areas\Admin\ViewModels\Cuisine\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
