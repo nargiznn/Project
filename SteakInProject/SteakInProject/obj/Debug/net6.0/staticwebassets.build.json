@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pvXEHuM3gwTfmtzXN97jaJJVYjUrzGqnOWmb7FwNXZI=",
+  "Hash": "uo30ZoCO81RermZANV6kPlyZDeFzMu5pLqms6GeVdlw=",
   "Source": "SteakInProject",
   "BasePath": "_content/SteakInProject",
   "Mode": "Default",
@@ -236,6 +236,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/1ccc8b11-0b38-498e-8cf7-d20d221c528f.jpg"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/1cda809e-e1c2-49a6-916b-1af701c93bc1.jpg",
+      "SourceId": "SteakInProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/",
+      "BasePath": "_content/SteakInProject",
+      "RelativePath": "uploads/1cda809e-e1c2-49a6-916b-1af701c93bc1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/1cda809e-e1c2-49a6-916b-1af701c93bc1.jpg"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/1d23baf9-4990-4109-aada-4ce959cf3b62.jpg",
@@ -848,6 +865,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/ba312e2d-2478-481d-bb1c-468c4d31467a.jpg"
+    },
+    {
+      "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/bde976b6-6fbf-4d96-afa3-d90f852e5a50.jpg",
+      "SourceId": "SteakInProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/",
+      "BasePath": "_content/SteakInProject",
+      "RelativePath": "uploads/bde976b6-6fbf-4d96-afa3-d90f852e5a50.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/bde976b6-6fbf-4d96-afa3-d90f852e5a50.jpg"
     },
     {
       "Identity": "/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/wwwroot/uploads/c03c4c94-f281-458c-b3c5-30a830be1169.jpg",

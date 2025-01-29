@@ -1,5 +1,4 @@
-﻿
-@model BookATableVM
+﻿@model BookATableVM
 <!-- Page Title #1
 ============================================= -->
 <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
@@ -39,74 +38,64 @@
         <div class="text-center mb-4">
             <p>@Model.Settings["ReservationDec"]</p>
         </div>
-        <form method="post" asp-controller="BookATable" asp-action="MakeReservation">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post" asp-action="CreateReservation" asp-controller="BookATable" mb-0">
+
+
             <div class="row">
-                <!-- Capacity Selection -->
-                <div class="col-md-4">
-                    <select asp-for="Capacity" class="form-control" required>
-                        <option value="" disabled selected>Adam sayı</option>
-                        @foreach (var table in Model.RestaurantTables)
-                        {
-                            <option value="@table.Capacity">@table.Capacity nəfər</option>
-                        }
-                    </select>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input type="text" class="form-control" asp-for="ReservationForm.FirstName" placeholder="Ad" required />
+                    <span asp-validation-for="ReservationForm.FirstName" class="text-danger"></span>
+                </div>
 
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input type="text" class="form-control" asp-for="ReservationForm.LastName" placeholder="Soyad" required />
+                    <span asp-validation-for="ReservationForm.LastName" class="text-danger"></span>
                 </div>
-                <!-- Date Selection -->
-                <div class="col-md-4">
-                    <select asp-for="Date" class="form-control" required>
-                        <option value="" disabled selected>Tarix seçin</option>
-                        @foreach (var date in ViewData["DateList"] as List<DateTime>)
-                        {
-                            <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("dd MMM yyyy")</option>
-                        }
-                    </select>
-                </div>
-                <!-- Time Selection -->
-                <div class="col-md-4">
-                    <select asp-for="Time" class="form-control" required>
-                        <option value="" disabled selected>Vaxt seçin</option>
-                        @foreach (var time in ViewData["TimeList"] as List<string>)
-                        {
-                            <option value="@time">@time</option>
-                        }
-                    </select>
-                </div>
-            </div>
 
-            <!-- Contact Form -->
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <input type="text" asp-for="ContactFormModel.FirstName" class="form-control" placeholder="Ad" required />
-                    <span asp-validation-for="ContactFormModel.FirstName" class="text-danger"></span>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input type="email" class="form-control" asp-for="ReservationForm.Email" placeholder="E-poçt ünvanı" required />
+                    <span asp-validation-for="ReservationForm.Email" class="text-danger"></span>
                 </div>
-                <div class="col-md-6">
-                    <input type="text" asp-for="ContactFormModel.LastName" class="form-control" placeholder="Soyad" required />
-                    <span asp-validation-for="ContactFormModel.LastName" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <input type="email" asp-for="ContactFormModel.Email" class="form-control" placeholder="Email" required />
-                    <span asp-validation-for="ContactFormModel.Email" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
-                    <input type="text" asp-for="ContactFormModel.Phone" class="form-control" placeholder="Telefon" required />
-                    <span asp-validation-for="ContactFormModel.Phone" class="text-danger"></span>
-                </div>
-                <div class="col-md-12">
-                    <textarea asp-for="ContactFormModel.Message" class="form-control" rows="4" placeholder="Mesaj" required></textarea>
-                    <span asp-validation-for="ContactFormModel.Message" class="text-danger"></span>
-                </div>
-            </div>
 
-            <!-- Submit Button -->
-            <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary">Rezervasiya Et</button>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input type="tel" class="form-control" asp-for="ReservationForm.Phone" placeholder="Telefon nömrəsi" required />
+                    <span asp-validation-for="ReservationForm.Phone" class="text-danger"></span>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <select class="form-control" asp-for="Capacity" required>
+                        <option value="">Number of people</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                        <option value="8">8 People</option>
+                        <option value="10">10 People</option>
+                    </select>
+                    <span asp-validation-for="Capacity" class="text-danger"></span>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <input type="date" class="form-control" asp-for="Date" required />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <input type="time" class="form-control" asp-for="Time" required />
+                    <span asp-validation-for="Time" class="text-danger"></span>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <button type="submit" class="btn btn-primary">Create Reservation</button>
+                </div>
             </div>
         </form>
-
     </div>
 </section>
+
+
+
 
 <!-- #reservation1 end -->
 <!-- Testimonial #5
@@ -180,3 +169,20 @@
     <!-- .container end -->
 </section>
 <!-- #banner6 end -->
+<script>document.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Rezervasiya məlumatlarınız göndərildi!');
+        this.submit();
+    });</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var errors = @Html.Raw(TempData["Errors"] ?? "[]");
+
+        // Əgər xətalar varsa, onları konsola yazdıraq
+        if (errors.length > 0) {
+            errors.forEach(function(error) {
+                console.error(error); // Xətaları konsolda göstər
+            });
+        }
+    });
+</script>

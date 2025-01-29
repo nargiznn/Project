@@ -1,21 +1,32 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using SteakInMCV.Models.Enum;
 
-namespace SteakInMCV.Models
+namespace SteakInMCV.ViewModels
 {
-	public class Reservation
-    {
-        public string Name { get; set; }
-        public string Surname { get; set; }
+	public class ReservationVM
+	{
+        public int Id { get; set; }
+
         [Required]
-        [EmailAddress(ErrorMessage = "Invalid email address.")]
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [Required, EmailAddress]
         public string Email { get; set; }
+
         public string PhoneNumber { get; set; }
+
+        [Required]
         public DateTime Date { get; set; }
+
+        [Required]
         public TimeSpan Time { get; set; }
+
+        [Required]
         public int PeopleCount { get; set; }
-        public ReservationStatus Status { get; set; } = ReservationStatus.Pending;
+
     }
 }
 

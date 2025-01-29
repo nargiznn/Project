@@ -15,8 +15,8 @@ namespace SteakInMCV.ViewModels
         public string Time { get; set; } 
 
         [Required]
-        public ContactFormModel ContactFormModel { get; set; }
-        public IEnumerable<RestaurantTable> RestaurantTables { get; set; }
+        public ReservationForm ReservationForm { get; set; }
+        //public IEnumerable<RestaurantTable> RestaurantTables { get; set; }
         public IEnumerable<Testimonial> Testimonials { get; set; }
         public Dictionary<string, string> Settings { get; set; }
         public List<Banner> Banners { get; set; }
