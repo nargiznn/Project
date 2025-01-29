@@ -142,6 +142,7 @@ namespace Service.Services
             var resetLink = $"http://localhost:7031/api/Account/ResetPassword?userId={user.Id}&token={Uri.EscapeDataString(resetToken)}";
 
 
+
             await SendPasswordResetEmailAsync(model.Email, user.UserName, resetLink);
 
             return new ForgotPasswordResponse
