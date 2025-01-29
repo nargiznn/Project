@@ -52,8 +52,8 @@ namespace SteakInMCV.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["Error"] = "Zəhmət olmasa məlumatları düzgün daxil edin.";
-                model = await PopulateViewModelData(); 
+                TempData["Error"] = "Please enter the information correctly.";
+                model = await PopulateViewModelData();
                 return View(model);
             }
 
@@ -74,20 +74,21 @@ namespace SteakInMCV.Controllers
                 var response = await _httpClient.PostAsJsonAsync($"{BaseURl}/api/Reservations/CreateReservation/create", reservation);
                 if (response.IsSuccessStatusCode)
                 {
-                    TempData["Success"] = "Rezervasiya uğurla yaradıldı!";
+                    TempData["Success"] = "Reservation successfully created!";
                 }
                 else
                 {
-                    TempData["Error"] = "Rezervasiya uğursuz oldu.";
+                    TempData["Error"] = "Reservation failed.";
                 }
             }
             catch (HttpRequestException ex)
             {
-                TempData["Error"] = $"API sorğusu uğursuz oldu: {ex.Message}";
+                TempData["Error"] = $"API request failed: {ex.Message}";
             }
 
             return RedirectToAction(nameof(Index));
         }
+
 
         private async Task<BookATableVM> PopulateViewModelData()
         {

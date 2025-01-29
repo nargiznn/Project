@@ -60,28 +60,18 @@
                     <span asp-validation-for="Phone" class="text-danger"></span>
 
                 </div>
-
                 <div class="col-xs-12 col-sm-12 col-md-4">
-                    <select class="form-control" asp-for="Capacity" required>
-                        <option value="">Number of people</option>
-                        <option value="2">2 People</option>
-                        <option value="3">3 People</option>
-                        <option value="4">4 People</option>
-                        <option value="5">5 People</option>
-                        <option value="6">6 People</option>
-                        <option value="8">8 People</option>
-                        <option value="10">10 People</option>
-                    </select>
+                    <select class="form-control" asp-for="Capacity" id="peopleCountSelect" required></select>
                     <span asp-validation-for="Capacity" class="text-danger"></span>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4">
-                    <input type="date" class="form-control" asp-for="Date" required />
+                    <input type="date" class="form-control" asp-for="Date" id="datePicker" required />
                     <span asp-validation-for="Date" class="text-danger"></span>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4">
-                    <input type="time" class="form-control" asp-for="Time" required />
+                    <select class="form-control" asp-for="Time" id="timePicker" required></select>
                     <span asp-validation-for="Time" class="text-danger"></span>
                 </div>
 
@@ -176,12 +166,41 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var errors = @Html.Raw(TempData["Errors"] ?? "[]");
-
-        // Əgər xətalar varsa, onları konsola yazdıraq
         if (errors.length > 0) {
             errors.forEach(function(error) {
-                console.error(error); // Xətaları konsolda göstər
+                console.error(error);
             });
         }
     });
 </script>
+<script type="text/javascript">document.addEventListener('DOMContentLoaded', function () {
+        const maxPeople = 10;
+        const selectElement = document.getElementById('peopleCountSelect');
+        selectElement.innerHTML = '<option value="">Select number of people</option>';
+        for (let i = 1; i <= maxPeople; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `${i} People`;
+            selectElement.appendChild(option);
+        }
+        const timePicker = document.getElementById('timePicker');
+        timePicker.innerHTML = '<option value="">Select time</option>';
+        const startTime = 10;
+        const endTime = 20;
+        for (let hour = startTime; hour <= endTime; hour++) {
+            const time = `${hour.toString().padStart(2, '0')}:00`;
+            const option = document.createElement('option');
+            option.value = time;
+            option.textContent = time;
+            timePicker.appendChild(option);
+        }
+        const datePicker = document.getElementById('datePicker');
+        const today = new Date();
+        const maxDate = new Date();
+        maxDate.setDate(today.getDate() + 7);
+
+        const formatDate = (date) => date.toISOString().split('T')[0];
+
+        datePicker.min = formatDate(today);
+        datePicker.max = formatDate(maxDate);
+    });</script>
