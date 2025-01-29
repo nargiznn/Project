@@ -36,6 +36,8 @@
     <None Remove="Areas\Admin\ViewModels\MenuCategory\" />
     <None Remove="Areas\Admin\ViewModels\SpecialCategory\" />
     <None Remove="Areas\Admin\ViewModels\Cuisine\" />
+    <None Remove="Areas\Admin\ViewModels\Reservation\" />
+    <None Remove="Areas\Admin\Views\Reservation\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -68,6 +70,8 @@
     <Folder Include="Areas\Admin\ViewModels\MenuCategory\" />
     <Folder Include="Areas\Admin\ViewModels\SpecialCategory\" />
     <Folder Include="Areas\Admin\ViewModels\Cuisine\" />
+    <Folder Include="Areas\Admin\ViewModels\Reservation\" />
+    <Folder Include="Areas\Admin\Views\Reservation\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
