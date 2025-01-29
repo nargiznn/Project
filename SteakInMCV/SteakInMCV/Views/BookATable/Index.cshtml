@@ -38,28 +38,27 @@
         <div class="text-center mb-4">
             <p>@Model.Settings["ReservationDec"]</p>
         </div>
-        <form method="post" asp-action="CreateReservation" asp-controller="BookATable" mb-0">
-
-
+        <form method="post">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="text" class="form-control" asp-for="ReservationForm.FirstName" placeholder="Ad" required />
-                    <span asp-validation-for="ReservationForm.FirstName" class="text-danger"></span>
+                    <input type="text" class="form-control" asp-for="FirstName" placeholder="Ad" required />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="text" class="form-control" asp-for="ReservationForm.LastName" placeholder="Soyad" required />
-                    <span asp-validation-for="ReservationForm.LastName" class="text-danger"></span>
+                    <input type="text" class="form-control" asp-for="LastName" placeholder="Soyad" required />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="email" class="form-control" asp-for="ReservationForm.Email" placeholder="E-poçt ünvanı" required />
-                    <span asp-validation-for="ReservationForm.Email" class="text-danger"></span>
+                    <input type="email" class="form-control" asp-for="Email" placeholder="E-poçt ünvanı" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="tel" class="form-control" asp-for="ReservationForm.Phone" placeholder="Telefon nömrəsi" required />
-                    <span asp-validation-for="ReservationForm.Phone" class="text-danger"></span>
+                    <input type="tel" class="form-control" asp-for="Phone" placeholder="Telefon nömrəsi" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4">

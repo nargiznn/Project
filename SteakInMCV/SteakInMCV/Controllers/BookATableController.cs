@@ -1,121 +1,104 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SteakInMCV.Areas.Admin.ViewModels.AwardLogo;
-using SteakInMCV.Areas.Admin.ViewModels.Product;
 using SteakInMCV.Models;
 using SteakInMCV.Models.Enum;
 using SteakInMCV.ViewModels;
-using SteakInMCV.ViewModels.Events;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace SteakInMCV.Controllers
 {
     public class BookATableController : Controller
     {
         private readonly string BaseURl = "http://localhost:7031";
+        private readonly HttpClient _httpClient;
+
+        public BookATableController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+        }
 
         private async Task<T> GetApiData<T>(string url)
         {
-            using (var client = new HttpClient())
+            try
             {
-                var response = await client.GetAsync(url);
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<T>(apiResponse);
-                }
-                else
-                {
-                    ViewData["Error"] = $"API request failed with status code: {response.StatusCode}";
-                    return default(T);
-                }
+                var response = await _httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                var apiResponse = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<T>(apiResponse);
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = $"API request failed: {ex.Message}";
+                return default;
             }
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            BookATableVM homeVM = new BookATableVM();
-
-            try
-            {
-                homeVM.Testimonials = await GetApiData<IEnumerable<Testimonial>>($"{BaseURl}/api/Testimonial/GetAll");
-                homeVM.Settings = (await GetApiData<IEnumerable<Setting>>($"{BaseURl}/api/setting/GetAll"))
-                    .ToDictionary(s => s.Key, s => s.Value);
-                homeVM.Banners = await GetApiData<List<Banner>>($"{BaseURl}/api/banner/GetAll");
-
-                if (TempData["Error"] != null)
-                {
-                    ViewData["Error"] = TempData["Error"];
-                }
-                if (TempData["Success"] != null)
-                {
-                    ViewData["Success"] = TempData["Success"];
-                }
-
-                if (TempData["Errors"] != null)
-                {
-                    var errors = JsonConvert.DeserializeObject<string[]>(TempData["Errors"].ToString());
-                    foreach (var error in errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ViewData["Error"] = $"API request failed: {ex.Message}";
-            }
+            var homeVM = await PopulateViewModelData();
 
             return View(homeVM);
         }
+
         [HttpPost]
-        public async Task<IActionResult> CreateReservation(BookATableVM model)
+        public async Task<IActionResult> Index(BookATableVM model)
         {
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Zəhmət olmasa məlumatları düzgün daxil edin.";
+                model = await PopulateViewModelData(); 
+                return View(model);
+            }
+
+            var reservation = new Reservation
+            {
+                Name = model.FirstName,
+                Surname = model.LastName,
+                Email = model.Email,
+                PhoneNumber = model.Phone,
+                PeopleCount = model.Capacity,
+                Date = model.Date,
+                Time = model.Time,
+                Status = ReservationStatus.Pending
+            };
+
             try
             {
-                if (!ModelState.IsValid)
+                var response = await _httpClient.PostAsJsonAsync($"{BaseURl}/api/Reservations/CreateReservation/create", reservation);
+                if (response.IsSuccessStatusCode)
                 {
-                    TempData["Errors"] = JsonConvert.SerializeObject(ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToArray());
-                    return RedirectToAction("Index");
+                    TempData["Success"] = "Rezervasiya uğurla yaradıldı!";
                 }
-
-                using (var client = new HttpClient())
+                else
                 {
-                    var reservation = new Reservation
-                    {
-                        Name = model.ReservationForm.FirstName,
-                        Surname = model.ReservationForm.LastName,
-                        Email = model.ReservationForm.Email,
-                        PhoneNumber = model.ReservationForm.Phone,
-                        PeopleCount = model.Capacity,
-                        Date = model.Date,
-                        Time = TimeSpan.Parse(model.Time),
-                        Status = ReservationStatus.Pending
-                    };
-
-                    var response = await client.PostAsJsonAsync($"{BaseURl}/api/Reservations/CreateReservation/create", reservation);
-
-                    if (response.IsSuccessStatusCode)
-                        TempData["Success"] = "Rezervasiya uğurla yaradıldı!"; 
-                    else
-                        TempData["Error"] = "Rezervasiya uğursuz oldu.";  
+                    TempData["Error"] = "Rezervasiya uğursuz oldu.";
                 }
-
-                return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex)
             {
-                TempData["Error"] = $"Xəta baş verdi: {ex.Message}"; 
-                return RedirectToAction("Index");
+                TempData["Error"] = $"API sorğusu uğursuz oldu: {ex.Message}";
             }
+
+            return RedirectToAction(nameof(Index));
         }
 
+        private async Task<BookATableVM> PopulateViewModelData()
+        {
+            var homeVM = new BookATableVM();
+
+            homeVM.Banners = await GetApiData<List<Banner>>($"{BaseURl}/api/banner/GetAll") ?? new List<Banner>();
+            homeVM.Testimonials = await GetApiData<IEnumerable<Testimonial>>($"{BaseURl}/api/Testimonial/GetAll") ?? new List<Testimonial>();
+            var settings = await GetApiData<IEnumerable<Setting>>($"{BaseURl}/api/setting/GetAll");
+            homeVM.Settings = settings?.ToDictionary(s => s.Key, s => s.Value) ?? new Dictionary<string, string>();
+
+            return homeVM;
+        }
     }
 }

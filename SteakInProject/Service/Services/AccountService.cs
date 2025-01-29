@@ -259,7 +259,7 @@ namespace Service.Services
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-            var confirmationLink = $"https://localhost:7031/api/ui/Account/ConfirmEmail?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+            var confirmationLink = $"https://localhost:7031/api/ui/Account/ConfirmEmail?userId={user.Id}&token={token}";
 
             string subject = "Register confirm email";
 
