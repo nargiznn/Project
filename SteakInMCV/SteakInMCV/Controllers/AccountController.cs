@@ -10,7 +10,7 @@ namespace SteakInMCV.Controllers
 {
 	public class AccountController: Controller
     {
-        private readonly string BaseURl = "https://localhost:7031";
+        private readonly string BaseURl = "http://localhost:7031";
         private readonly IHttpContextAccessor _httpContext;
 
         private readonly IHttpClientFactory _httpClientFactory;
