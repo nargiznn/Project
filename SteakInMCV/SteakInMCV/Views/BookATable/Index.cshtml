@@ -1,6 +1,5 @@
 ﻿@model BookATableVM
-<!-- Page Title #1
-============================================= -->
+<!-- Page Title #1 -->
 <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
     <div class="bg-section">
         <img src="~/assets/images/page-title/@Model.Settings["BookATableBg"]" alt="Background" />
@@ -22,17 +21,12 @@
                     </ol>
                     <div class="divider--shape-1down"></div>
                 </div>
-                <!-- .title end -->
             </div>
-            <!-- .col-md-12 end -->
         </div>
-        <!-- .row end -->
     </div>
-    <!-- .container end -->
 </section>
-<!-- #page-title end -->
-<!-- Reservation #1
-============================================= -->
+
+<!-- Reservation Section -->
 <section id="reservation" class="reservation bg-white pb-80 pt-90">
     <div class="container">
         <div class="text-center mb-4">
@@ -41,166 +35,126 @@
         <form method="post">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="text" class="form-control" asp-for="FirstName" placeholder="Ad" required />
+                    <input type="text" class="form-control" asp-for="FirstName" placeholder="Name" required />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
-
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="text" class="form-control" asp-for="LastName" placeholder="Soyad" required />
+                    <input type="text" class="form-control" asp-for="LastName" placeholder="Surname" required />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
-
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="email" class="form-control" asp-for="Email" placeholder="E-poçt ünvanı" required />
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Email" required />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-
                 <div class="col-xs-12 col-sm-12 col-md-6">
-                    <input type="tel" class="form-control" asp-for="Phone" placeholder="Telefon nömrəsi" />
+                    <input type="tel" class="form-control" asp-for="Phone" placeholder="Phone" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
-
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4">
-                    <select class="form-control" asp-for="Capacity" id="peopleCountSelect" required></select>
+                    <div class="form-select">
+                        <i class="fa fa-angle-down"></i>
+                        <select class="form-control" asp-for="Capacity" id="peopleCountSelect" required>
+                            <option value="">Select number of people</option>
+                        </select>
+                    </div>
                     <span asp-validation-for="Capacity" class="text-danger"></span>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4">
-                    <input type="date" class="form-control" asp-for="Date" id="datePicker" required />
+                    <div class="form-select">
+                        <i class="fa fa-angle-down"></i>
+                        <select class="form-control" asp-for="Date" id="datePicker" required>
+                            <option value="">Select date</option>
+                        </select>
+                    </div>
                     <span asp-validation-for="Date" class="text-danger"></span>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4">
-                    <select class="form-control" asp-for="Time" id="timePicker" required></select>
+                    <div class="form-select">
+                        <i class="fa fa-angle-down"></i>
+                        <select class="form-control" asp-for="Time" id="timePicker" required>
+                            <option value="">Select time</option>
+                        </select>
+                    </div>
                     <span asp-validation-for="Time" class="text-danger"></span>
                 </div>
 
+
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <button type="submit" class="btn btn-primary">Create Reservation</button>
+                    <button type="submit" id="submit-message" class="btn btn--secondary btn--block">Create Reservation</button>
                 </div>
             </div>
         </form>
     </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-
-<!-- #reservation1 end -->
-<!-- Testimonial #5
-============================================= -->
-<section id="testimonial5" class="testimonial testimonial-5 bg-overlay bg-parallax bg-overlay-dark text-center">
-    <div class="bg-section">
-        <img src="~/assets/images/background/2.jpg" alt="Background" />
-    </div>
-    <div class="container">
-        <div class="divider--shape-1up"></div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
-                <div id="testimonial-wide" class="carousel carousel-white" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="false" data-space="0" data-loop="true" data-speed="800">
-                    <!-- Testimonial #1 -->
-                    @foreach (var item in Model.Testimonials.Take(4))
-                    {
-                        <div class="testimonial-panel">
-                            <div class="testimonial--img">
-                                <img src="~/assets/images/testimonial/chef-hat.png" alt="hat">
-                            </div>
-                            <div class="testimonial--body">
-                                <p class="color-white">@item.Text</p>
-                            </div>
-                            <!-- .testimonial-body end -->
-                            <div class="testimonial--meta">
-                                <div class="testimonial--author">
-                                    <h4>- @item.Name @item.SurName</h4>
-                                </div>
-                            </div>
-                            <!-- .testimonial-meta end -->
-                        </div>
-                    }
-                    <!-- .testimonial-panel end -->
-
-                </div>
-            </div>
-            <!-- .col-md-12 end -->
-        </div>
-        <!-- .row end -->
-        <div class="divider--shape-1down"></div>
-    </div>
-    <!-- .container end -->
-</section>
-<!-- .testimonial5 end -->
-<!-- Banner#6
-============================================= -->
-<section id="banner6" class="banner banner-1 text-center pb-90">
-    <div class="container">
-        <div class="row">
-            @foreach (var item in Model.Banners.TakeLast(3))
-            {
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="banner-panel">
-                        <div class="banner--img">
-                            <img src="~/assets/images/banners/@item.Image" alt="banner img" class="img-responsive">
-                        </div>
-                        <div class="banner--content">
-                            <h4>@item.Title</h4>
-                            <p>@item.Desc</p>
-                        </div>
-                    </div>
-                    <!-- .banner-panel end -->
-                </div>
-            }
-            <!-- .col-md-4 end -->
-
-
-        </div>
-        <!-- .row end -->
-    </div>
-    <!-- .container end -->
-</section>
-<!-- #banner6 end -->
-<script>document.querySelector('form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Rezervasiya məlumatlarınız göndərildi!');
-        this.submit();
-    });</script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        var errors = @Html.Raw(TempData["Errors"] ?? "[]");
-        if (errors.length > 0) {
-            errors.forEach(function(error) {
-                console.error(error);
-            });
-        }
-    });
-</script>
-<script type="text/javascript">document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        const peopleSelect = document.getElementById('peopleCountSelect');
+        peopleSelect.innerHTML = '<option value="">Select number of people</option>';
         const maxPeople = 10;
-        const selectElement = document.getElementById('peopleCountSelect');
-        selectElement.innerHTML = '<option value="">Select number of people</option>';
-        for (let i = 1; i <= maxPeople; i++) {
+        for (let i = 2; i <= maxPeople; i += 2) {
             const option = document.createElement('option');
             option.value = i;
             option.textContent = `${i} People`;
-            selectElement.appendChild(option);
+            peopleSelect.appendChild(option);
         }
-        const timePicker = document.getElementById('timePicker');
-        timePicker.innerHTML = '<option value="">Select time</option>';
-        const startTime = 10;
-        const endTime = 20;
-        for (let hour = startTime; hour <= endTime; hour++) {
-            const time = `${hour.toString().padStart(2, '0')}:00`;
+        const dateSelect = document.getElementById('datePicker');
+        dateSelect.innerHTML = '<option value="">Select date</option>';
+        const today = new Date();
+        for (let i = 0; i < 7; i++) {
+            const newDate = new Date(today);
+            newDate.setDate(today.getDate() + i);
+            const dateString = newDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+            const option = document.createElement('option');
+            option.value = newDate.toISOString().split('T')[0];
+            option.textContent = dateString;
+            dateSelect.appendChild(option);
+        }
+        const timeSelect = document.getElementById('timePicker');
+        timeSelect.innerHTML = '<option value="">Select time</option>';
+        const availableTimes = [];
+        for (let hour = 10; hour <= 20; hour++) {
+            const timeString = `${hour}:00`;
+            availableTimes.push(timeString);
+        }
+        availableTimes.forEach(function (time) {
             const option = document.createElement('option');
             option.value = time;
             option.textContent = time;
-            timePicker.appendChild(option);
+            timeSelect.appendChild(option);
+        });
+        var successMessage = '@TempData["Success"]';
+        var errorMessage = '@TempData["Error"]';
+
+        if (successMessage) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: successMessage,
+            });
         }
-        const datePicker = document.getElementById('datePicker');
-        const today = new Date();
-        const maxDate = new Date();
-        maxDate.setDate(today.getDate() + 7);
+        
+        if (errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: errorMessage,
+            });
+        }
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'success',
+                title: 'Reservation Sent',
+                text: 'Your reservation details have been submitted!',
+            }).then(function () {
+                e.target.submit();
+            });
+        });
+    });
+</script>
 
-        const formatDate = (date) => date.toISOString().split('T')[0];
-
-        datePicker.min = formatDate(today);
-        datePicker.max = formatDate(maxDate);
-    });</script>

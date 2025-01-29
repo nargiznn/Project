@@ -29,10 +29,11 @@ namespace Service.Services
         {
             _dbContext.Reservations.Add(reservation);
             await _dbContext.SaveChangesAsync();
-            string subject = "Reservation Pending";
-            string message = "Your reservation is currently pending and will be reviewed shortly.";
 
-            var email = reservation.Email; 
+            string subject = "Reservation Pending";
+            string message = $"Your reservation is currently pending and will be reviewed shortly. Reservation details: <br/> Date: {reservation.Date:MMMM dd, yyyy} <br/> Time: {reservation.Time}";
+
+            var email = reservation.Email;
 
             if (!string.IsNullOrEmpty(email))
             {
@@ -55,6 +56,7 @@ namespace Service.Services
 
             return reservation;
         }
+
 
 
         public async Task<List<Reservation>> GetReservationsAsync()
@@ -89,12 +91,13 @@ namespace Service.Services
 
             reservation.Status = status;
             await _dbContext.SaveChangesAsync();
+
             if (!string.IsNullOrEmpty(reservation.Email))
             {
                 string subject = status == ReservationStatus.Approved ? "Reservation Accepted" : "Reservation Canceled";
                 string message = status == ReservationStatus.Approved
-                                 ? "Your reservation has been accepted."
-                                 : "Your reservation has been canceled.";
+                                 ? $"Your reservation has been accepted. Reservation details: <br/> Date: {reservation.Date:MMMM dd, yyyy} <br/> Time: {reservation.Time}"
+                                 : $"Your reservation has been canceled. Reservation details: <br/> Date: {reservation.Date:MMMM dd, yyyy} <br/> Time: {reservation.Time}";
 
                 var mimeMessage = new MimeMessage();
                 mimeMessage.From.Add(MailboxAddress.Parse("nargizzn@code.edu.az"));
@@ -115,6 +118,7 @@ namespace Service.Services
 
             return reservation;
         }
+
 
     }
 }
