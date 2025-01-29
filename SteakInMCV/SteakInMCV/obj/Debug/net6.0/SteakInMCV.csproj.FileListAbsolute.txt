@@ -66,3 +66,15 @@
 /Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/obj/Debug/net6.0/SteakInMCV.pdb
 /Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/obj/Debug/net6.0/SteakInMCV.genruntimeconfig.cache
 /Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/obj/Debug/net6.0/ref/SteakInMCV.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/Stripe.net.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/System.Configuration.ConfigurationManager.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/System.Drawing.Common.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/System.Security.Cryptography.ProtectedData.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/System.Security.Permissions.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/System.Windows.Extensions.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
+/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll

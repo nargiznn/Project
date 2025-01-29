@@ -1,0 +1,101 @@
+﻿@model LoginVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form </title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/account/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link href="~/assets/css/vendor/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/account/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/account/css/theme.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/account/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <div class="text-center mb-5">
+                        <a href="/Shop/Index/" class="text-dark font-size-22 font-family-secondary" style="text-decoration:none">
+                            <i class=""></i> <b>
+                                Norda Store Login Page
+                            </b>
+                        </a>
+                    </div>
+                    <form class="user" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="exampleInputUsername" placeholder="Your Username" autocomplete="off" asp-for="usernameOrEmail">
+                            <span class="text-danger" asp-validation-for="usernameOrEmail" style="text-align:left;display:block;"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="d-flex" style="position:relative">
+                                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Your Password" asp-for="password" style="width:466px">
+
+                                    <i class="fa-solid fa-eye register-password-eye" style="position:absolute; top:10px;right:0;right:20px"></i>
+                                </div>
+                                <a asp-controller="Account" asp-action="ForgetPassword" class="loginhere-link" style="margin-left:10px;margin-top:10px">Forget Password?</a>
+                                <span class="text-danger" asp-validation-for="password" style="text-align:left;display:block;"></span>
+
+
+
+                            </div>
+                            <span class="text-danger" asp-validation-for="password"></span>
+                        </div>
+
+                        <button class="btn btn-success btn-block waves-effect waves-light"> Login </button>
+                    </form>
+
+                    <p class="loginhere">
+                        <a asp-controller="Account" asp-action="Register" class="loginhere-link" style="display:block">Register here</a>
+
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>const registerPasswordIcons = document.querySelectorAll(".register-password-eye");
+
+        registerPasswordIcons.forEach(icon => {
+            icon.addEventListener("click", function () {
+                if (this.previousElementSibling.previousElementSibling.getAttribute("type") == "password") {
+                    this.previousElementSibling.previousElementSibling.setAttribute("type", "text");
+                    this.classList.remove("fa-eye");
+                    this.classList.add("fa-eye-slash");
+                } else {
+                    this.previousElementSibling.previousElementSibling.setAttribute("type", "password");
+                    this.classList.add("fa-eye");
+                    this.classList.remove("fa-eye-slash");
+
+                }
+            });
+        });</script>
+
+    <!-- JS -->
+    <script src="~/acount/vendor/jquery/jquery.min.js"></script>
+    <script src="!/account/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

@@ -38,7 +38,30 @@ namespace Service.Services
             _configuration = configuration;
             _emailService = emailService;
         }
+        public async Task<SignInResponse> SignInAsync(SignInDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.UsernameOrEmail);
+            if (user is null)
+            {
+                user = await _userManager.FindByNameAsync(model.UsernameOrEmail);
+            }
+            if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
+                return new SignInResponse
+                {
+                    Success = false,
+                    Errors = new List<string> { "Login failed" },
+                    Token = null
+                };
 
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return new SignInResponse
+            {
+                Success = true,
+                Errors = null,
+                Token = GenerateJwtToken(user.UserName, roles.ToList())
+            };
+        }
         public async Task AddRoleToUserAsync(string userId, string roleId)
         {
             var user = await _userManager.FindByIdAsync(userId)
@@ -116,7 +139,7 @@ namespace Service.Services
             }
 
             var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var resetLink = $"https://localhost:7188/api/ui/Account/ResetPassword?userId={user.Id}&token={Uri.EscapeDataString(resetToken)}";
+            var resetLink = $"http://localhost:7031/api/Account/ResetPassword?userId={user.Id}&token={Uri.EscapeDataString(resetToken)}";
 
 
             await SendPasswordResetEmailAsync(model.Email, user.UserName, resetLink);
@@ -216,30 +239,7 @@ namespace Service.Services
             _emailService.SendEmailAsync(email, subject, htmlTemplate);
         }
 
-        public async Task<SignInResponse> SignInAsync(SignInDto model)
-        {
-            var user = await _userManager.FindByEmailAsync(model.UsernameOrEmail);
-            if (user is null)
-            {
-                user = await _userManager.FindByNameAsync(model.UsernameOrEmail);
-            }
-            if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
-                return new SignInResponse
-                {
-                    Success = false,
-                    Errors = new List<string> { "Login failed" },
-                    Token = null
-                };
 
-            var roles = await _userManager.GetRolesAsync(user);
-
-            return new SignInResponse
-            {
-                Success = true,
-                Errors = null,
-                Token = GenerateJwtToken(user.UserName, roles.ToList())
-            };
-        }
 
         public async Task<SignUpResponse> SignUpAsync(SignUpDto model)
         {
@@ -255,11 +255,11 @@ namespace Service.Services
                 };
             }
 
-            await _userManager.AddToRoleAsync(user, Roles.SuperAdmin.ToString());
+            await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-            var confirmationLink = $"https://localhost:7031/api/ui/Account/ConfirmEmail?userId={user.Id}&token={token}";
+            var confirmationLink = $"http://localhost:7031/api/Account/ConfirmEmail?userId={user.Id}&token={Uri.EscapeDataString(token)}";
 
             string subject = "Register confirm email";
 
@@ -271,7 +271,12 @@ namespace Service.Services
             }
 
             html = html.Replace("{{confirm-link}}", confirmationLink);
-            html = html.Replace("{{username}}", user.UserName);
+            html = html.Replace("{{username}}", model.UserName);
+            html = html.Replace("{{dayofweek}}", DateTime.Now.DayOfWeek.ToString());
+            html = html.Replace("{{month}}", DateTime.Now.Month.ToString());
+            html = html.Replace("{{day}}", DateTime.Now.Day.ToString());
+            html = html.Replace("{{hour}}", DateTime.Now.Hour.ToString());
+
 
             _emailService.Send(user.Email, subject, html);
 
@@ -281,6 +286,7 @@ namespace Service.Services
                 Errors = null
             };
         }
+
 
         private string GenerateJwtToken(string username, List<string> roles)
         {

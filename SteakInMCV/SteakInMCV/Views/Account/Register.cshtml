@@ -1,0 +1,98 @@
+﻿@model RegisterVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/account/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <link href="~/assets/css/vendor/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/account/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <div class="text-center mb-5">
+                        <a href="/Default/Index/" class="text-dark font-size-22 font-family-secondary" style="text-decoration:none">
+                            <b style="font-size:20px">Norda Store Register Page</b>
+                        </a>
+                    </div>
+                    <form class="user" method="post">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Your FullName" asp-for="fullName">
+                                <span class="text-danger" asp-validation-for="fullName" style="text-align:left;display:block;"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Your Username" asp-for="userName">
+                                <span class="text-danger" asp-validation-for="userName" style="text-align:left;display:block;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Your Email" asp-for="email">
+                            <span class="text-danger" asp-validation-for="email" style="text-align:left;display:block;"></span>
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-sm-6">
+                                <div class="d-flex" style="position:relative">
+                                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Your Password" asp-for="password" style="width:466px">
+                                    <span class="text-danger" asp-validation-for="password" style="text-align:left;display:block;"></span>
+
+                                    <i class="fa-solid fa-eye register-password-eye" style="position:absolute; top:10px;right:0;right:20px"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block waves-effect waves-light"> Register </button>
+                    </form>
+
+                    <p class="loginhere">
+                        Have already an account ? <a asp-controller="Account" asp-action="Login" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>const registerPasswordIcons = document.querySelectorAll(".register-password-eye");
+
+        registerPasswordIcons.forEach(icon => {
+            icon.addEventListener("click", function () {
+                if (this.previousElementSibling.previousElementSibling.getAttribute("type") == "password") {
+                    this.previousElementSibling.previousElementSibling.setAttribute("type", "text");
+                    this.classList.remove("fa-eye");
+                    this.classList.add("fa-eye-slash");
+                } else {
+                    this.previousElementSibling.previousElementSibling.setAttribute("type", "password");
+                    this.classList.add("fa-eye");
+                    this.classList.remove("fa-eye-slash");
+
+                }
+            });
+        });</script>
+
+    <!-- JS -->
+    <script src="~/acount/vendor/jquery/jquery.min.js"></script>
+    <script src="!/account/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

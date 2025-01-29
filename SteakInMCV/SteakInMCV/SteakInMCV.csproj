@@ -38,6 +38,10 @@
     <None Remove="Areas\Admin\ViewModels\Cuisine\" />
     <None Remove="Areas\Admin\ViewModels\Reservation\" />
     <None Remove="Areas\Admin\Views\Reservation\" />
+    <None Remove="ViewModels\Account\" />
+    <None Remove="Views\Account\" />
+    <None Remove="Helpers\" />
+    <None Remove="Helpers\Response\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -72,9 +76,14 @@
     <Folder Include="Areas\Admin\ViewModels\Cuisine\" />
     <Folder Include="Areas\Admin\ViewModels\Reservation\" />
     <Folder Include="Areas\Admin\Views\Reservation\" />
+    <Folder Include="ViewModels\Account\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Helpers\Response\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Stripe.net" Version="47.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\admin\" />
