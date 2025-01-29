@@ -6,93 +6,95 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form </title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="~/account/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <title>Register</title>
 
-    <link href="~/assets/css/vendor/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Custom fonts for this template-->
+    <link href="~/login-register/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/login-register/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
+    <!-- Custom styles for this template-->
+    <link href="~/login-register/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="~/account/css/style.css">
 </head>
-<body>
 
-    <div class="main">
+<body class="bg-gradient-primary">
 
-        <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
-            <div class="container">
-                <div class="signup-content">
-                    <div class="text-center mb-5">
-                        <a href="/Default/Index/" class="text-dark font-size-22 font-family-secondary" style="text-decoration:none">
-                            <b style="font-size:20px">Norda Store Register Page</b>
-                        </a>
-                    </div>
-                    <form class="user" method="post">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Your FullName" asp-for="fullName">
-                                <span class="text-danger" asp-validation-for="fullName" style="text-align:left;display:block;"></span>
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Your Username" asp-for="userName">
-                                <span class="text-danger" asp-validation-for="userName" style="text-align:left;display:block;"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Your Email" asp-for="email">
-                            <span class="text-danger" asp-validation-for="email" style="text-align:left;display:block;"></span>
-                        </div>
-                        <div class="form-group row">
-
-                            <div class="col-sm-6">
-                                <div class="d-flex" style="position:relative">
-                                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Your Password" asp-for="password" style="width:466px">
-                                    <span class="text-danger" asp-validation-for="password" style="text-align:left;display:block;"></span>
-
-                                    <i class="fa-solid fa-eye register-password-eye" style="position:absolute; top:10px;right:0;right:20px"></i>
+                            <form class="user" method="post">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Your FullName" asp-for="fullName">
+                                        <span class="text-danger" asp-validation-for="fullName" style="text-align:left;display:block;"></span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Your Username" asp-for="userName">
+                                        <span class="text-danger" asp-validation-for="userName" style="text-align:left;display:block;"></span>
+                                    </div>
                                 </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Your Email" asp-for="email">
+                                    <span class="text-danger" asp-validation-for="email" style="text-align:left;display:block;"></span>
+                                </div>
+                                <div class="form-group row">
+
+                                    <div class="col-sm-6">
+                                        <div class="d-flex" style="position:relative">
+                                            <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Your Password" asp-for="password" style="width:466px">
+                                            <span class="text-danger" asp-validation-for="password" style="text-align:left;display:block;"></span>
+
+                                            <i class="fa-solid fa-eye register-password-eye" style="position:absolute; top:10px;right:0;right:20px"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success btn-block waves-effect waves-light"> Register </button>
+                            </form>
+
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Already have an account? Login!</a>
                             </div>
                         </div>
-                        <button class="btn btn-success btn-block waves-effect waves-light"> Register </button>
-                    </form>
-
-                    <p class="loginhere">
-                        Have already an account ? <a asp-controller="Account" asp-action="Login" class="loginhere-link">Login here</a>
-                    </p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
     </div>
 
-    <script>const registerPasswordIcons = document.querySelectorAll(".register-password-eye");
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/login-register/vendor/jquery/jquery.min.js"></script>
+    <script src="~/login-register/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        registerPasswordIcons.forEach(icon => {
-            icon.addEventListener("click", function () {
-                if (this.previousElementSibling.previousElementSibling.getAttribute("type") == "password") {
-                    this.previousElementSibling.previousElementSibling.setAttribute("type", "text");
-                    this.classList.remove("fa-eye");
-                    this.classList.add("fa-eye-slash");
-                } else {
-                    this.previousElementSibling.previousElementSibling.setAttribute("type", "password");
-                    this.classList.add("fa-eye");
-                    this.classList.remove("fa-eye-slash");
+    <!-- Core plugin JavaScript-->
+    <script src="~/login-register/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                }
-            });
-        });</script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/login-register/js/sb-admin-2.min.js"></script>
 
-    <!-- JS -->
-    <script src="~/acount/vendor/jquery/jquery.min.js"></script>
-    <script src="!/account/js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
+
 </html>
