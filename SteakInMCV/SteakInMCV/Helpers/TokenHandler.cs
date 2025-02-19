@@ -14,7 +14,7 @@ namespace SteakInMCV.Helpers
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var token = _httpContextAccessor.HttpContext.Session.GetString("AuthToken");
+            var token = _httpContextAccessor.HttpContext?.Session.GetString("jwt_token");
 
             if (!string.IsNullOrEmpty(token))
             {

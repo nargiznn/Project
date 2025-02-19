@@ -1,0 +1,96 @@
+﻿@model EventEditVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="#">Velonic</a></li>
+                                <li class="breadcrumb-item"><a href="#">Events</a></li>
+                                <li class="breadcrumb-item active">Edit Event</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Edit Event</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data" asp-controller="Event" asp-action="Edit">
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group">
+                                    <label for="Info">Info</label>
+                                    <input asp-for="Info" class="form-control" id="Info" />
+                                    <span class="text-danger" asp-validation-for="Info"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Title">Title</label>
+                                    <input asp-for="Title" class="form-control" id="Title" />
+                                    <span class="text-danger" asp-validation-for="Title"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Desc">Desc</label>
+                                    <input asp-for="Desc" class="form-control" id="Desc" />
+                                    <span class="text-danger" asp-validation-for="Desc"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TagIds">Tags</label>
+                                    <div class="form-check">
+                                        @if (Model.AvailableTags != null && Model.AvailableTags.Any())
+                                        {
+                                            @foreach (var tag in Model.AvailableTags)
+                                            {
+                                                <input type="checkbox"
+                                                       class="form-check-input"
+                                                       id="Tag_@tag.Value"
+                                                       name="SelectedTags"
+                                                       value="@tag.Value"
+                                                       @(Model.SelectedTags.Contains(int.Parse(tag.Value)) ? "checked" : "") />
+                                                <label class="form-check-label" for="Tag_@tag.Value">
+                                                    @tag.Text
+                                                </label><br />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label>No tags available</label>
+                                        }
+                                    </div>
+                                    <span class="text-danger" asp-validation-for="SelectedTags"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Image">Image</label>
+                                    <input type="file" asp-for="Image" class="form-control" id="Image" />
+                                    <span class="text-danger" asp-validation-for="Image"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by <b>Techzaa</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

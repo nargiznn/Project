@@ -11,6 +11,7 @@ namespace Service.Helpers.DTOs.Chef
         public string? Surname { get; set; }
         public SocialMediaLinkEditDto? SocialMedia { get; set; }
         public List<IFormFile>? Photos { get; set; }
+        public List<int>? PositionIds { get; set; }
     }
 }
 

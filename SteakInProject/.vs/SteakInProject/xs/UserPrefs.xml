@@ -1,19 +1,16 @@
 ﻿<Properties StartupConfiguration="{690D8679-1FED-4B3F-A28D-1C06751E4BC5}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/EmailController.cs" relfile="SteakInProject/Controllers/EmailController.cs" line="22" column="1" />
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/AccountService.cs" relfile="Service/Services/AccountService.cs" line="220" column="1" />
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/SteakInProject/Controllers/UI/AccountController.cs" relfile="SteakInProject/Controllers/UI/AccountController.cs" line="39" column="1" />
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ReservationService.cs" relfile="Service/Services/ReservationService.cs" line="28" column="1" />
-      <Breakpoint file="/Users/nergiznadirli/Desktop/Project/SteakInProject/Service/Services/ProductService.cs" relfile="Service/Services/ProductService.cs" line="33" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInProject/Controllers/ProductController.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Helpers/DTOs/Account/UserDto.cs">
     <Files>
-      <File FileName="SteakInProject/Controllers/ProductController.cs" Line="24" Column="1" />
-      <File FileName="Service/Services/ProductService.cs" Line="33" Column="1" />
-      <File FileName="Domain/Entities/SpecialCategory.cs" Line="9" Column="1" />
+      <File FileName="Service/Services/Interfaces/IGalleryImageService.cs" />
+      <File FileName="SteakInProject/Controllers/GalleryImageController.cs" Line="2" Column="7" />
+      <File FileName="SteakInProject/Controllers/Admin/AccountController.cs" Line="1" Column="1" />
+      <File FileName="Service/Helpers/DTOs/Account/UserDto.cs" Line="14" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,14 +18,24 @@
           <Node name="SteakInProject" expanded="True">
             <Node name="Domain" expanded="True">
               <Node name="Common" expanded="True" />
-              <Node name="Entities" expanded="True" />
+              <Node name="Enum" expanded="True" />
             </Node>
+            <Node name="Repository" expanded="True" />
             <Node name="Service" expanded="True">
-              <Node name="Services" expanded="True" />
+              <Node name="Helpers" expanded="True">
+                <Node name="DTOs" expanded="True">
+                  <Node name="Account" expanded="True">
+                    <Node name="UserDto.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Services" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
             </Node>
             <Node name="SteakInProject">
               <Node name="Controllers" expanded="True">
-                <Node name="ProductController.cs" selected="True" />
+                <Node name="Admin" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -36,7 +43,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.SteakInProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

@@ -1,0 +1,52 @@
+﻿@model SteakInMCV.Areas.Admin.ViewModels.Faq.FaqVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Page Title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Faq Data Detail</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faq Details -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="faq-details">
+                                <p><strong>Id:</strong> @Model.Id</p>
+                                <p><strong>Question:</strong> @Model.Question</p>
+                                <p><strong>Answer:</strong> @Model.Answer</p>
+                                <p><strong>IsActive:</strong> @Model.IsActive</p>
+                                <p><strong>UpdatedAt:</strong> @Model.UpdatedAt</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

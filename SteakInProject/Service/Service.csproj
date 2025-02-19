@@ -58,6 +58,7 @@
     <None Remove="Helpers\DTOs\Comment\" />
     <None Remove="Helpers\DTOs\Reservation\" />
     <None Remove="Helpers\DTOs\AwardLogo\" />
+    <None Remove="Helpers\DTOs\Position\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\DTOs\" />
@@ -91,5 +92,6 @@
     <Folder Include="Helpers\DTOs\Comment\" />
     <Folder Include="Helpers\DTOs\Reservation\" />
     <Folder Include="Helpers\DTOs\AwardLogo\" />
+    <Folder Include="Helpers\DTOs\Position\" />
   </ItemGroup>
 </Project>

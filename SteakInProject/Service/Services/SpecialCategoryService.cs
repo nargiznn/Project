@@ -22,17 +22,19 @@ namespace Service.Services
         }
         public async Task CreateAsync(SpecialCategoryCreateDto specialCategory)
         {
+            specialCategory.Name = specialCategory.Name?.Trim();
 
             var existingSpecialCategory = await _specialCategoryRepo.GetAllWithExpression(
-                x => x.Name == specialCategory.Name 
+                x => x.Name == specialCategory.Name
             );
             if (existingSpecialCategory.Any())
             {
-                throw new ArgumentException("An specialCategory with the same name already exists.");
+                throw new ArgumentException("A special category with the same name already exists.");
             }
 
             await _specialCategoryRepo.CreateAsync(_mapper.Map<SpecialCategory>(specialCategory));
         }
+
 
         public async Task DeleteAsync(int id)
         {
@@ -70,6 +72,8 @@ namespace Service.Services
             {
                 throw new NotFoundException("SpecialCategory not found");
             }
+            specialCategory.Name = specialCategory.Name?.Trim();
+
             var duplicateSpecialCategory = await _specialCategoryRepo.GetAllWithExpression(
                 x => x.Name == (specialCategory.Name ?? existingSpecialCategory.Name) &&
                      x.Id != id
@@ -77,7 +81,7 @@ namespace Service.Services
 
             if (duplicateSpecialCategory.Any())
             {
-                throw new ArgumentException("An SpecialCategory with the same name already exists.");
+                throw new ArgumentException("A SpecialCategory with the same name already exists.");
             }
 
             existingSpecialCategory.Name = string.IsNullOrWhiteSpace(specialCategory.Name) ? existingSpecialCategory.Name : specialCategory.Name;

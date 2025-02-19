@@ -7,6 +7,9 @@ using Service.Services.Interfaces;
 using Service.Helpers.DTOs.Chef;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Service.Helpers.DTOs.Event;
+using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
 
 namespace Service.Services
 {
@@ -28,19 +31,44 @@ namespace Service.Services
 
         public async Task CreateAsync(ChefCreateDto chef)
         {
-            var mappedData = _mapper.Map<Chef>(chef);
+            chef.Name = chef.Name?.Trim();
+            chef.Surname = chef.Surname?.Trim();
+
             if (chef.SocialMedia != null)
             {
-                var socialMedia = new SocialMediaLink
-                {
-                    FacebookUrl = chef.SocialMedia.FacebookUrl,
-                    TwitterUrl = chef.SocialMedia.TwitterUrl,
-                    InstagramUrl = chef.SocialMedia.InstagramUrl
-                };
-                await _context.SocialMediaLinks.AddAsync(socialMedia);
-                await _context.SaveChangesAsync();
-                mappedData.SocialMedia = socialMedia;
+                chef.SocialMedia.FacebookUrl = chef.SocialMedia.FacebookUrl?.Trim();
+                chef.SocialMedia.TwitterUrl = chef.SocialMedia.TwitterUrl?.Trim();
+                chef.SocialMedia.InstagramUrl = chef.SocialMedia.InstagramUrl?.Trim();
             }
+
+            if (chef.PositionIds != null && chef.PositionIds.Any())
+            {
+                chef.PositionIds = chef.PositionIds.Distinct().ToList();
+                foreach (var positionId in chef.PositionIds)
+                {
+                    var positionExists = await _context.Positions.AnyAsync(p => p.Id == positionId);
+                    if (!positionExists)
+                    {
+                        throw new NotFoundException($"Position ID {positionId} mövcud deyil.");
+                    }
+                }
+            }
+            var existingChef = await _context.Chefs
+                .Include(x => x.ChefImages)
+                .FirstOrDefaultAsync(x => x.Name == chef.Name && x.Surname == chef.Surname);
+
+            if (existingChef != null && chef.Photos != null)
+            {
+                foreach (var photo in chef.Photos)
+                {
+                    if (await IsDuplicateImageAsync(photo, existingChef.ChefImages.ToList()))
+                    {
+                        throw new Exception("Bu adı və soyadı olan chef artıq eyni şəkil ilə mövcuddur.");
+                    }
+                }
+            }
+
+            var mappedData = _mapper.Map<Chef>(chef);
             await _context.Chefs.AddAsync(mappedData);
             await _context.SaveChangesAsync();
             foreach (var item in chef.Photos)
@@ -55,13 +83,57 @@ namespace Service.Services
                 {
                     ChefId = mappedData.Id,
                     Image = $"{response.Response}",
-                    Path = $"https://localhost:7031/uploads/{response.Response}"
+                    Path = $"http://localhost:7031/uploads/{response.Response}"
                 });
+            }
+            foreach (var positionId in chef.PositionIds)
+            {
+                var existingPosition = await _context.ChefPositions
+                                                     .FirstOrDefaultAsync(x => x.ChefId == mappedData.Id && x.PositionId == positionId);
+                if (existingPosition == null) 
+                {
+                    await _context.ChefPositions.AddAsync(new ChefPosition
+                    {
+                        ChefId = mappedData.Id,
+                        PositionId = positionId
+                    });
+                }
             }
 
             await _context.SaveChangesAsync();
         }
 
+
+        private async Task<bool> IsDuplicateImageAsync(IFormFile photo, IEnumerable<ChefImage> existingImages)
+        {
+            using var sha256 = SHA256.Create();
+            using var stream = photo.OpenReadStream();
+            var hashBytes = await Task.Run(() => sha256.ComputeHash(stream));
+            var newImageHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+            foreach (var image in existingImages)
+            {
+                var existingImageHash = await CalculateFileHashAsync(image.Path);
+                if (newImageHash == existingImageHash)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private async Task<string> CalculateFileHashAsync(string imagePath)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads", Path.GetFileName(imagePath));
+            if (!System.IO.File.Exists(filePath))
+            {
+                return string.Empty;
+            }
+
+            using var sha256 = SHA256.Create();
+            await using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            var hashBytes = await sha256.ComputeHashAsync(stream);
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
 
         public async Task<IEnumerable<ChefDto>> GetAllAsync()
         {
@@ -91,29 +163,29 @@ namespace Service.Services
 
             return _mapper.Map<ChefDto>(chef);
         }
+
         public async Task EditAsync(int id, ChefEditDto chef)
         {
-            // Mövcud chef tapılır
             Chef existChef = await _context.Chefs
                 .Include(x => x.SocialMedia)
-                .Include(x => x.ChefImages) 
+                .Include(x => x.ChefImages)
+                .Include(x => x.ChefPosition)
                 .FirstOrDefaultAsync(x => x.Id == id)
-                ?? throw new NotFoundException("Data not found!");
-            existChef.Name = chef.Name ?? existChef.Name;
-            existChef.Surname = chef.Surname ?? existChef.Surname;
-
+            ?? throw new NotFoundException("Data not found!");
+            existChef.Name = chef.Name?.Trim() ?? existChef.Name;
+            existChef.Surname = chef.Surname?.Trim() ?? existChef.Surname;
             if (chef.SocialMedia != null)
             {
-                existChef.SocialMedia.FacebookUrl = chef.SocialMedia.FacebookUrl ?? existChef.SocialMedia.FacebookUrl;
-                existChef.SocialMedia.TwitterUrl = chef.SocialMedia.TwitterUrl ?? existChef.SocialMedia.TwitterUrl;
-                existChef.SocialMedia.InstagramUrl = chef.SocialMedia.InstagramUrl ?? existChef.SocialMedia.InstagramUrl;
+                existChef.SocialMedia.FacebookUrl = chef.SocialMedia.FacebookUrl?.Trim() ?? existChef.SocialMedia.FacebookUrl;
+                existChef.SocialMedia.TwitterUrl = chef.SocialMedia.TwitterUrl?.Trim() ?? existChef.SocialMedia.TwitterUrl;
+                existChef.SocialMedia.InstagramUrl = chef.SocialMedia.InstagramUrl?.Trim() ?? existChef.SocialMedia.InstagramUrl;
             }
             if (chef.Photos != null && chef.Photos.Any())
             {
                 foreach (var image in existChef.ChefImages)
                 {
                     _fileService.DeletePath(image.Image);
-                    _context.ChefImages.Remove(image); 
+                    _context.ChefImages.Remove(image);
                 }
                 foreach (var photo in chef.Photos)
                 {
@@ -127,7 +199,25 @@ namespace Service.Services
                     {
                         ChefId = existChef.Id,
                         Image = $"{response.Response}",
-                        Path = $"https://localhost:7031/uploads/{response.Response}"
+                        Path = $"http://localhost:7031/uploads/{response.Response}"
+                    });
+                }
+            }
+            if (chef.PositionIds != null && chef.PositionIds.Any())
+            {
+                _context.ChefPositions.RemoveRange(existChef.ChefPosition);
+                foreach (var positionId in chef.PositionIds)
+                {
+                    var positionExists = await _context.Positions
+                        .AnyAsync(p => p.Id == positionId);
+                    if (!positionExists)
+                    {
+                        throw new NotFoundException($"Position ID {positionId} mövcud deyil.");
+                    }
+                    await _context.ChefPositions.AddAsync(new ChefPosition
+                    {
+                        ChefId = existChef.Id,
+                        PositionId = positionId
                     });
                 }
             }
@@ -136,11 +226,10 @@ namespace Service.Services
             await _context.SaveChangesAsync();
         }
 
-
-
         public async Task DeleteAsync(int id)
         {
-            var existChef = await _context.Chefs.FindAsync(id);
+            var existChef = await _context.Chefs.FirstOrDefaultAsync(x => x.Id == id)
+                              ?? throw new NotFoundException("Chef not found");
             _context.Chefs.Remove(existChef);
             foreach (var item in _context.ChefImages.Where(x => x.ChefId == existChef.Id))
             {
@@ -155,7 +244,6 @@ namespace Service.Services
 
             await _context.SaveChangesAsync();
         }
-
         public async Task AddPosition(int chefId, int positionId)
         {
             var existChef = await _context.Chefs.FindAsync(chefId)
@@ -165,6 +253,30 @@ namespace Service.Services
             await _context.ChefPositions.AddAsync(new ChefPosition { PositionId = positionId, ChefId = chefId });
             await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<ChefDto>> SearchAsync(string keyword)
+        {
+            keyword = keyword?.Trim();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return Enumerable.Empty<ChefDto>();
+            }
+
+            var searchResults = await _context.Chefs
+                .Include(e => e.SocialMedia) 
+                .Include(e => e.ChefPosition) 
+                    .ThenInclude(p => p.Position)
+                .AsNoTracking()
+                .Where(e => e.Name.Contains(keyword) || e.Surname.Contains(keyword) 
+                        || (e.SocialMedia != null &&
+                            (e.SocialMedia.FacebookUrl.Contains(keyword) ||
+                             e.SocialMedia.TwitterUrl.Contains(keyword) ||
+                             e.SocialMedia.InstagramUrl.Contains(keyword))) 
+                        || e.ChefPosition.Any(cp => cp.Position.Title.Contains(keyword)))
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<ChefDto>>(searchResults);
+        }
+
     }
 }
 

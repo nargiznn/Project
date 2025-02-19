@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Enum;
@@ -27,14 +29,25 @@ namespace Service.Services
 
         public async Task<Reservation> CreateReservationAsync(Reservation reservation)
         {
+            if (string.IsNullOrEmpty(reservation.Email) || !new EmailAddressAttribute().IsValid(reservation.Email))
+            {
+                throw new ArgumentException("Invalid email address.");
+            }
+            if (!string.IsNullOrEmpty(reservation.PhoneNumber) && !Regex.IsMatch(reservation.PhoneNumber, @"^\+?[0-9]{10,15}$"))
+            {
+                throw new ArgumentException("Invalid phone number.");
+            }
+            var reservationDateTime = reservation.Date.Date.Add(reservation.Time);
+            if (reservationDateTime <= DateTime.Now)
+            {
+                throw new ArgumentException("Reservation date and time must be in the future.");
+            }
             _dbContext.Reservations.Add(reservation);
             await _dbContext.SaveChangesAsync();
-
             string subject = "Reservation Pending";
             string message = $"Your reservation is currently pending and will be reviewed shortly. Reservation details: <br/> Date: {reservation.Date:MMMM dd, yyyy} <br/> Time: {reservation.Time}";
 
             var email = reservation.Email;
-
             if (!string.IsNullOrEmpty(email))
             {
                 var mimeMessage = new MimeMessage();
@@ -56,9 +69,6 @@ namespace Service.Services
 
             return reservation;
         }
-
-
-
         public async Task<List<Reservation>> GetReservationsAsync()
         {
             var reservations = await _dbContext.Reservations

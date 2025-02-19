@@ -19,17 +19,49 @@ namespace Service.Services
             _cuisineRepo = cuisineRepository;
             _mapper = mapper;
         }
+
         public async Task CreateAsync(CuisineCreateDto cuisine)
         {
+            cuisine.Name = cuisine.Name.Trim();  
+            cuisine.Desc = cuisine.Desc.Trim();  
+
             var existingCuisine = await _cuisineRepo.GetAllWithExpression(
                 x => x.Name == cuisine.Name && x.Desc == cuisine.Desc
             );
             if (existingCuisine.Any())
             {
-                throw new ArgumentException("An Cuisine with the same name and desc already exists.");
+                throw new ArgumentException("Cuisine with the same name and description already exists.");
             }
 
             await _cuisineRepo.CreateAsync(_mapper.Map<Cuisine>(cuisine));
+        }
+
+        public async Task EditAsync(int id, CuisineEditDto cuisine)
+        {
+            cuisine.Name = cuisine.Name?.Trim();   
+            cuisine.Desc = cuisine.Desc?.Trim(); 
+
+            var existingCuisine = await _cuisineRepo.GetByIdAsync(id);
+            if (existingCuisine == null)
+            {
+                throw new NotFoundException("Cuisine not found");
+            }
+
+            var duplicateCuisine = await _cuisineRepo.GetAllWithExpression(
+                x => x.Name == (cuisine.Name ?? existingCuisine.Name) &&
+                     x.Desc == (cuisine.Desc ?? existingCuisine.Desc) &&
+                     x.Id != id
+            );
+
+            if (duplicateCuisine.Any())
+            {
+                throw new ArgumentException("Cuisine with the same name and description already exists.");
+            }
+
+            existingCuisine.Name = string.IsNullOrWhiteSpace(cuisine.Name) ? existingCuisine.Name : cuisine.Name;
+            existingCuisine.Desc = string.IsNullOrWhiteSpace(cuisine.Desc) ? existingCuisine.Desc : cuisine.Desc;
+
+            await _cuisineRepo.EditAsync(existingCuisine);
         }
 
         public async Task DeleteAsync(int id)
@@ -67,31 +99,7 @@ namespace Service.Services
         }
 
 
-        public async Task EditAsync(int id, CuisineEditDto cuisine)
-        {
-            var existingCuisine = await _cuisineRepo.GetByIdAsync(id);
-            if (existingCuisine == null)
-            {
-                throw new NotFoundException("Cuisine not found");
-            }
-
-            var duplicateCuisine = await _cuisineRepo.GetAllWithExpression(
-                x => x.Name == (cuisine.Name ?? existingCuisine.Name) &&
-                 x.Desc == (cuisine.Desc ?? existingCuisine.Desc) &&
-                     x.Id != id
-            );
-
-
-            if (duplicateCuisine.Any())
-            {
-                throw new ArgumentException("An Cuisine with the same name and desc already exists.");
-            }
-
-            existingCuisine.Name = string.IsNullOrWhiteSpace(cuisine.Name) ? existingCuisine.Name : cuisine.Name;
-            existingCuisine.Desc = string.IsNullOrWhiteSpace(cuisine.Desc) ? existingCuisine.Desc : cuisine.Desc;
-
-            await _cuisineRepo.EditAsync(existingCuisine);
-        }
+        
     }
 }
 

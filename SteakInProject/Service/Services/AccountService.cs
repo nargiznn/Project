@@ -256,7 +256,7 @@ namespace Service.Services
                 };
             }
 
-            await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+            await _userManager.AddToRoleAsync(user, Roles.SuperAdmin.ToString());
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 

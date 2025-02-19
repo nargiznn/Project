@@ -3,7 +3,7 @@
         ============================================= -->
         <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
             <div class="bg-section">
-                <img src="~/assets/images/page-title/@Model.Settings["ElementPricingBgg"]" alt="Background" />
+                <img src="@Model.Settings["ElementPricingBgg"]" alt="Background" />
             </div>
             <div class="container">
                 <div class="row">
@@ -79,7 +79,7 @@
                                 <!--  .Pricing Body end -->
                                 <!--  Packge Footer  -->
                                 <div class="panel-footer">
-                                    <a class="btn btn--primary btn--block" href="#">Order now </a>
+                                    <a class="btn btn--primary btn--block" asp-controller="BookATable" asp-action="Index">Book a table </a>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                 <!--  Packge Footer  -->
                             </div>
                             <div class="panel-footer">
-                                <a class="btn btn--primary btn--block" href="#">Order now </a>
+                                <a class="btn btn--primary btn--block" asp-controller="BookATable" asp-action="Index">Book a table </a>
                             </div>
                         </div>
                     }

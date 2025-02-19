@@ -1,0 +1,172 @@
+﻿@model IEnumerable<SteakInMCV.Areas.Admin.ViewModels.Setting.SettingVM>
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Velonic</a></li>
+                                <li class="breadcrumb-item active">Setting Data Tables</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Setting Management</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="header-title">Setting Data Table</h4>
+                            <p class="text-muted mb-0">
+                                This table displays the list of all Setting. You can view, edit them.
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <!-- Search Bar -->
+                            <div class="mb-3">
+                                <input type="text" id="search-input" class="form-control" placeholder="Search by key,value" />
+                                <button id="search-btn" class="btn btn-primary mt-2">Search</button>
+                            </div>
+
+                            <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Key</th>
+                                        <th>Value</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="reservation-row">
+                                            <td>@item.Id</td>
+                                            <td class="reservation-name">@item.Key</td>
+                                            <td>@item.Value</td>
+                                            <td>
+                                                <a class="btn btn-primary" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                                                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <!-- Pagination Controls -->
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item" id="prev-btn">
+                                        <a class="page-link" href="javascript:void(0)">Previous</a>
+                                    </li>
+                                    <li class="page-item" id="next-btn">
+                                        <a class="page-link" href="javascript:void(0)">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div> <!-- end row-->
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by <b>Techzaa</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const rowsPerPage = 5;
+        let currentPage = 1;
+        const rows = document.querySelectorAll('.reservation-row');
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+        // Axtarışın düzgün işləməsi üçün filterRows funksiyasını düzəldirik
+        function filterRows() {
+            const searchValue = document.getElementById('search-input').value.trim().toLowerCase();
+            const rows = document.querySelectorAll('.reservation-row');
+
+            rows.forEach(row => {
+                const key = row.querySelector('td:nth-child(2)').textContent.toLowerCase(); // Key sütunu
+                const value = row.querySelector('td:nth-child(3)').textContent.toLowerCase(); // Value sütunu
+
+                // Həm key, həm də value sütunları üzrə axtarış edirik
+                const matchesText = key.includes(searchValue) || value.includes(searchValue);
+
+                if (matchesText) {
+                    row.style.display = ''; // Axtarışa uyğun olanları göstər
+                } else {
+                    row.style.display = 'none'; // Axtarışa uyğun olmayanları gizlət
+                }
+            });
+
+            // Yenidən səhifələməni göstərmək üçün filter sonrası yeni səhifə sayını hesabla
+            updatePaginationButtons();
+        }
+
+        function showPage(page) {
+            rows.forEach((row, index) => {
+                row.style.display = (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) ? '' : 'none';
+            });
+        }
+
+        function updatePaginationButtons() {
+            document.getElementById('prev-btn').classList.toggle('disabled', currentPage === 1);
+            document.getElementById('next-btn').classList.toggle('disabled', currentPage === totalPages);
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', function () {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+                updatePaginationButtons();
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+                updatePaginationButtons();
+            }
+        });
+
+        document.getElementById('search-btn').addEventListener('click', function () {
+            filterRows(); // Axtarış düyməsi ilə funksiyanı çağırırıq
+        });
+
+        // Səhifə yükləndikdən sonra axtarış funksiyasını avtomatik çağırırıq
+        showPage(currentPage);
+        updatePaginationButtons();
+    });</script>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->

@@ -1,5 +1,7 @@
 ﻿@model HomeVM
+
 <!-- Hero Section
+    
 ====================================== -->
 <section id="slider" class="slider slide-overlay-dark">
     <div class="rev_slider_wrapper">
@@ -13,7 +15,7 @@
                         data-easeout="Power4.easeInOut"
                         data-masterspeed="2000">
                         <!-- MAIN IMAGE -->
-                        <img src="~/assets/images/sliders/slide-bg/@item.Image" alt="Slide Background Image" width="1920" height="1280">
+                        <img src="@item.Image" alt="Slide Background Image" width="1920" height="1280">
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption"
@@ -67,7 +69,7 @@
                              data-responsive_offset="on"
                              data-responsive="off">
                             <div class="slide-action">
-                                <a class="btn btn--white btn--bordered btn--rounded btn--lg" asp-controller="@item.BtnText" asp-action="Index">@item.BtnText</a>
+                                <a class="btn btn--white btn--bordered btn--rounded btn--lg" asp-controller="Menu" asp-action="simple">@item.BtnText</a>
                             </div>
                         </div>
                     </li>
@@ -95,13 +97,13 @@
             <!-- .col-md-6 end -->
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="banner-img mt-20">
-                    <img src="~/assets/images/banners/@Model.Settings["WelcomeImgLeft"]" alt="image">
+                    <img src="@Model.Settings["WelcomeImgLeft"]" alt="image">
                 </div>
             </div>
             <!-- .col-md-3 end -->
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="banner-img">
-                    <img src="~/assets/images/banners/@Model.Settings["WelcomeImgRight"]" alt="image">
+                    <img src="@Model.Settings["WelcomeImgRight"]" alt="image">
                 </div>
                 <!-- .col-md-3 end -->
             </div>
@@ -116,7 +118,7 @@
 ============================================= -->
 <section id="specials1" class="specials specials-1 menu-simple bg-overlay bg-parallax bg-overlay-dark">
     <div class="bg-section">
-        <img src="~/assets/images/background/@Model.Settings["HomeSpecialBg"]" alt="Background" />
+        <img src="@Model.Settings["HomeSpecialBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="divider--shape-1up"></div>
@@ -144,7 +146,7 @@
                                     <div style="height:150px;" class="  col-xs-12 col-sm-12 col-md-6">
                                         <div class="dish-panel">
                                          <div style="width: 100px; height: 100px;" class="dish--img">
-                                             <img src="~/assets/images/menu/dish/@item.ImageUrls.FirstOrDefault()" alt="dish">
+                                             <img src="@item.ImageUrls.FirstOrDefault()" alt="dish">
                                          </div>
                                             <div class="dish--content">
                                                 <div class="dish--content-bio">
@@ -202,21 +204,22 @@
                         </li>
                     }
                 </ul>
-                <!-- Tab panes -->
+
+                <!-- Tab Content Section -->
                 <div class="tab-content">
                     @foreach (var category in Model.MenuCategories)
                     {
                         <div class="tab-pane fade @(category.IsActive ? "active in" : "")" id="@category.Name.ToLower()">
-                            <div class="menu menu-board text-center">
+                            <div class="menu menu-board">
                                 <div class="row">
-                                    <div class="dishes-wrapper">
-                                        @foreach (var product in category.Products
-                                       .Where(p => p.SpecialCategoryName == "Chef Selection")
-                                       .Take(1))
-                                        {
-                                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                                <div class="row dish-panel">
-                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                    @foreach (var product in category.Products
+                                       .Where(p => p.SpecialCategoryName != null)
+                                       .Take(2))
+                                    {
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="dish-panel">
+                                                <div class="row">
+                                                    <div class="col-md-6">
                                                         <div class="dish--content">
                                                             <div class="dish--tag">@product.SpecialCategoryName</div>
                                                             <span class="dish--price">$@product.Price.ToString("F2")</span>
@@ -225,11 +228,12 @@
                                                             <p class="dish--desc">@product.Ingredient</p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+
+
+                                                    <div class="col-xs-12 col-sm-6 col-md-6 ">
                                                         <div class="dish--img">
                                                             <div class="divider--shape-left"></div>
-                                                            @*<img src="~/assets/images/specials/popup/@(product.ImageUrls?.LastOrDefault() ?? "default-image.jpg")" alt="dish popup">*@
-                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="@product.Name">
+                                                            <img src="@product.ImageUrls.FirstOrDefault()" alt="dish img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
                                                             <div class="dish--overlay">
                                                                 <a class="dish-popup" data-toggle="modal" data-target="#dishPopup"><i class="fa fa-search-plus"></i></a>
                                                                 <div class="modal fade" tabindex="-1" role="dialog" id="dishPopup">
@@ -240,10 +244,9 @@
                                                                                 <div class="row reservation">
                                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                         <div class="popup--img">
-                                                                                            <img src="~/assets/images/specials/popup/@product.ImageUrls.LastOrDefault()" alt="dish popup">
-
+                                                                                            <img src="@product.ImageUrls.FirstOrDefault()" alt="dish popup">
                                                                                             <div class="img-popup-overlay">
-                                                                                                <div class="popup--price">$@product.Price.ToString("F2")</div>
+                                                                                                <div class="popup--price">$@product.Price</div>
                                                                                                 <h3 class="popup--title">@product.Name</h3>
                                                                                             </div>
                                                                                         </div>
@@ -251,7 +254,7 @@
                                                                                     <!-- .col-md-12 end -->
                                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                         <div class="content-popup">
-                                                                                            <p>@product.Ingredient</p>
+                                                                                            <p> @product.Ingredient</p>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -269,74 +272,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        }
+                                        </div>
+                                    }
 
-                                        @foreach (var product in category.Products
+                                    @foreach (var product in category.Products
                                        .Where(p => string.IsNullOrEmpty(p.SpecialCategoryName))
-                                       .Take(1))
-                                        {
-                                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                                <div class="row dish-panel">
-                                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                                        <div class="dish--content">
-                                                            <span class="dish--price">$@product.Price.ToString("F2")</span>
-                                                            <h3 class="dish--title">@product.Name</h3>
-                                                            <div class="divider--shape-4"></div>
-                                                            <p class="dish--desc">@product.Ingredient</p>
-                                                        </div>
-                                                    </div>
+                                       .Take(2))
+                                    {
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="dish-panel">
+                                                <div class="row">
                                                     <div class="col-xs-12 col-sm-6 col-md-6">
                                                         <div class="dish--img">
-                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="@product.Name"><div class="dish--overlay">
-                                                                <a class="dish-popup" data-toggle="modal" data-target="#dishPopup"><i class="fa fa-search-plus"></i></a>
-                                                                <div class="modal fade" tabindex="-1" role="dialog" id="dishPopup">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-body">
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-                                                                                <div class="row reservation">
-                                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                                        <div class="popup--img">
-                                                                                            <img src="~/assets/images/specials/popup/@product.ImageUrls.LastOrDefault()" alt="dish popup">
-                                                                                            <div class="img-popup-overlay">
-                                                                                                <div class="popup--price">$@product.Price.ToString("F2")</div>
-                                                                                                <h3 class="popup--title">@product.Name</h3>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <!-- .col-md-12 end -->
-                                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                                        <div class="content-popup">
-                                                                                            <p>@product.Ingredient</p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- .row end -->
-
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- /.modal-content -->
-                                                                    </div>
-                                                                    <!-- /.modal-dialog -->
-                                                                </div>
-                                                                <!-- /.modal -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-
-                                        @foreach (var product in category.Products
-                                       .Where(p => p.SpecialCategoryName == "New")
-                                       .Take(1))
-                                        {
-                                            <!-- New -->
-                                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                                <div class="row dish-panel">
-                                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                                        <div class="dish--img">
-                                                            <img src="~/assets/images/menu/dish/@product.ImageUrls.FirstOrDefault()" alt="@product.Name">
+                                                            <div class="divider--shape-right"></div>
+                                                            <img src="@product.ImageUrls.FirstOrDefault()" alt="dish img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
                                                             <div class="dish--overlay">
                                                                 <a class="dish-popup" data-toggle="modal" data-target="#dishPopup3"><i class="fa fa-search-plus"></i></a>
                                                                 <div class="modal fade" tabindex="-1" role="dialog" id="dishPopup3">
@@ -347,9 +296,9 @@
                                                                                 <div class="row reservation">
                                                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                                                         <div class="popup--img">
-                                                                                            <img src="~/assets/images/specials/popup/@product.ImageUrls.LastOrDefault()" alt="dish popup">
+                                                                                            <img src="@product.ImageUrls.FirstOrDefault()" alt="dish img">
                                                                                             <div class="img-popup-overlay">
-                                                                                                <div class="popup--price">$@product.Price.ToString("F2")</div>
+                                                                                                <div class="popup--price">$@product.Price</div>
                                                                                                 <h3 class="popup--title">@product.Name</h3>
                                                                                             </div>
                                                                                         </div>
@@ -373,82 +322,22 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-6 col-md-6">
-                                                        <div class=" dish--content">
-                                                            <div class="dish--tag">new</div>
+                                                        <div class="dish--content">
                                                             <span class="dish--price">$@product.Price.ToString("F2")</span>
                                                             <h3 class="dish--title">@product.Name</h3>
                                                             <div class="divider--shape-4"></div>
-                                                            <p class="dish--desc">@product.Ingredient </p>
+                                                            <p class="dish--desc">@product.Ingredient</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        }
-
-                                        @foreach (var product in category.Products
-                                       .Where(p => string.IsNullOrEmpty(p.SpecialCategoryName))
-                                       .Take(1))
-                                        {
-                                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                                <div class="row dish-panel">
-                                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                                        <div class="dish--img">
-                                                            <img src="@product.ImageUrls.FirstOrDefault()" alt="@product.Name">
-                                                            <div class="dish--overlay">
-                                                                <a class="dish-popup" data-toggle="modal" data-target="#dishPopup4"><i class="fa fa-search-plus"></i></a>
-                                                                <div class="modal fade" tabindex="-1" role="dialog" id="dishPopup4">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-body">
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-                                                                                <div class="row reservation">
-                                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                                        <div class="popup--img">
-                                                                                            <img src="@product.ImageUrls.LastOrDefault()" alt="dish popup">
-                                                                                            <div class="img-popup-overlay">
-                                                                                                <div class="popup--price">$@product.Price.ToString("F2")</div>
-                                                                                                <h3 class="popup--title">@product.Name</h3>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <!-- .col-md-12 end -->
-                                                                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                                                                        <div class="content-popup">
-                                                                                            <p>@product.Ingredient</p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- .row end -->
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- /.modal-content -->
-                                                                    </div>
-                                                                    <!-- /.modal-dialog -->
-                                                                </div>
-                                                                <!-- /.modal -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                                        <div class=" dish--content">
-                                                            <span class="dish--price">$@product.Price.ToString("F2")</span>
-                                                            <h3 class="dish--title">@product.Name</h3>
-                                                            <div class="divider--shape-4"></div>
-                                                            <p class="dish--desc">@product.Ingredient </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -457,7 +346,7 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text--center">
-                <a class="btn btn--primary btn--bordered btn--rounded btn--lg mt-50" asp-controller="Menu" asp-action="Classic">@Model.Settings["MealsBtnText"]</a>
+                <a class="btn btn--primary btn--bordered btn--rounded btn--lg mt-50" asp-controller="Menu" asp-action="Simple">@Model.Settings["MealsBtnText"]</a>
             </div>
         </div>
     </div>
@@ -471,7 +360,7 @@
 ============================================= -->
 <section id="testimonial1" class="testimonial testimonial-1 bg-overlay bg-parallax bg-overlay-dark pb-90">
     <div class="bg-section">
-        <img src="~/assets/images/background/@Model.Settings["TestimonialHomePageBg"]" alt="Background" />
+        <img src="@Model.Settings["TestimonialHomePageBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="divider--shape-1up"></div>
@@ -491,7 +380,7 @@
                 <div id="testimonial-carousel" class="carousel carousel-dots carousel-white" data-slide="3" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="true" data-space="30" data-loop="true" data-speed="800">
                     <!-- Testimonial #1 -->
 
-                    @foreach (var customer in Model.Testimonials.Where(c => c.ReviewType.HasValue && c.ReviewType.Value == Models.ReviewType.Chef && c.IsPermit).TakeLast(4))
+                    @foreach (var customer in Model.Testimonials.TakeLast(5))
                     {
                         <div class="testimonial-container">
 
@@ -514,7 +403,7 @@
                                     <!-- .testimonial-body end -->
                                     <div class="testimonial--meta">
                                         <div class="testimonial--img">
-                                            <img src="~/assets/images/testimonial/@customer.Image" alt="Testimonial Author">
+                                            <img src="@customer.Image" alt="Testimonial Author">
                                         </div>
                                         <div class="testimonial--author">
                                             <h4>@customer.SurName @customer.Name</h4>
@@ -589,8 +478,8 @@
                                         <h4><a href="#">@item.Title</a></h4>
                                     </div>
                                     <div class="entry--img">
-                                        <a href="#">
-                                            <img src="~/assets/images/blog/grid/@item.ImgUrl" alt="entry image" />
+                                        <a asp-controller="Blog" asp-action="Single" asp-route-id="@item.Id">
+                                            <img src="@item.ImgUrl" alt="entry image" />
                                         </a>
                                     </div>
                                     <div class="entry--bio">

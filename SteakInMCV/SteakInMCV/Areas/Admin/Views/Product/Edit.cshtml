@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Məhsul Redaktəsi</h4>
+                        <h4 class="page-title">Product Edit</h4>
                     </div>
                 </div>
             </div>
@@ -15,42 +15,55 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="Name">Məhsul Adı</label>
-                                    <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" />
+                                    <label for="Name">Name</label>
+                                    <input asp-for="Name" class="form-control" id="Name" />
+                                    <span class="text-danger" asp-validation-for="Name"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Ingredient">Tərkibi</label>
-                                    <input type="text" class="form-control" id="Ingredient" name="Ingredient" value="@Model.Ingredient" />
+                                    <label for="Ingredient">Ingredient</label>
+                                    <input asp-for="Ingredient" class="form-control" id="Ingredient" />
+                                    <span class="text-danger" asp-validation-for="Ingredient"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Price">Qiymət</label>
-                                    <input type="number" step="0.01" class="form-control" id="Price" name="Price" value="@Model.Price" />
+                                    <label for="Price">Price</label>
+                                    <input asp-for="Price" class="form-control" id="Price" type="number" step="0.01" />
+                                    <span class="text-danger" asp-validation-for="Price"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="MenuCategoryId">MenuCategoryId</label>
-                                    <input asp-for="MenuCategoryId" class="form-control" id="MenuCategoryId"></input>
+                                    <label for="MenuCategoryId">Menu Category</label>
+                                    <select asp-for="MenuCategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.MenuCategories, "Id", "Name", Model.MenuCategoryId))"></select>
                                     <span class="text-danger" asp-validation-for="MenuCategoryId"></span>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="SpecialCategoryId">SpecialCategoryId</label>
-                                    <input asp-for="SpecialCategoryId" class="form-control" id="SpecialCategoryId"></input>
+                                    <label for="SpecialCategoryId">Special Category</label>
+                                    <select asp-for="SpecialCategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.SpecialCategories, "Id", "Name", Model.SpecialCategoryId))"></select>
                                     <span class="text-danger" asp-validation-for="SpecialCategoryId"></span>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="ProductCuisineId">ProductCuisineId</label>
-                                    <input asp-for="ProductCuisineId" class="form-control" id="ProductCuisineId"></input>
+                                    <label for="CuisineId">Cuisine</label>
+                                    <select asp-for="ProductCuisineId" class="form-control" asp-items="@(new SelectList(ViewBag.Cuisines, "Id", "Name", Model.ProductCuisineId))"></select>
                                     <span class="text-danger" asp-validation-for="ProductCuisineId"></span>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="Files">Şəkillər</label>
-                                    <input type="file" class="form-control-file" id="Files" name="Files" multiple />
+                                    <label for="Files">Images</label>
+                                    <input type="file" asp-for="Files" class="form-control" id="Files" multiple />
+                                    <span class="text-danger" asp-validation-for="Files"></span>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
                 </div>
             </div>
         </div>

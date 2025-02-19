@@ -24,20 +24,51 @@ namespace Service.Services
         }
         public async Task CreateAsync(FaqCreateDto faq)
         {
+            faq.Question = faq.Question?.Trim();
+            faq.Answer = faq.Answer?.Trim();
             var existingFaq = await _faqRepo.GetAllWithExpression(
-                x => x.Question == faq.Question
+                x => x.Question == faq.Question && x.Answer == faq.Answer
             );
             if (existingFaq.Any())
             {
-                throw new ArgumentException("An Faq with the same question already exists.");
-            }
-            var newFaq = _mapper.Map<Faq>(faq);
-            if (!faq.IsActive.HasValue)
-            {
-                newFaq.IsActive = false;
+                throw new ArgumentException("Eyni sual və cavab ilə artıq FAQ mövcuddur.");
             }
 
+            var newFaq = _mapper.Map<Faq>(faq);
+            newFaq.IsActive = faq.IsActive ?? false;
+
             await _faqRepo.CreateAsync(newFaq);
+        }
+
+        public async Task EditAsync(int id, FaqEditDto faq)
+        {
+            var existingFaq = await _faqRepo.GetByIdAsync(id);
+            if (existingFaq == null)
+            {
+                throw new NotFoundException("FAQ tapılmadı");
+            }
+            faq.Question = faq.Question?.Trim();
+            faq.Answer = faq.Answer?.Trim();
+            var duplicateFaq = await _faqRepo.GetAllWithExpression(
+                x => x.Question == (faq.Question ?? existingFaq.Question) &&
+                     x.Answer == (faq.Answer ?? existingFaq.Answer) &&
+                     x.Id != id
+            );
+            if (duplicateFaq.Any())
+            {
+                throw new ArgumentException("Eyni sual və cavab ilə artıq FAQ mövcuddur.");
+            }
+            existingFaq.Answer = string.IsNullOrWhiteSpace(faq.Answer) ? existingFaq.Answer : faq.Answer;
+            existingFaq.Question = string.IsNullOrWhiteSpace(faq.Question) ? existingFaq.Question : faq.Question;
+
+            if (faq.IsActive.HasValue)
+            {
+                existingFaq.IsActive = faq.IsActive.Value;
+            }
+
+            existingFaq.UpdatedAt = DateTime.UtcNow;
+
+            await _faqRepo.EditAsync(existingFaq);
         }
 
 
@@ -76,35 +107,7 @@ namespace Service.Services
         }
 
 
-        public async Task EditAsync(int id, FaqEditDto faq)
-        {
-            var existingFaq = await _faqRepo.GetByIdAsync(id);
-            if (existingFaq == null)
-            {
-                throw new NotFoundException("Faq not found");
-            }
-            var duplicateFaq = await _faqRepo.GetAllWithExpression(
-                x => x.Question == (faq.Question ?? existingFaq.Question) &&
-                     x.Answer == (faq.Answer ?? existingFaq.Answer) &&
-                     x.Id != id
-            );
 
-            if (duplicateFaq.Any())
-            {
-                throw new ArgumentException("An Faq with the same question and answer already exists.");
-            }
-            existingFaq.Answer = string.IsNullOrWhiteSpace(faq.Answer) ? existingFaq.Answer : faq.Answer;
-            existingFaq.Question = string.IsNullOrWhiteSpace(faq.Question) ? existingFaq.Question : faq.Question;
-
-            if (faq.IsActive.HasValue)
-            {
-                existingFaq.IsActive = faq.IsActive.Value;
-            }
-
-            existingFaq.UpdatedAt = DateTime.UtcNow;
-
-            await _faqRepo.EditAsync(existingFaq);
-        }
 
     }
 }

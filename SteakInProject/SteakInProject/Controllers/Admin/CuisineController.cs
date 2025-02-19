@@ -13,6 +13,42 @@ namespace SteakInProject.Controllers.Admin
         {
             _cuisineService = cuisineService;
         }
+        [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status404NotFound)]
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CuisineCreateDto request)
+        {
+            try
+            {
+                await _cuisineService.CreateAsync(request);
+                return CreatedAtAction(nameof(Create), "Cuisine successfully created.");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);  
+            }
+        }
+
+        [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status404NotFound)]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] CuisineEditDto request)
+        {
+            try
+            {
+                await _cuisineService.EditAsync(id, request);
+                return Ok("Cuisine successfully updated.");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);  
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
         [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
@@ -28,13 +64,7 @@ namespace SteakInProject.Controllers.Admin
                 return NotFound();
             }
         }
-        [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status201Created)]
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CuisineCreateDto request)
-        {
-            await _cuisineService.CreateAsync(request);
-            return CreatedAtAction(nameof(Create), "Succesfully");
-        }
+       
         [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status200OK)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -64,21 +94,7 @@ namespace SteakInProject.Controllers.Admin
             var categories = await _cuisineService.SearchAsync(searchString);
             return Ok(categories);
         }
-        [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(CuisineDto), StatusCodes.Status404NotFound)]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] CuisineEditDto request)
-        {
-            try
-            {
-                await _cuisineService.EditAsync(id, request);
-                return Ok("Cuisine updated successfully");
-            }
-            catch (NotFoundException)
-            {
-                return NotFound();
-            }
-        }
+       
     }
 }
 

@@ -85,6 +85,19 @@ namespace SteakInProject.Controllers
             return Ok(positions);
         }
 
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string keyword)
+        {
+            try
+            {
+                var events = await _chefService.SearchAsync(keyword);
+                return Ok(events);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
 
 

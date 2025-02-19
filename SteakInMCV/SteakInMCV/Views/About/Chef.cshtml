@@ -3,7 +3,7 @@
 ============================================= -->
 <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
     <div class="bg-section">
-        <img src="~/assets/images/page-title/@Model.Settings["ChefPageBcImg"]" alt="Background" />
+        <img src="@Model.Settings["ChefPageBcImg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="row">
@@ -48,7 +48,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <div class="member">
                                 <div class="member-img">
-                                    <img src="~/assets/images/team/@chef.Images.LastOrDefault()" alt="member">
+                                    <img src="@chef.Images.LastOrDefault()" alt="member">
                                     <div class="member-overlay">
                                         <div class="member-hover">
                                             <div class="pos-vertical-center">
@@ -98,14 +98,14 @@
 ============================================= -->
 <section id="testimonial5" class="testimonial testimonial-5 bg-overlay bg-parallax bg-overlay-dark text-center">
     <div class="bg-section">
-        <img src="~/assets/images/background/@Model.Settings["TestimonialChefPageBg"]" alt="Background" />
+        <img src="@Model.Settings["TestimonialChefPageBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="divider--shape-1up"></div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
                 <div id="testimonial-wide" class="carousel carousel-white" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="false" data-space="0" data-loop="true" data-speed="800">
-                    @foreach (var customer in Model.Testimonials.Where(c => c.ReviewType.HasValue && (c.ReviewType.Value == Models.ReviewType.Chef || c.ReviewType.Value == Models.ReviewType.FoodQuality) && c.IsPermit).TakeLast(4))
+                    @foreach (var customer in Model.Testimonials.TakeLast(4))
                     {
                         <!-- Testimonial #1 -->
                         <div class="testimonial-panel">

@@ -31,10 +31,36 @@ namespace Service.Services
         }
         public async Task<string> CreateAsync(ProductCreateDto product)
         {
+            product.Name = product.Name?.Trim();
+            product.Ingredient = product.Ingredient?.Trim();
+
             if (product.Price <= 0)
             {
                 return "Price must be greater than zero.";
             }
+
+            bool isNameTaken = await _context.Products.AnyAsync(p => p.Name == product.Name);
+            if (isNameTaken)
+            {
+                return "A product with the same name already exists.";
+            }
+
+            if (!await _context.MenuCategories.AnyAsync(mc => mc.Id == product.MenuCategoryId))
+            {
+                return "Invalid MenuCategoryId.";
+            }
+
+            if (product.SpecialCategoryId.HasValue &&
+                !await _context.SpecialCategories.AnyAsync(sc => sc.Id == product.SpecialCategoryId.Value))
+            {
+                return "Invalid SpecialCategoryId.";
+            }
+
+            if (!await _context.Cuisines.AnyAsync(c => c.Id == product.CuisineId))
+            {
+                return "Invalid CuisineId.";
+            }
+
             var productImages = new List<ProductImage>();
             if (product.Files != null && product.Files.Count > 0)
             {
@@ -68,8 +94,9 @@ namespace Service.Services
             await _context.Products.AddAsync(newProduct);
             await _context.SaveChangesAsync();
 
-            return "Success"; 
+            return "Success";
         }
+
 
         public async Task<string> DeleteAsync(int id)
         {
@@ -95,40 +122,59 @@ namespace Service.Services
         public async Task<string> EditAsync(int id, ProductEditDto product)
         {
             var findProduct = await _context.Products
-                                            .Include(p => p.ProductImages)
-                                            .FirstOrDefaultAsync(p => p.Id == id);
+                                             .Include(p => p.ProductImages)
+                                             .FirstOrDefaultAsync(p => p.Id == id);
 
             if (findProduct == null)
             {
-                return "Data not found";
-            }
-            if (product.Price.HasValue)
-            {
-                if (product.Price.Value <= 0)
-                {
-                    return "Price must be greater than zero.";
-                }
-                findProduct.Price = product.Price.Value;
-            }
-            if (!string.IsNullOrEmpty(product.Name)) findProduct.Name = product.Name;
-            if (!string.IsNullOrEmpty(product.Ingredient)) findProduct.Ingredient = product.Ingredient;
-            if (product.Price.HasValue)
-            {
-                if (product.Price.Value > 0 && findProduct.Price != product.Price.Value)
-                {
-                    findProduct.Price = product.Price.Value;
-                }
+                return "Data not found.";
             }
 
+            product.Name = product.Name?.Trim();
+            product.Ingredient = product.Ingredient?.Trim();
+
+            if (product.Price.HasValue && product.Price.Value <= 0)
+            {
+                return "Price must be greater than zero.";
+            }
+
+            if (!string.IsNullOrEmpty(product.Name) &&
+                await _context.Products.AnyAsync(p => p.Name == product.Name && p.Id != id))
+            {
+                return "A product with the same name already exists.";
+            }
+            if (product.MenuCategoryId.HasValue &&
+                !await _context.MenuCategories.AnyAsync(mc => mc.Id == product.MenuCategoryId.Value))
+            {
+                return "Invalid MenuCategoryId.";
+            }
+
+            if (product.SpecialCategoryId.HasValue &&
+                !await _context.SpecialCategories.AnyAsync(sc => sc.Id == product.SpecialCategoryId.Value))
+            {
+                return "Invalid SpecialCategoryId.";
+            }
+
+            if (product.ProductCuisineId.HasValue &&
+                !await _context.Cuisines.AnyAsync(c => c.Id == product.ProductCuisineId.Value))
+            {
+                return "Invalid CuisineId.";
+            }
+
+            if (!string.IsNullOrEmpty(product.Name)) findProduct.Name = product.Name;
+            if (!string.IsNullOrEmpty(product.Ingredient)) findProduct.Ingredient = product.Ingredient;
+            if (product.Price.HasValue) findProduct.Price = product.Price.Value;
             if (product.MenuCategoryId.HasValue) findProduct.MenuCategoryId = product.MenuCategoryId.Value;
             if (product.SpecialCategoryId.HasValue) findProduct.SpecialCategoryId = product.SpecialCategoryId.Value;
             if (product.ProductCuisineId.HasValue) findProduct.CuisineId = product.ProductCuisineId.Value;
+
             if (product.Files != null && product.Files.Count > 0)
             {
                 foreach (var oldImage in findProduct.ProductImages)
                 {
                     _fileService.DeletePath(oldImage.Image);
                 }
+
                 var newImages = new List<ProductImage>();
                 foreach (var file in product.Files)
                 {
@@ -145,6 +191,7 @@ namespace Service.Services
                         Path = $"http://localhost:7031/uploads/{response.Response}"
                     });
                 }
+
                 findProduct.ProductImages.Clear();
                 findProduct.ProductImages = newImages;
             }
@@ -152,6 +199,7 @@ namespace Service.Services
             await _context.SaveChangesAsync();
             return "Success";
         }
+
 
 
 

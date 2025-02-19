@@ -19,18 +19,6 @@ namespace Service.Services
             _tagRepo = tagRepository;
             _mapper = mapper;
         }
-        public async Task CreateAsync(TagCreateDto tag)
-        {
-            var existingTag = await _tagRepo.GetAllWithExpression(
-                x => x.Name == tag.Name 
-            );
-            if (existingTag.Any())
-            {
-                throw new ArgumentException("An Tag with the same name already exists.");
-            }
-
-            await _tagRepo.CreateAsync(_mapper.Map<Tag>(tag));
-        }
         public async Task DeleteAsync(int id)
         {
             await _tagRepo.DeleteAsync(id);
@@ -65,29 +53,46 @@ namespace Service.Services
             return _mapper.Map<IEnumerable<TagDto>>(tags);
         }
 
+        public async Task CreateAsync(TagCreateDto tag)
+        {
+            tag.Name = tag.Name?.Trim();
+
+            var existingTag = await _tagRepo.GetAllWithExpression(
+                x => x.Name == tag.Name
+            );
+            if (existingTag.Any())
+            {
+                throw new ArgumentException("A Tag with the same name already exists.");
+            }
+
+            await _tagRepo.CreateAsync(_mapper.Map<Tag>(tag));
+        }
 
         public async Task EditAsync(int id, TagEditDto tag)
         {
+            tag.Name = tag.Name?.Trim();
+
             var existingTag = await _tagRepo.GetByIdAsync(id);
             if (existingTag == null)
             {
                 throw new NotFoundException("Tag not found");
             }
+
             var duplicateTag = await _tagRepo.GetAllWithExpression(
                 x => x.Name == (tag.Name ?? existingTag.Name) &&
                      x.Id != id
             );
 
-
             if (duplicateTag.Any())
             {
-                throw new ArgumentException("An tag with the same name already exists.");
+                throw new ArgumentException("A tag with the same name already exists.");
             }
 
             existingTag.Name = string.IsNullOrWhiteSpace(tag.Name) ? existingTag.Name : tag.Name;
 
             await _tagRepo.EditAsync(existingTag);
         }
+
     }
 }
 

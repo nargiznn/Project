@@ -1,6 +1,62 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model SteakInMCV.Areas.Admin.ViewModels.AwardLogo.AwardLogoEditVM
 
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Award Logo Edit</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="ImgUrl">Image URL</label>
+                                    <input type="text" class="form-control" id="ImgUrl" name="ImgUrl" value="@Model.ImgUrl" />
+                                    <span class="text-danger" asp-validation-for="ImgUrl"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="AltText">Alt Text</label>
+                                    <input type="text" class="form-control" id="AltText" name="AltText" value="@Model.AltText" />
+                                    <span class="text-danger" asp-validation-for="AltText"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="file">Image</label>
+                                    <input type="file" class="form-control" id="file" name="file" />
+                                    <span class="text-danger" asp-validation-for="file"></span>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

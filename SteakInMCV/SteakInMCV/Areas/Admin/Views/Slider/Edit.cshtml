@@ -1,0 +1,72 @@
+﻿@model SliderEditVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Slider Edit</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="Title">Title</label>
+                                    <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="MainTitle">Main Title</label>
+                                    <input type="text" class="form-control" id="MainTitle" name="MainTitle" value="@Model.MainTitle" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Desc">Description</label>
+                                    <textarea class="form-control" id="Desc" name="Desc" rows="3">@Model.Desc</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="BtnText">Button Text</label>
+                                    <input type="text" class="form-control" id="BtnText" name="BtnText" value="@Model.BtnText" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="File">Image</label>
+                                    <input type="file" asp-for="File" class="form-control-file" id="File" name="File" />
+                                    <span class="text-danger" asp-validation-for="File"></span>
+                                    @if (!string.IsNullOrEmpty(Model.Image))
+                                    {
+                                        <div class="mt-2">
+                                            <strong>Current Image:</strong>
+                                            <br />
+                                            <img src="@Model.Image" style="width: 150px; height: 100px; object-fit: cover; border-radius: 5px;" />
+                                        </div>
+                                    }
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by <b>Techzaa</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

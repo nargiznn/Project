@@ -18,29 +18,6 @@ namespace Service.Services
             _context = context;
             _fileService = fileService;
         }
-        public async Task<string> CreateAsync(SliderCreateDto slider)
-        {
-            var fileResponse = await _fileService.UploadAsync(slider.File);
-
-            if (fileResponse.HasError == true)
-            {
-                return fileResponse.Response;
-            }
-
-            var newSlider = new Slider
-            {
-                Title = slider.Title,
-                MainTitle = slider.MainTitle,
-                Desc = slider.Desc,
-                BtnText = slider.BtnText,
-                Image = fileResponse.Response
-            };
-
-            await _context.Sliders.AddAsync(newSlider);
-            await _context.SaveChangesAsync();
-
-            return "Success";
-        }
 
         public async Task<string> DeleteAsync(int id)
         {
@@ -58,6 +35,30 @@ namespace Service.Services
         }
 
 
+        public async Task<string> CreateAsync(SliderCreateDto slider)
+        {
+            var fileResponse = await _fileService.UploadAsync(slider.File);
+
+            if (fileResponse.HasError)
+            {
+                return fileResponse.Response;
+            }
+
+            var newSlider = new Slider
+            {
+                Title = slider.Title,
+                MainTitle = slider.MainTitle,
+                Desc = slider.Desc,
+                BtnText = slider.BtnText,
+                Image = $"http://localhost:7031/uploads/{fileResponse.Response}"
+            };
+
+            await _context.Sliders.AddAsync(newSlider);
+            await _context.SaveChangesAsync();
+
+            return "Success";
+        }
+
         public async Task<string> EditAsync(int id, SliderEditDto slider)
         {
             var findSlider = await _context.Sliders.FindAsync(id);
@@ -66,6 +67,7 @@ namespace Service.Services
             {
                 return "Data not found";
             }
+
             if (!string.IsNullOrEmpty(slider.Title))
             {
                 findSlider.Title = slider.Title;
@@ -82,20 +84,24 @@ namespace Service.Services
             {
                 findSlider.BtnText = slider.BtnText;
             }
+
             if (slider.file != null)
             {
                 await _fileService.DeletePath(findSlider.Image);
+
                 var fileResponse = await _fileService.UploadAsync(slider.file);
                 if (fileResponse.HasError)
                 {
-                    return fileResponse.Response; 
+                    return fileResponse.Response;
                 }
-                findSlider.Image = fileResponse.Response;
+                findSlider.Image = $"http://localhost:7031/uploads/{fileResponse.Response}";
             }
+
             await _context.SaveChangesAsync();
 
             return "Success";
         }
+
 
 
         public async Task<ICollection<Slider>> GetAllAsync()

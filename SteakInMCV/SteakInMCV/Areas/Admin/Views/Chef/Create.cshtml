@@ -1,0 +1,110 @@
+﻿@model SteakInMCV.Areas.Admin.ViewModels.Chef.ChefCreateVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="#">SteakIn</a></li>
+                                <li class="breadcrumb-item"><a href="#">Chefs</a></li>
+                                <li class="breadcrumb-item active">Create Chef</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Create Chef</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <form method="post" enctype="multipart/form-data" asp-controller="Chef" asp-action="Create">
+                                <div class="form-group">
+                                    <label for="Name">Name</label>
+                                    <input asp-for="Name" class="form-control" id="Name" required>
+                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Surname">Surname</label>
+                                    <input asp-for="Surname" class="form-control" id="Surname" required />
+                                    <span class="text-danger" asp-validation-for="Surname"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PositionIds">Positions</label>
+                                    <div class="form-check">
+                                        @if (Model.AvailablePositions != null && Model.AvailablePositions.Any())
+                                        {
+                                            @foreach (var position in Model.AvailablePositions)
+                                            {
+                                                <input type="checkbox"
+                                                       class="form-check-input"
+                                                       id="Position_@position.Value"
+                                                       name="SelectedPositions"
+                                                       value="@position.Value"
+                                                       @(Model.SelectedPositions.Contains(int.Parse(position.Value)) ? "checked" : "") />
+                                                <label class="form-check-label" for="Position_@position.Value">
+                                                    @position.Text
+                                                </label><br />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label>No positions available</label>
+                                        }
+                                    </div>
+                                    <span class="text-danger" asp-validation-for="SelectedPositions"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="FacebookUrl">Facebook URL</label>
+                                    <input asp-for="SocialMedia.FacebookUrl" class="form-control" id="FacebookUrl" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="TwitterUrl">Twitter URL</label>
+                                    <input asp-for="SocialMedia.TwitterUrl" class="form-control" id="TwitterUrl" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="InstagramUrl">Instagram URL</label>
+                                    <input asp-for="SocialMedia.InstagramUrl" class="form-control" id="InstagramUrl" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Photos">Profile Image</label>
+                                    <input type="file" asp-for="Photos" class="form-control" id="Photos" required />
+                                    <span class="text-danger" asp-validation-for="Photos"></span>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

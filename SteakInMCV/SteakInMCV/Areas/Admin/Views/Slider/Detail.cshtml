@@ -1,0 +1,52 @@
+﻿@model SliderVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Page Title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Slider Data Detail</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="slider-details">
+                                <p><strong>Id:</strong> @Model.Id</p>
+                                <p><strong>Title:</strong> @Model.Title</p>
+                                <p><strong>Main Title:</strong> @Model.MainTitle</p>
+                                <p><strong>Description:</strong> @Model.Desc</p>
+                                <p><strong>Button Text:</strong> @Model.BtnText</p>
+
+                                <h5>Image</h5>
+                                <img src="@Model.Image" style="width:500px; height:300px; border-radius: 10px;" alt="Slider Image" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by <b>Techzaa</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

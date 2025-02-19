@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWNjb3VudC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Award/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQXdhcmQvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Award/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQXdhcmQvRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQXdhcmRMb2dvL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/AwardLogo/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQXdhcmRMb2dvL0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/AwardLogo/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQXdhcmRMb2dvL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,8 +52,104 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQXdhcmRMb2dvL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Chef/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ2hlZi9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Chef/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ2hlZi9EZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Chef/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ2hlZi9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Chef/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ2hlZi9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Cuisine/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ3Vpc2luZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Cuisine/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ3Vpc2luZS9EZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Cuisine/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ3Vpc2luZS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Cuisine/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ3Vpc2luZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Event/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXZlbnQvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Event/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXZlbnQvRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Event/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXZlbnQvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Event/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXZlbnQvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Faq/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRmFxL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Faq/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRmFxL0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Faq/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRmFxL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Faq/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRmFxL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/MenuCategory/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvTWVudUNhdGVnb3J5L0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/MenuCategory/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvTWVudUNhdGVnb3J5L0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/MenuCategory/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvTWVudUNhdGVnb3J5L0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/MenuCategory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvTWVudUNhdGVnb3J5L0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Position/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUG9zaXRpb24vQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Position/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUG9zaXRpb24vRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Position/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUG9zaXRpb24vRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Position/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUG9zaXRpb24vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Product/Create.cshtml]
@@ -72,8 +180,76 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUmVzZXJ2YXRpb24vVXBkYXRlU3RhdHVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Setting/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2V0dGluZy9EZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Setting/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2V0dGluZy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Setting/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2V0dGluZy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Slider/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2xpZGVyL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Slider/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2xpZGVyL0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Slider/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2xpZGVyL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Slider/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2xpZGVyL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/SpecialCategory/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3BlY2lhbENhdGVnb3J5L0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/SpecialCategory/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3BlY2lhbENhdGVnb3J5L0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/SpecialCategory/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3BlY2lhbENhdGVnb3J5L0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/SpecialCategory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU3BlY2lhbENhdGVnb3J5L0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Tag/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVGFnL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Tag/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVGFnL0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Tag/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVGFnL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Tag/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVGFnL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Testimonial/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVGVzdGltb25pYWwvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Testimonial/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVGVzdGltb25pYWwvRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/Testimonial/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVGVzdGltb25pYWwvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Areas/Admin/Views/_ViewImports.cshtml]
@@ -154,10 +330,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Menu/Classic.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9DbGFzc2ljLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/Views/Menu/Simple.cshtml]

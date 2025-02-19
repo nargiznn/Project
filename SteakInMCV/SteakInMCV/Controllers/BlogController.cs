@@ -33,6 +33,7 @@ namespace SteakInMCV.Controllers
                         blogVM.EventVMs = events
                             .Select(e => new EventVM
                             {
+                                Id = e.Id,
                                 Title = e.Title,
                                 Desc = e.Desc,
                                 ImgUrl = e.ImgUrl,
@@ -52,18 +53,7 @@ namespace SteakInMCV.Controllers
                         ViewData["Error"] = "API request failed with status code: " + eventResponse.StatusCode;
                         blogVM.EventVMs = new List<EventVM>();
                     }
-                    //var customerResponse = await client.GetAsync($"{BaseURl}/api/Customer/GetAll");
-                    //if (customerResponse.IsSuccessStatusCode)
-                    //{
-                    //    string customerApiResponse = await customerResponse.Content.ReadAsStringAsync();
-                    //    blogVM.Customers = (IEnumerable<Customer>)JsonConvert.DeserializeObject<IEnumerable<Customer>>(customerApiResponse);
-
-                    //}
-                    //else
-                    //{
-                    //    ViewData["Error"] = "API request failed with status code: " + customerResponse.StatusCode;
-                    //    blogVM.Customers = new List<Customer>();
-                    //}
+                   
                     var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
                     if (settingResponse.IsSuccessStatusCode)
                     {
@@ -98,7 +88,6 @@ namespace SteakInMCV.Controllers
             {
                 try
                 {
-                    // Fetch event details
                     var eventResponse = await client.GetAsync($"{BaseURl}/api/Event/GetAll");
                     if (eventResponse.IsSuccessStatusCode)
                     {
@@ -109,6 +98,7 @@ namespace SteakInMCV.Controllers
                         blogVM.EventVMs = events
                             .Select(e => new EventVM
                             {
+                                Id = e.Id,
                                 Title = e.Title,
                                 Desc = e.Desc,
                                 ImgUrl = e.ImgUrl,
@@ -129,7 +119,6 @@ namespace SteakInMCV.Controllers
                         blogVM.EventVMs = new List<EventVM>();
                     }
 
-                    // Fetch settings
                     var settingResponse = await client.GetAsync($"{BaseURl}/api/setting/GetAll");
                     if (settingResponse.IsSuccessStatusCode)
                     {
@@ -143,7 +132,6 @@ namespace SteakInMCV.Controllers
                         blogVM.Settings = new Dictionary<string, string>();
                     }
 
-                    // Fetch a single event
                     var eventSingleResponse = await client.GetAsync($"{BaseURl}/api/event/getbyid/{id}");
                     if (eventSingleResponse.IsSuccessStatusCode)
                     {
@@ -152,6 +140,7 @@ namespace SteakInMCV.Controllers
 
                         blogVM.EventVM = new EventVM
                         {
+                            Id = eventSingle.Id,
                             Title = eventSingle.Title,
                             Desc = eventSingle.Desc,
                             ImgUrl = eventSingle.ImgUrl,
@@ -165,8 +154,6 @@ namespace SteakInMCV.Controllers
                         ViewData["Error"] = "API request failed with status code: " + eventSingleResponse.StatusCode;
                         blogVM.EventVM = null;
                     }
-
-                    // Fetch event comments and replies
                     var commentResponse = await client.GetAsync($"{BaseURl}/api/Comments/GetCommentsByEvent/event/{id}");
                     if (commentResponse.IsSuccessStatusCode)
                     {

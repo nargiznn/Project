@@ -1,0 +1,99 @@
+﻿@model SteakInMCV.Areas.Admin.ViewModels.Chef.ChefVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Page Title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Chef Data Detail</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chef Details -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="chef-details">
+                                <p><strong>Id:</strong> @Model.Id</p>
+                                <p><strong>Name:</strong> @Model.Name</p>
+                                <p><strong>Surname:</strong> @Model.Surname</p>
+
+                                <h5>Positions</h5>
+                                <p>
+                                    @if (Model.Positions != null && Model.Positions.Any())
+                                    {
+                                        <ul>
+                                            @foreach (var position in Model.Positions)
+                                            {
+                                                <li>@position</li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <span>No Positions</span>
+                                    }
+                                </p>
+
+                                <h5>Social Media</h5>
+                                @if (Model.SocialMedia != null)
+                                {
+                                    <ul>
+                                        @if (!string.IsNullOrWhiteSpace(Model.SocialMedia.FacebookUrl))
+                                        {
+                                            <li><strong>Facebook:</strong> <a href="@Model.SocialMedia.FacebookUrl" target="_blank">@Model.SocialMedia.FacebookUrl</a></li>
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(Model.SocialMedia.TwitterUrl))
+                                        {
+                                            <li><strong>Twitter:</strong> <a href="@Model.SocialMedia.TwitterUrl" target="_blank">@Model.SocialMedia.TwitterUrl</a></li>
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(Model.SocialMedia.InstagramUrl))
+                                        {
+                                            <li><strong>Instagram:</strong> <a href="@Model.SocialMedia.InstagramUrl" target="_blank">@Model.SocialMedia.InstagramUrl</a></li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span>No Social Media Links</span>
+                                }
+
+                                <h5>Chef Image</h5>
+                                @if (Model.Images != null && Model.Images.Any())
+                                {
+                                    <img src="@Model.Images.First()" style="width:150px; height:100px; border-radius: 5px;" />
+                                }
+                                else
+                                {
+                                    <p>No Image Available</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

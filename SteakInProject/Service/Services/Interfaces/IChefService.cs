@@ -12,6 +12,7 @@ namespace Service.Services.Interfaces
         Task EditAsync(int id, ChefEditDto updatedChef);
         Task DeleteAsync(int id);
         Task AddPosition(int chefId, int positionId);
+        Task<IEnumerable<ChefDto>> SearchAsync(string keyword);
     }
 }
 

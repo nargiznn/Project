@@ -34,6 +34,7 @@ using Service.Helpers.DTOs.Comment;
 using Domain.Enum;
 using System.Reflection.Metadata;
 using Service.Helpers.DTOs.AwardLogo;
+using Service.Helpers.DTOs.Position;
 
 namespace Service.Helpers.Mapping
 {
@@ -87,6 +88,12 @@ namespace Service.Helpers.Mapping
              });
 
             #endregion
+
+
+            #region Position
+            CreateMap<Position, PositionDto>();
+            #endregion
+
 
             CreateMap<Slider, SliderDto>();
             CreateMap<SliderCreateDto, Slider>();
@@ -192,28 +199,33 @@ namespace Service.Helpers.Mapping
             });
             #endregion
 
-            CreateMap<Testimonial, TestimonialDto>();
-            CreateMap<TestimonialCreateDto, Testimonial>();
+            #region Testimonial
+            CreateMap<Testimonial, TestimonialDto>()
+                .ForMember(dest => dest.Raiting, opt => opt.MapFrom(src => src.Raiting))
+                .ForMember(dest => dest.ReviewTypeName,
+                           opt => opt.MapFrom(src => src.ReviewType.HasValue ? src.ReviewType.Value.ToString() : "N/A"));
+
+            // TestimonialCreateDto -> Testimonial mapping
+            CreateMap<TestimonialCreateDto, Testimonial>()
+                .ForMember(dest => dest.IsPermit, opt => opt.MapFrom(src => false)); // Create zamanı IsPermit false
             CreateMap<TestimonialEditDto, Testimonial>()
-            .ForAllMembers(opts =>
-            {
-                opts.AllowNull();
-                opts.Condition((src, dest, srcMember) => srcMember != null);
-            });
+                .ForAllMembers(opts =>
+                {
+                    opts.AllowNull();
+                    opts.Condition((src, dest, srcMember) => srcMember != null);
+                });
+
+            #endregion
 
             #region Award
             CreateMap<Award, AwardDto>()
                 .ForMember(x => x.Year, opt => opt.MapFrom(src => src.Year.ToString("yyyy")));
 
             CreateMap<AwardCreateDto, Award>()
-                .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Year));
+                .ForMember(dest => dest.Year, opt => opt.MapFrom(src => DateTime.ParseExact(src.Year, "yyyy", null)));
 
             CreateMap<AwardEditDto, Award>()
-            .ForAllMembers(opts =>
-            {
-                opts.AllowNull();
-                opts.Condition((src, dest, srcMember) => srcMember != null);
-            });
+           .ForMember(dest => dest.Year, opt => opt.MapFrom(src => DateTime.ParseExact(src.Year, "yyyy", null)));
 
             #endregion
 
@@ -304,20 +316,21 @@ opt.MapFrom(src => src.MealPackageProducts.Select(t => t.ProductId).ToList()));
                 opts.Condition((src, dest, srcMember) => srcMember != null);
             });
 
-
-            CreateMap<Event, EventDto>().ForMember(dest => dest.Tags, opt =>
-opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()));
-
-            CreateMap<EventCreateDto, Event>().ForMember(dest => dest.Tags, opt => opt.Ignore());
+            #region Event
+            CreateMap<Event, EventDto>()
+                .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name).ToList()))
+                .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments));
+            CreateMap<EventCreateDto, Event>()
+              .ForMember(dest => dest.Tags, opt => opt.Ignore());
             CreateMap<EventEditDto, Event>()
-            .ForAllMembers(opts =>
-            {
-                opts.AllowNull();
-                opts.Condition((src, dest, srcMember) => srcMember != null);
-            });
+                .ForMember(dest => dest.Tags, opt => opt.Ignore())
+                .ForAllMembers(opts =>
+                {
+                    opts.AllowNull();
+                    opts.Condition((src, dest, srcMember) => srcMember != null);
+                });
 
-
-
+            #endregion
 
             CreateMap<RestaurantTable, RestaurantTableDto>();
             CreateMap<Client, ClientDto>();

@@ -11,68 +11,97 @@ namespace SteakInProject.Controllers
 {
 	public class EventController:BaseController
 	{
-         private readonly IEventService _eventService;
+        private readonly IEventService _service;
 
-        public EventController(IEventService eventService)
+        public EventController(IEventService service)
         {
-            _eventService = eventService;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            try
-            {
-                var eventDto = await _eventService.GetByIdAsync(id);
-                return Ok(eventDto);
-            }
-            catch (NotFoundException)
-            {
-                return NotFound("Event not found");
-            }
+            _service = service;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var events = await _eventService.GetAllAsync();
-            return Ok(events);
+            return Ok(await _service.GetAllAsync());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] EventCreateDto request)
-        {
-            await _eventService.CreateAsync(request);
-            return CreatedAtAction(nameof(Create), "Event created successfully");
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, [FromBody] EventEditDto request)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
             try
             {
-                await _eventService.EditAsync(id, request);
-                return Ok("Event updated successfully");
+                var eventItem = await _service.GetByIdAsync(id);
+                return Ok(eventItem);
             }
             catch (NotFoundException)
             {
-                return NotFound("Event not found");
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] EventCreateDto request)
+        {
+            try
+            {
+                await _service.CreateAsync(request);
+                return CreatedAtAction(nameof(Create), "Successfully created");
+            }
+            catch (BadHttpRequestException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
             {
-                await _eventService.DeleteAsync(id);
-                return Ok("Event deleted successfully");
+                await _service.DeleteAsync(id);
+                return Ok();
             }
             catch (NotFoundException)
             {
-                return NotFound("Event not found");
+                return NotFound();
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit([FromRoute] int id, [FromForm] EventEditDto request)
+        {
+            try
+            {
+                if (request == null)
+                {
+                    return BadRequest("Event data cannot be null.");
+                }
+
+                await _service.EditAsync(id, request);
+                return Ok();
+            }
+            catch (NotFoundException)
+            {
+                return NotFound("Event not found.");
+            }
+
+        }
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string keyword)
+        {
+            try
+            {
+                var events = await _service.SearchAsync(keyword);
+                return Ok(events);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); 
+            }
+        }
+
+
+
+
     }
 }
 

@@ -23,14 +23,21 @@ namespace Service.Services
         }
         public async Task CreateAsync(MenuCategoryCreateDto menuCategory)
         {
+            if (menuCategory.Name != null)
+            {
+                menuCategory.Name = menuCategory.Name.Trim(); 
+            }
+
             var existingMenuCategory = await _menuCategoryRepo.GetAllWithExpression(
                 x => x.Name == menuCategory.Name
             );
             if (existingMenuCategory.Any())
             {
-                throw new ArgumentException("An MenuCategory with the same name already exists.");
+                throw new ArgumentException("A MenuCategory with the same name already exists.");
             }
+
             var newMenuCategory = _mapper.Map<MenuCategory>(menuCategory);
+
             if (!menuCategory.IsActive.HasValue)
             {
                 newMenuCategory.IsActive = false;
@@ -38,6 +45,7 @@ namespace Service.Services
 
             await _menuCategoryRepo.CreateAsync(newMenuCategory);
         }
+
 
 
         public async Task DeleteAsync(int id)
@@ -108,11 +116,17 @@ namespace Service.Services
 
         public async Task EditAsync(int id, MenuCategoryEditDto menuCategory)
         {
+            if (menuCategory.Name != null)
+            {
+                menuCategory.Name = menuCategory.Name.Trim();
+            }
+
             var existingMenuCategory = await _menuCategoryRepo.GetByIdAsync(id);
             if (existingMenuCategory == null)
             {
                 throw new NotFoundException("MenuCategory not found");
             }
+
             var duplicateMenuCategory = await _menuCategoryRepo.GetAllWithExpression(
                 x => x.Name == (menuCategory.Name ?? existingMenuCategory.Name) &&
                      x.Id != id
@@ -120,16 +134,19 @@ namespace Service.Services
 
             if (duplicateMenuCategory.Any())
             {
-                throw new ArgumentException("An MenuCategory with the same name already exists.");
+                throw new ArgumentException("A MenuCategory with the same name already exists.");
             }
+
             existingMenuCategory.Name = string.IsNullOrWhiteSpace(menuCategory.Name) ? existingMenuCategory.Name : menuCategory.Name;
 
             if (menuCategory.IsActive.HasValue)
             {
                 existingMenuCategory.IsActive = menuCategory.IsActive.Value;
             }
+
             await _menuCategoryRepo.EditAsync(existingMenuCategory);
         }
+
 
     }
 }

@@ -7909,48 +7909,48 @@
       "PackagePath": "staticwebassets/assets/images/clients/.DS_Store"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/1.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/1.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/2.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/2.jpg"
-    },
-    {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/22.png",
       "PackagePath": "staticwebassets/assets/images/clients/22.png"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/3.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/3.jpg"
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client1.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client1.jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/4.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/4.jpg"
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client2.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client2.jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/5.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/5.jpg"
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client3.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client3.jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/6.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/6.jpg"
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client4.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client4.jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/7.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/7.jpg"
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client5.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client5.jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/8.jpg",
-      "PackagePath": "staticwebassets/assets/images/clients/8.jpg"
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client6.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client6.jpg"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client7.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client7.jpg"
+    },
+    {
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/clients/client8.jpg",
+      "PackagePath": "staticwebassets/assets/images/clients/client8.jpg"
     },
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/counter/.DS_Store",
       "PackagePath": "staticwebassets/assets/images/counter/.DS_Store"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/counter/1.jpg",
-      "PackagePath": "staticwebassets/assets/images/counter/1.jpg"
+      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/counter/counter1.jpg",
+      "PackagePath": "staticwebassets/assets/images/counter/counter1.jpg"
     },
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/favicon/favicon.png",
@@ -8441,10 +8441,6 @@
       "PackagePath": "staticwebassets/assets/images/menu/dish/21(1).jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/21.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/21.jpg"
-    },
-    {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/22(1).jpg",
       "PackagePath": "staticwebassets/assets/images/menu/dish/22(1).jpg"
     },
@@ -8489,16 +8485,8 @@
       "PackagePath": "staticwebassets/assets/images/menu/dish/3.png"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/30.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/30.jpg"
-    },
-    {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/31.jpg",
       "PackagePath": "staticwebassets/assets/images/menu/dish/31.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/32.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/32.jpg"
     },
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/4(1).jpg",
@@ -8561,64 +8549,8 @@
       "PackagePath": "staticwebassets/assets/images/menu/dish/9.jpg"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish100.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish100.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish11.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish11.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish12.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish12.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish13.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish13.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish14.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish14.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish15.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish15.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish16.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish16.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish17.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish17.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish18.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish18.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish19.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish19.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish20.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish20.jpg"
-    },
-    {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish21.jpg",
       "PackagePath": "staticwebassets/assets/images/menu/dish/dish21.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish22.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish22.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish230.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish230.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/dish/dish240.jpg",
-      "PackagePath": "staticwebassets/assets/images/menu/dish/dish240.jpg"
     },
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/menu/gallery/1.jpg",
@@ -9053,30 +8985,6 @@
       "PackagePath": "staticwebassets/assets/images/page-title/.DS_Store"
     },
     {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/22.jpg",
-      "PackagePath": "staticwebassets/assets/images/page-title/22.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/5.jpg",
-      "PackagePath": "staticwebassets/assets/images/page-title/5.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/52.jpg",
-      "PackagePath": "staticwebassets/assets/images/page-title/52.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/55.jpg",
-      "PackagePath": "staticwebassets/assets/images/page-title/55.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/66.jpg",
-      "PackagePath": "staticwebassets/assets/images/page-title/66.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/blogstandart.jpg",
-      "PackagePath": "staticwebassets/assets/images/page-title/blogstandart.jpg"
-    },
-    {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/chef-hat.png",
       "PackagePath": "staticwebassets/assets/images/page-title/chef-hat.png"
     },
@@ -9239,10 +9147,6 @@
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/shopp_files/9.jpg",
       "PackagePath": "staticwebassets/assets/images/page-title/shopp_files/9.jpg"
-    },
-    {
-      "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/page-title/singleblog.jpg",
-      "PackagePath": "staticwebassets/assets/images/page-title/singleblog.jpg"
     },
     {
       "Id": "/Users/nergiznadirli/Desktop/Project/SteakInMCV/SteakInMCV/wwwroot/assets/images/shop/.DS_Store",

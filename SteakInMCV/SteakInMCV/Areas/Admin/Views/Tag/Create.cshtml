@@ -1,0 +1,58 @@
+﻿@model SteakInMCV.Areas.Admin.ViewModels.Tag.TagCreateVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="#">SteakIn</a></li>
+                                <li class="breadcrumb-item"><a href="#">Tag</a></li>
+                                <li class="breadcrumb-item active">Create Tag</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Create Tag</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                            <form method="post" enctype="multipart/form-data" asp-controller="Tag" asp-action="Create">
+                                <div class="form-group">
+                                    <label for="Name">Name</label>
+                                    <input asp-for="Name" class="form-control" id="Name">
+                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

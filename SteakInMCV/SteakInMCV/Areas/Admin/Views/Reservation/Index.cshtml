@@ -36,6 +36,19 @@
                             </p>
                         </div>
                         <div class="card-body">
+                            <!-- Search Bar -->
+                            <div class="mb-3">
+                                <input type="text" id="search-input" class="form-control" placeholder="Search by Name, Email, Phone" />
+                                <select id="status-select" class="form-control mt-2">
+                                    <option value="">All Statuses</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                                <input type="date" id="date-input" class="form-control mt-2">
+                                <button id="search-btn" class="btn btn-primary mt-2">Search</button>
+                            </div>
+
                             <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -53,16 +66,14 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
+                                        <tr class="reservation-row">
                                             <td>@item.Id</td>
-                                            <td>@item.Name @item.Surname</td>
+                                            <td class="reservation-name">@item.Name @item.Surname</td>
                                             <td>@item.Email</td>
                                             <td>@item.PhoneNumber</td>
-                                            <td>@item.Date.ToString("MMMM dd, yyyy")</td>
+                                            <td>@item.Date.ToString("yyyy-MM-dd")</td> <!-- Date Format updated to match the input date format -->
                                             <td>@item.Time.ToString(@"hh\:mm")</td>
-                                            <td>
-                                                @item.Status
-                                            </td>
+                                            <td>@item.Status</td>
                                             <td>
                                                 <a class="btn btn-primary" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
                                                 <a class="btn btn-warning" asp-action="UpdateStatus" asp-route-id="@item.Id">Change Status</a>
@@ -71,6 +82,18 @@
                                     }
                                 </tbody>
                             </table>
+
+                            <!-- Pagination Controls -->
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item" id="prev-btn">
+                                        <a class="page-link" href="javascript:void(0)">Previous</a>
+                                    </li>
+                                    <li class="page-item" id="next-btn">
+                                        <a class="page-link" href="javascript:void(0)">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
                 </div><!-- end col-->
@@ -93,6 +116,66 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const rowsPerPage = 5;
+        let currentPage = 1;
+        const rows = document.querySelectorAll('.reservation-row');
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        function showPage(page) {
+            rows.forEach((row, index) => {
+                row.style.display = (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) ? '' : 'none';
+            });
+        }
+        function updatePaginationButtons() {
+            document.getElementById('prev-btn').classList.toggle('disabled', currentPage === 1);
+            document.getElementById('next-btn').classList.toggle('disabled', currentPage === totalPages);
+        }
+        document.getElementById('prev-btn').addEventListener('click', function () {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+                updatePaginationButtons();
+            }
+        });
+        document.getElementById('next-btn').addEventListener('click', function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+                updatePaginationButtons();
+            }
+        });
+        document.getElementById('search-btn').addEventListener('click', function () {
+            filterRows();
+        });
+
+        function filterRows() {
+            const searchValue = document.getElementById('search-input').value.trim().toLowerCase();
+            const selectedStatus = document.getElementById('status-select').value.toLowerCase();
+            const selectedDate = document.getElementById('date-input').value.trim();
+            const rows = document.querySelectorAll('.reservation-row');
+
+            rows.forEach(row => {
+                const name = row.querySelector('.reservation-name').textContent.toLowerCase();
+                const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                const phone = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                const status = row.querySelector('td:nth-child(7)').textContent.toLowerCase();
+                const date = row.querySelector('td:nth-child(5)').textContent;
+                const matchesText = name.includes(searchValue) || email.includes(searchValue) || phone.includes(searchValue);
+                const matchesStatus = !selectedStatus || status === selectedStatus;
+                const matchesDate = !selectedDate || date === selectedDate;
+
+                if (matchesText && matchesStatus && matchesDate) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+        showPage(currentPage);
+        updatePaginationButtons();
+    });</script>
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->

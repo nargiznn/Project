@@ -1,25 +1,48 @@
 ﻿<Properties StartupConfiguration="{C4568561-B540-4A0A-A85B-88312252C892}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SteakInMCV/wwwroot/assets/css/style.css">
+    <Files>
+      <File FileName="SteakInMCV/wwwroot/assets/css/style.css" Line="103" Column="19" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SteakInMCV">
+          <Node name="SteakInMCV" expanded="True">
             <Node name="SteakInMCV">
               <Node name="Areas">
                 <Node name="Admin">
-                  <Node name="ViewModels" expanded="True">
-                    <Node name="Product" expanded="True" />
+                  <Node name="ViewModels">
+                    <Node name="Account" expanded="True" />
+                  </Node>
+                  <Node name="Views">
+                    <Node name="Account" expanded="True" />
+                    <Node name="Award" expanded="True" />
+                    <Node name="Dashboard" expanded="True" />
+                    <Node name="Shared" expanded="True" />
+                    <Node name="Tag" expanded="True" />
                   </Node>
                 </Node>
               </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="PaginatedList.cs" selected="True" />
+              <Node name="Views" expanded="True">
+                <Node name="BookATable" expanded="True" />
+                <Node name="Element" expanded="True" />
+                <Node name="Home" expanded="True" />
+                <Node name="Menu" expanded="True" />
+                <Node name="Shared" expanded="True" />
+                <Node name="Shop" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="assets" expanded="True" />
+                <Node name="admin" expanded="True" />
+                <Node name="assets" expanded="True">
+                  <Node name="css">
+                    <Node name="fonts" expanded="True" />
+                    <Node name="style.css" selected="True" />
+                  </Node>
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -27,9 +50,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.SteakInMCV PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
 </Properties>

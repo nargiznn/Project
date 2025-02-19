@@ -55,12 +55,13 @@ namespace Service.Services
                 var response = await _fileService.UploadAsync(awardLogo.Image);
                 existAwardLogo.Image = $"http://localhost:7031/uploads/{response.Response}";
             }
-
-            _mapper.Map(awardLogo, existAwardLogo);
+            existAwardLogo.AltText = awardLogo.AltText ?? existAwardLogo.AltText;
+            existAwardLogo.ImgUrl = awardLogo.ImgUrl ?? existAwardLogo.ImgUrl;
 
             _context.Update(existAwardLogo);
             await _context.SaveChangesAsync();
         }
+
 
 
         public async Task<IEnumerable<AwardLogoDto>> GetAllAsync()

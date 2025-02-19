@@ -6,11 +6,12 @@ namespace Service.Services.Interfaces
 {
 	public interface ITestimonialService
     {
-        Task<string> CreateAsync(TestimonialCreateDto customer);
+        Task<string> CreateAsync(TestimonialCreateDto testimonialDto);
         Task<string> EditAsync(int id, TestimonialEditDto customer);
-        Task<ICollection<Testimonial>> GetAllAsync();
+        Task<IEnumerable<TestimonialDto>> GetAllAsync(); 
         Task<string> DeleteAsync(int id);
-        Task<Testimonial> GetById(int id);
+        Task<TestimonialDto> GetById(int id); 
+        Task<IEnumerable<TestimonialDto>> SearchAsync(string keyword);
     }
 }
 

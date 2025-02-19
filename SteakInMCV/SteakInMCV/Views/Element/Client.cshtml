@@ -7,7 +7,7 @@
 <!-- Page Title #1 ============================================= -->
 <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
     <div class="bg-section">
-        <img src="~/assets/images/page-title/@Model.Settings["ElementClientBg"]" alt="Background" />
+        <img src="@Model.Settings["ElementClientBg"]" alt="Background" />
     </div>
     <div class="container">
         <div class="row">
@@ -64,7 +64,7 @@
                     if (client != null)
                     {
                         <div class="col-xs-12 col-sm-6 col-md-3 client">
-                            <img class="center-block" src="~/assets/images/clients/@client.ImageUrl" alt="@client.Name">
+                            <img class="center-block" src="@client.ImageUrl" alt="@client.Name">
                         </div>
                     }
                 }

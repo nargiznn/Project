@@ -1,0 +1,72 @@
+﻿@model SteakInMCV.Areas.Admin.ViewModels.Faq.FaqEditVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="#">SteakIn</a></li>
+                                <li class="breadcrumb-item"><a href="#">Faqs</a></li>
+                                <li class="breadcrumb-item active">Edit Faq</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Edit Faq</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <form method="post" enctype="multipart/form-data" asp-controller="Faq" asp-action="Edit">
+                                <div class="form-group">
+                                    <label for="Question">Question</label>
+                                    <input asp-for="Question" class="form-control" id="Question">
+                                    <span class="text-danger" asp-validation-for="Question"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Answer">Answer</label>
+                                    <input asp-for="Answer" class="form-control" id="Answer" />
+                                    <span class="text-danger" asp-validation-for="Answer"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="IsActive">Is Active</label>
+                                    <input class="form-check-input" type="checkbox" id="IsActive" name="IsActive" value="true"
+                                           @(Model.IsActive == true ? "checked" : "") />
+                                    <span class="text-danger" asp-validation-for="IsActive"></span>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

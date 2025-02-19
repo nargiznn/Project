@@ -42,6 +42,27 @@
     <None Remove="Views\Account\" />
     <None Remove="Helpers\" />
     <None Remove="Helpers\Response\" />
+    <None Remove="Areas\Admin\Views\Event\" />
+    <None Remove="Areas\Admin\ViewModels\Event\" />
+    <None Remove="Areas\Admin\ViewModels\Comment\" />
+    <None Remove="Areas\Admin\ViewModels\Chef\" />
+    <None Remove="Areas\Admin\ViewModels\SocialMediaLink\" />
+    <None Remove="Areas\Admin\Views\Chef\" />
+    <None Remove="Areas\Admin\ViewModels\Position\" />
+    <None Remove="Areas\Admin\Views\Testimonial\" />
+    <None Remove="Areas\Admin\ViewModels\Testimonial\" />
+    <None Remove="Areas\Admin\ViewModels\Setting\" />
+    <None Remove="Areas\Admin\Views\Setting\" />
+    <None Remove="Areas\Admin\ViewModels\Faq\" />
+    <None Remove="Areas\Admin\Views\Faq\" />
+    <None Remove="Areas\Admin\Views\SpecialCategory\" />
+    <None Remove="Areas\Admin\Views\MenuCategory\" />
+    <None Remove="Areas\Admin\ViewModels\Tag\" />
+    <None Remove="Areas\Admin\Views\Tag\" />
+    <None Remove="Areas\Admin\Views\Cuisine\" />
+    <None Remove="Areas\Admin\Views\Position\" />
+    <None Remove="Areas\Admin\ViewModels\Account\" />
+    <None Remove="Areas\Admin\Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -80,6 +101,27 @@
     <Folder Include="Views\Account\" />
     <Folder Include="Helpers\" />
     <Folder Include="Helpers\Response\" />
+    <Folder Include="Areas\Admin\Views\Event\" />
+    <Folder Include="Areas\Admin\ViewModels\Event\" />
+    <Folder Include="Areas\Admin\ViewModels\Comment\" />
+    <Folder Include="Areas\Admin\ViewModels\Chef\" />
+    <Folder Include="Areas\Admin\ViewModels\SocialMediaLink\" />
+    <Folder Include="Areas\Admin\Views\Chef\" />
+    <Folder Include="Areas\Admin\ViewModels\Position\" />
+    <Folder Include="Areas\Admin\Views\Testimonial\" />
+    <Folder Include="Areas\Admin\ViewModels\Testimonial\" />
+    <Folder Include="Areas\Admin\ViewModels\Setting\" />
+    <Folder Include="Areas\Admin\Views\Setting\" />
+    <Folder Include="Areas\Admin\ViewModels\Faq\" />
+    <Folder Include="Areas\Admin\Views\Faq\" />
+    <Folder Include="Areas\Admin\Views\SpecialCategory\" />
+    <Folder Include="Areas\Admin\Views\MenuCategory\" />
+    <Folder Include="Areas\Admin\ViewModels\Tag\" />
+    <Folder Include="Areas\Admin\Views\Tag\" />
+    <Folder Include="Areas\Admin\Views\Cuisine\" />
+    <Folder Include="Areas\Admin\Views\Position\" />
+    <Folder Include="Areas\Admin\ViewModels\Account\" />
+    <Folder Include="Areas\Admin\Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

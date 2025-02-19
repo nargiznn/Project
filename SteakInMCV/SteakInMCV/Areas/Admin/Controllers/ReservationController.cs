@@ -13,7 +13,7 @@ namespace SteakInMCV.Areas.Admin.Controllers
     [Area("Admin")]
     public class ReservationController:Controller
 	{
-        private readonly string BaseURl = "http://localhost:7031"; 
+        private readonly string BaseURl = "http://localhost:7031";
         public async Task<IActionResult> Index()
         {
             IEnumerable<ReservationViewModel> reservationVMs = null;
@@ -25,7 +25,9 @@ namespace SteakInMCV.Areas.Admin.Controllers
                     reservationVMs = JsonConvert.DeserializeObject<IEnumerable<ReservationViewModel>>(apiResponse);
                 }
             }
-            return View(reservationVMs);
+            var sortedReservations = reservationVMs.OrderByDescending(r => r.Date).ToList();
+
+            return View(sortedReservations);
         }
 
         [HttpGet]

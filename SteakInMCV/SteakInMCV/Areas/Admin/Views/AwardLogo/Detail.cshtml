@@ -1,0 +1,50 @@
+﻿@model AwardLogoVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Page Title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">AwardLogo Data Detail</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="slider-details">
+                                <p><strong>Id:</strong> @Model.Id</p>
+                                <p><strong>Title:</strong> @Model.ImgUrl</p>
+                                <p><strong>Main Title:</strong> @Model.AltText</p>
+
+                                <h5>Image</h5>
+                                <img src="@Model.Image" style="width:500px; height:300px; border-radius: 10px;" alt="AwardLogo Image" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by <b>Techzaa</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

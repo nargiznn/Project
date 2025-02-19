@@ -12,6 +12,7 @@ namespace Service.Helpers.DTOs.Comment
         public string AuthorName { get; set; }
         public string Content { get; set; }
         public CommentStatus Status { get; set; }
-        public List<ReplyDto> Replies { get; set; } 
+        public List<CommentReplyDto> Replies { get; set; }
+
     }
 }

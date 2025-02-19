@@ -16,6 +16,22 @@
                             <a class="btn btn-success" asp-controller="Product" asp-action="Create">Add Product</a>
                         </div>
                         <div class="card-body">
+                            <div class="row mb-4">
+                                <!-- Search Input -->
+                                <div class="col-md-6">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Search Products" />
+                                </div>
+                                <!-- Sort Select -->
+                                <div class="col-md-6 text-right">
+                                    <select id="sortSelect" class="form-control">
+                                        <option value="name_asc">Sort by Name (A-Z)</option>
+                                        <option value="name_desc">Sort by Name (Z-A)</option>
+                                        <option value="price_asc">Sort by Price (Low to High)</option>
+                                        <option value="price_desc">Sort by Price (High to Low)</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <table id="basic-datatable" class="table table-striped w-100">
                                 <thead>
                                     <tr>
@@ -30,7 +46,7 @@
                                         <th>Options</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="productTableBody">
                                     @foreach (var item in Model.Items)
                                     {
                                         <tr>
@@ -106,7 +122,8 @@
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>document.querySelectorAll(".delete-btn").forEach(button => {
+<script>// Delete Product with confirmation using SweetAlert2
+    document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", function (e) {
             e.preventDefault();
 
@@ -140,4 +157,52 @@
                 }
             });
         });
-    });</script>
+    });
+    document.getElementById("searchInput").addEventListener("input", function () {
+        let searchTerm = this.value.toLowerCase();
+        filterTable(searchTerm, document.getElementById("sortSelect").value);
+    });
+
+    document.getElementById("sortSelect").addEventListener("change", function () {
+        let searchTerm = document.getElementById("searchInput").value.toLowerCase();
+        filterTable(searchTerm, this.value);
+    });
+
+    function filterTable(searchTerm, sortOption) {
+        let rows = Array.from(document.querySelectorAll("#productTableBody tr"));
+
+        // Filter rows based on search term
+        let filteredRows = rows.filter(row => {
+            let name = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+            return name.includes(searchTerm);
+        });
+
+        // Sort rows based on the selected sort option
+        filteredRows.sort((a, b) => {
+            let valueA, valueB;
+            switch (sortOption) {
+                case "name_asc":
+                    valueA = a.querySelector("td:nth-child(2)").textContent;
+                    valueB = b.querySelector("td:nth-child(2)").textContent;
+                    return valueA.localeCompare(valueB);
+                case "name_desc":
+                    valueA = a.querySelector("td:nth-child(2)").textContent;
+                    valueB = b.querySelector("td:nth-child(2)").textContent;
+                    return valueB.localeCompare(valueA);
+                case "price_asc":
+                    valueA = parseFloat(a.querySelector("td:nth-child(3)").textContent);
+                    valueB = parseFloat(b.querySelector("td:nth-child(3)").textContent);
+                    return valueA - valueB;
+                case "price_desc":
+                    valueA = parseFloat(a.querySelector("td:nth-child(3)").textContent);
+                    valueB = parseFloat(b.querySelector("td:nth-child(3)").textContent);
+                    return valueB - valueA;
+                default:
+                    return 0;
+            }
+        });
+
+        let tableBody = document.getElementById("productTableBody");
+        tableBody.innerHTML = "";
+        filteredRows.forEach(row => tableBody.appendChild(row));
+    }</script>

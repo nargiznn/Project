@@ -1,0 +1,62 @@
+﻿@model SteakInMCV.Areas.Admin.ViewModels.Setting.SettingVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Page Title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Setting Data Detail</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Setting Details -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="setting-details">
+                                <p><strong>Id:</strong> @Model.Id</p>
+                                <p><strong>Key:</strong> @Model.Key</p>
+                                <p><strong>Value:</strong> @Model.Value</p>
+
+                                @if (!string.IsNullOrEmpty(Model.Value) &&
+(Model.Value.EndsWith(".jpg") || Model.Value.EndsWith(".jpeg") || Model.Value.EndsWith(".png")))
+                                {
+                                    <img src="@Model.Value" style="width:150px; height:100px; border-radius: 5px;" />
+                                }
+                                else
+                                {
+                                    <p>@Model.Value</p>
+                                }
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

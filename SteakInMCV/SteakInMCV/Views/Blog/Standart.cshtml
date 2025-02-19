@@ -3,7 +3,7 @@
         ============================================= -->
         <section id="page-title" class="page-title bg-overlay bg-parallax bg-overlay-gradient">
             <div class="bg-section">
-                <img src="~/assets/images/page-title/@Model.Settings["BlogBg"]" alt="Background" />
+                <img src="@Model.Settings["BlogBg"]" alt="Background" />
             </div>
             <div class="container">
                 <div class="row">
@@ -40,6 +40,7 @@
         <section id="blog" class="blog blog-standard">
             <div class="container">
                 <div class="row">
+
                     <div class="col-xs-12 col-sm-12 col-md-9">
                         <div class="row">
                             <!-- Blog Entry #1 -->
@@ -51,7 +52,6 @@
                                         <div class="entry--content">
                                             <div class="entry--meta">
                                                 <span>@item.CreatedDate.ToString("MMM dd, yyyy")</span>
-                                                / <span>comments <a href="#">11</a></span>
                                                 /@if (item.TagsName != null && item.TagsName.Any())
                                                 {
                                                     <span>
@@ -74,9 +74,11 @@
                                                 <h4><a href="#">@item.Title</a></h4>
                                             </div>
                                             <div class="entry--img">
-                                                <a href="#">
-                                                    <img src="~/assets/images/blog/standard/@item.ImgUrl" alt="entry image" />
+                                                <a asp-controller="Blog" asp-action="Single" asp-route-id="@item.Id">
+                                                    <img src="@item.ImgUrl" alt="entry image" style="width: 800px; height: 500px; object-fit: cover;" />
                                                 </a>
+
+
                                             </div>
                                             <div class="entry--bio">
                                                 @item.Info
@@ -87,6 +89,7 @@
                                     <!-- .blog-entry end -->
                                 </div>
                             }
+
 
                             <!-- Blog Entry #2 -->
 
@@ -123,24 +126,7 @@
 
                     </div><!-- .col-md-9 end -->
                     <div class="col-xs-12 col-sm-12 col-md-3">
-                        <!-- Search
-                        ===
-                        ===
-                        === === === === === === === === === === === === === -->
-                        <div class="widget widget-search">
-                            <div class="widget--content">
-                                <form class="form-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Type Your Search Words">
-                                        <span class="input-group-btn">
-                                            <button class="btn" type="button"><i class="fa fa-search"></i></button>
-                                        </span>
 
-                                    </div>
-                                    <!-- /input-group -->
-                                </form>
-                            </div>
-                        </div> <!-- .widget-search end -->
                         <!-- Recent Posts
                         ============================================= -->
                         <div class="widget widget-recent-posts">
@@ -151,17 +137,18 @@
                                 @foreach (var item in Model.EventVMs.TakeLast(2))
                                 {
                                     <div class="entry">
-                                        <img src="~/assets/images/blog/thumb/@item.ImgUrl" alt="title" />
+                                        <img src="@item.ImgUrl" alt="title" style="width: 49px; height: 49px; object-fit: cover;" />
                                         <div class="entry-desc">
                                             <div class="entry-meta">
-                                                <a href="#">@item.CreatedDate.ToString("MMM dd, yyyy")</a>
+                                                <a asp-controller="Blog" asp-action="Single" asp-route-id="@item.Id">@item.CreatedDate.ToString("MMM dd, yyyy")</a>
                                             </div>
                                             <div class="entry-title">
-                                                <a href="#">@item.Title</a>
+                                                <a asp-controller="Blog" asp-action="Single" asp-route-id="@item.Id">@item.Title</a>
                                             </div>
                                         </div>
                                     </div>
                                 }
+
                                 <!-- .recent-entry end -->
 
                             </div>

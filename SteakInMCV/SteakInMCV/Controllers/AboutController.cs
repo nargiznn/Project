@@ -137,6 +137,7 @@ namespace SteakInMCV.Controllers
 
                     aboutVM.EventVMs = events.Select(e => new EventVM
                     {
+                        Id=e.Id,
                         Title = e.Title,
                         Desc = e.Desc,
                         ImgUrl = e.ImgUrl,

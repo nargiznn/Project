@@ -11,11 +11,9 @@ namespace Service
         public static IServiceCollection AddServiceLayer(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddScoped<IFileService, FileService>();
-
-            services.AddScoped<ICommentService, CommentService>();
+           services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IReplyService, ReplyService>();
-
+            services.AddScoped<IPositionService, PositionService>();
             services.AddScoped<IChefService, ChefService>();
             services.AddScoped<ISliderService, SliderService>();
             services.AddScoped<IWelcomeInfoService, WelcomeInfoService>();
@@ -47,6 +45,8 @@ namespace Service
             services.AddScoped<IAwardLogoService, AwardLogoService>();
 
             services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped<IFileService, FileService>();
+
             services.AddScoped<IStatisticService, StatisticService>();
 
             services.AddScoped<IEmailService, EmailService>();

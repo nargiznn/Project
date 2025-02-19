@@ -9,8 +9,10 @@ namespace Service.Helpers.DTOs.Testimonial
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Text { get; set; }
-        public int Rating { get; set; }
-        public IFormFile file { get; set; }
+        public byte Raiting { get; set; }
+        public string Image { get; set; }
+        public string ReviewTypeName { get; set; }
+        public bool IsPermit { get; set; }
     }
 }
 

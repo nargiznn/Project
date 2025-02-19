@@ -1,0 +1,63 @@
+﻿@model SteakInMCV.Areas.Admin.ViewModels.Testimonial.TestimonialVM
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Page Title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Testimonial Data Detail</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial Details -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="testimonial-details">
+                                <p><strong>Id:</strong> @Model.Id</p>
+                                <p><strong>Name:</strong> @Model.Name</p>
+                                <p><strong>Surname:</strong> @Model.Surname</p>
+                                <p><strong>Text:</strong> @Model.Text</p>
+                                <p><strong>Rating:</strong> @Model.Raiting</p>
+                                <p><strong>Review Type:</strong> @Model.ReviewTypeName</p>
+                                <p><strong>IsPermit:</strong> @Model.IsPermit</p>
+
+                                <h5>Testimonial Image</h5>
+                                @if (Model.Image != null)
+                                {
+                                    <img src="@Model.Image" style="width:150px; height:100px; border-radius: 5px;" />
+                                }
+                                else
+                                {
+                                    <p>No Image Available</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="row">
+                <div class="col-md-12">
+                    <a asp-action="Index" class="btn btn-success mt-5">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <script>document.write(new Date().getFullYear())</script> © SteakIn - Theme by <b>Admin</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

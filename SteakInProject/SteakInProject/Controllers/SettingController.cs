@@ -37,9 +37,8 @@ namespace SteakInProject.Controllers
         }
 
         [ProducesResponseType(typeof(SettingDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(SettingDto), StatusCodes.Status404NotFound)]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] SettingEditDto request)
+        public async Task<IActionResult> Edit([FromRoute] int id, [FromForm] SettingEditDto request)
         {
             try
             {
@@ -51,6 +50,7 @@ namespace SteakInProject.Controllers
                 return NotFound();
             }
         }
+
     }
 }
 

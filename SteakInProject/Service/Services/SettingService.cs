@@ -13,22 +13,30 @@ namespace Service.Services
 	{
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IFileService _fileService;
 
-        public SettingService(AppDbContext context,
-                              IMapper mapper)
+        public SettingService(AppDbContext context, IMapper mapper, IFileService fileService)
         {
             _context = context;
             _mapper = mapper;
+            _fileService = fileService;
         }
+
 
         public async Task EditAsync(int id, SettingEditDto setting)
         {
-            var existSetting = await _context.Settings.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id) ?? throw new NotFoundException("Data notfound");
+            var existSetting = await _context.Settings.FirstOrDefaultAsync(m => m.Id == id)
+                                 ?? throw new NotFoundException("Data not found");
 
-            _mapper.Map(setting, existSetting);
+            if (setting.ImageFile != null) 
+            {
+                var response = await _fileService.UploadAsync(setting.ImageFile);
+                setting.Value = $"http://localhost:7031/uploads/{response.Response}";
+            }
+
+            existSetting.Value = setting.Value;
 
             _context.Settings.Update(existSetting);
-
             await _context.SaveChangesAsync();
         }
 

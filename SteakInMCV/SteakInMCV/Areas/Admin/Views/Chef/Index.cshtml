@@ -1,0 +1,192 @@
+﻿@model IEnumerable<SteakInMCV.Areas.Admin.ViewModels.Chef.ChefVM>
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Page Header -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4 class="header-title">Chef Data Table</h4>
+                            <a class="btn btn-success" asp-controller="Chef" asp-action="Create">Add Chef</a>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <input id="search-input" type="text" class="form-control" placeholder="Search by name, surname or position">
+                            </div>
+                            <div class="col-md-3">
+                                <button id="search-btn" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+
+                         <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table id="chef-table" class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Image</th>
+                                                    <th>Name</th>
+                                                    <th>Surname</th>
+                                                    <th>Positions</th>
+                                                    <th>Options</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr class="chef-row">
+                                                        <td>@item.Id</td>
+                                                        <td>
+                                                            @if (item.Images != null && item.Images.Any())
+                                                            {
+                                                                <img src="@item.Images.First()" style="width:100px; height:80px" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>No Image</span>
+                                                            }
+                                                        </td>
+                                                        <td class="chef-name">@item.Name</td>
+                                                        <td class="chef-surname">@item.Surname</td>
+                                                        <td class="chef-positions">
+                                                            @if (item.Positions != null && item.Positions.Any())
+                                                            {
+                                                                foreach (var position in item.Positions)
+                                                                {
+                                                                    <span class="badge bg-info">@position</span>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>No Position</span>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-primary" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                                                            <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                                            <button class="btn btn-danger btn-sm delete-btn" data-url="@Url.Action("Delete", new { id = item.Id })">Delete</button>
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                        <!-- Pagination Controls -->
+                                        <div class="pagination-controls mt-3">
+                                            <button id="prev-btn" class="btn btn-outline-primary" disabled>Previous</button>
+                                            <button id="next-btn" class="btn btn-outline-primary">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="delete-form">
+    @Html.AntiForgeryToken()
+</form>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const rowsPerPage = 5;
+        let currentPage = 1;
+        const rows = document.querySelectorAll('.chef-row');
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+        function showPage(page) {
+            rows.forEach((row, index) => {
+                row.style.display = (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) ? '' : 'none';
+            });
+        }
+
+        function updatePaginationButtons() {
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = currentPage === totalPages;
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', function () {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+                updatePaginationButtons();
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', function () {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+                updatePaginationButtons();
+            }
+        });
+
+        showPage(currentPage);
+        updatePaginationButtons();
+
+        document.getElementById('search-btn').addEventListener('click', function () {
+            const searchValue = document.getElementById('search-input').value.trim().toLowerCase();
+            rows.forEach(row => {
+                const name = row.querySelector('.chef-name').textContent.toLowerCase();
+                const surname = row.querySelector('.chef-surname').textContent.toLowerCase();
+                const positions = row.querySelector('.chef-positions').textContent.toLowerCase();
+
+
+                if (
+                    name.includes(searchValue) ||
+                    surname.includes(searchValue) ||
+                    positions.includes(searchValue)
+                ) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                let url = this.dataset.url;
+                let token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This action cannot be undone!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(url, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "RequestVerificationToken": token
+                            }
+                        }).then(response => {
+                            if (response.ok) {
+                                Swal.fire("Deleted!", "The chef has been deleted successfully.", "success")
+                                    .then(() => window.location.reload());
+                            } else {
+                                Swal.fire("Error!", "The delete operation failed.", "error");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    });</script>
+

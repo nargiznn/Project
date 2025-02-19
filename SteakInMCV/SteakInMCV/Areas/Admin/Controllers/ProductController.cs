@@ -12,9 +12,10 @@ using SteakInMCV.Models;
 namespace SteakInMCV.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ProductController:Controller
-	{
+    public class ProductController : Controller
+    {
         private readonly string BaseURl = "http://localhost:7031";
+
         public async Task<IActionResult> Index(int page = 1, int size = 10)
         {
             IEnumerable<ProductVM> productList = null;
@@ -39,7 +40,6 @@ namespace SteakInMCV.Areas.Admin.Controllers
             return View(paginatedList);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
@@ -51,7 +51,7 @@ namespace SteakInMCV.Areas.Admin.Controllers
                 {
                     return Json(new { success = true });
                 }
-                return Json(new { success = false, message = "Məhsul silinərkən xəta baş verdi." });
+                return Json(new { success = false, message = "An error occurred while deleting the item." });
             }
         }
 
@@ -59,23 +59,34 @@ namespace SteakInMCV.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             ProductVM product = null;
+
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"{BaseURl}/api/product/getbyid/" + id))
+                using (var response = await httpClient.GetAsync($"{BaseURl}/api/product/getbyid/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     product = JsonConvert.DeserializeObject<ProductVM>(apiResponse);
                 }
             }
+
+            await LoadSelectLists();
+
+            var menuCategoryId = (await GetAllMenuCategoriesAsync())
+                                    .FirstOrDefault(m => m.Name == product.MenuCategoryName)?.Id;
+            var specialCategoryId = (await GetAllSpecialCategoriesAsync())
+                                    .FirstOrDefault(s => s.Name == product.SpecialCategoryName)?.Id;
+            var productCuisineId = (await GetAllCuisinesAsync())
+                                    .FirstOrDefault(c => c.Name == product.ProductCuisineName)?.Id;
+
             return View(new ProductEditVM
             {
                 Id = product.Id,
                 Name = product.Name,
                 Ingredient = product.Ingredient,
                 Price = product.Price,
-                MenuCategoryId=product.MenuCategoryId,
-                SpecialCategoryId=product.SpecialCategoryId,
-                ProductCuisineId=product.ProductCuisineId
+                MenuCategoryId = menuCategoryId ?? 0,
+                SpecialCategoryId = specialCategoryId ?? 0,
+                ProductCuisineId = productCuisineId ?? 0
             });
         }
 
@@ -87,6 +98,20 @@ namespace SteakInMCV.Areas.Admin.Controllers
             {
                 return View(request);
             }
+
+            ProductVM currentProduct = await GetProductByIdAsync(id);
+
+            if (request.Price <= 0)
+            {
+                ModelState.AddModelError(nameof(request.Price), "Price must be greater than zero.");
+            }
+
+            request.Name = request.Name ?? currentProduct.Name;
+            request.Ingredient = request.Ingredient ?? currentProduct.Ingredient;
+            request.Price = request.Price > 0 ? request.Price : currentProduct.Price;
+            request.MenuCategoryId = request.MenuCategoryId ?? currentProduct.MenuCategoryId;
+            request.SpecialCategoryId = request.SpecialCategoryId ?? currentProduct.SpecialCategoryId;
+            request.ProductCuisineId = request.ProductCuisineId ?? currentProduct.ProductCuisineId;
 
             using (var httpClient = new HttpClient())
             {
@@ -101,11 +126,11 @@ namespace SteakInMCV.Areas.Admin.Controllers
 
                     if (request.Files != null && request.Files.Any())
                     {
-                        foreach (var photo in request.Files)
+                        foreach (var file in request.Files)
                         {
-                            var fileContent = new StreamContent(photo.OpenReadStream());
-                            fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(photo.ContentType);
-                            multipartContent.Add(fileContent, "Photos", photo.FileName);
+                            var fileContent = new StreamContent(file.OpenReadStream());
+                            fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+                            multipartContent.Add(fileContent, "Files", file.FileName);
                         }
                     }
 
@@ -115,6 +140,7 @@ namespace SteakInMCV.Areas.Admin.Controllers
                         if (!response.IsSuccessStatusCode)
                         {
                             ModelState.AddModelError(string.Empty, "API-də xəta baş verdi.");
+                            await LoadSelectLists();
                             return View(request);
                         }
                     }
@@ -122,10 +148,21 @@ namespace SteakInMCV.Areas.Admin.Controllers
             }
 
             return RedirectToAction(nameof(Index));
-
         }
 
-
+        private async Task<ProductVM> GetProductByIdAsync(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync($"{BaseURl}/api/product/getbyid/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<ProductVM>(apiResponse);
+                }
+                return null;
+            }
+        }
 
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
@@ -143,23 +180,27 @@ namespace SteakInMCV.Areas.Admin.Controllers
             return View(awardLogo);
         }
 
-
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             await LoadSelectLists();
             return View();
         }
+
         private async Task LoadSelectLists()
         {
             using var httpClient = new HttpClient();
+
             var menuCategoryResponse = await httpClient.GetStringAsync($"{BaseURl}/api/MenuCategory/GetAll");
             ViewBag.MenuCategories = JsonConvert.DeserializeObject<IEnumerable<MenuCategoryVM>>(menuCategoryResponse);
+
             var specialCategoryResponse = await httpClient.GetStringAsync($"{BaseURl}/api/SpecialCategory/GetAll");
             ViewBag.SpecialCategories = JsonConvert.DeserializeObject<IEnumerable<SpecialCategoryVM>>(specialCategoryResponse);
+
             var cuisineResponse = await httpClient.GetStringAsync($"{BaseURl}/api/Cuisine/GetAll");
             ViewBag.Cuisines = JsonConvert.DeserializeObject<IEnumerable<CuisineVM>>(cuisineResponse);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductCreateVM request)
@@ -167,12 +208,35 @@ namespace SteakInMCV.Areas.Admin.Controllers
             if (request.Price <= 0)
             {
                 ModelState.AddModelError(nameof(request.Price), "The price must be greater than zero.");
+            }
 
+            var existingProducts = await GetAllProductsAsync();
+            if (existingProducts.Any(p => p.Name.Equals(request.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                ModelState.AddModelError(nameof(request.Name), "A product with this name already exists.");
+            }
+
+            var specialCategories = await GetAllSpecialCategoriesAsync();
+            if (!specialCategories.Any(s => s.Id == request.SpecialCategoryId))
+            {
+                ModelState.AddModelError(nameof(request.SpecialCategoryId), "Invalid Special Category.");
+            }
+
+            var menuCategories = await GetAllMenuCategoriesAsync();
+            if (!menuCategories.Any(m => m.Id == request.MenuCategoryId))
+            {
+                ModelState.AddModelError(nameof(request.MenuCategoryId), "Invalid Menu Category.");
+            }
+
+            var cuisines = await GetAllCuisinesAsync();
+            if (!cuisines.Any(c => c.Id == request.CuisineId))
+            {
+                ModelState.AddModelError(nameof(request.CuisineId), "Invalid Cuisine.");
             }
 
             if (!ModelState.IsValid)
             {
-                await LoadSelectLists(); 
+                await LoadSelectLists();
                 return View(request);
             }
 
@@ -203,7 +267,7 @@ namespace SteakInMCV.Areas.Admin.Controllers
                         if (!response.IsSuccessStatusCode)
                         {
                             ModelState.AddModelError(string.Empty, "API-də xəta baş verdi.");
-                            await LoadSelectLists(); 
+                            await LoadSelectLists();
                             return View(request);
                         }
                     }
@@ -213,6 +277,32 @@ namespace SteakInMCV.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        private async Task<IEnumerable<MenuCategoryVM>> GetAllMenuCategoriesAsync()
+        {
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync($"{BaseURl}/api/MenuCategory/GetAll");
+            return JsonConvert.DeserializeObject<IEnumerable<MenuCategoryVM>>(response);
+        }
+
+        private async Task<IEnumerable<SpecialCategoryVM>> GetAllSpecialCategoriesAsync()
+        {
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync($"{BaseURl}/api/SpecialCategory/GetAll");
+            return JsonConvert.DeserializeObject<IEnumerable<SpecialCategoryVM>>(response);
+        }
+
+        private async Task<IEnumerable<CuisineVM>> GetAllCuisinesAsync()
+        {
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync($"{BaseURl}/api/Cuisine/GetAll");
+            return JsonConvert.DeserializeObject<IEnumerable<CuisineVM>>(response);
+        }
+
+        private async Task<IEnumerable<ProductVM>> GetAllProductsAsync()
+        {
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetStringAsync($"{BaseURl}/api/Product/GetAll");
+            return JsonConvert.DeserializeObject<IEnumerable<ProductVM>>(response);
+        }
     }
 }
-
